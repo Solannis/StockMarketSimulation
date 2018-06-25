@@ -89,4 +89,31 @@ public class Stock {
 		stockDividendYield = 0.0f;
 	}
 	
+	//============================
+	// OBJECT GETTERS AND SETTERS
+	//============================
+	
+	public String GetStockSymbol ( ) {
+		return this.stockSymbol;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
+	 * to change the stockSymbol will be rejected.  
+	 * <p>
+	 * This method is private and should only be called by an object constructor.
+	 * <p>
+	 */
+	public boolean SetStockSymbol (String ss) {
+		
+		if (this.stockSymbol.equals("")) {
+			this.stockSymbol = ss;
+			return true;
+		}
+
+		return false;
+	}
+	
+	
+	
 }
