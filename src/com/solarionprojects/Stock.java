@@ -93,6 +93,18 @@ public class Stock {
 	// OBJECT GETTERS AND SETTERS
 	//============================
 	
+	//------------------------
+	// ATTRIBUTE: stockSymbol
+	//------------------------
+	
+	/**
+	 * This method returns the current stockSymbol attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A String value representing the current stock symbol attribute
+	 * @see				SetStockSymbol
+	 */
 	public String GetStockSymbol ( ) {
 		return this.stockSymbol;
 	}
@@ -101,16 +113,17 @@ public class Stock {
 	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
 	 * to change the stockSymbol will be rejected.  
 	 * <p>
-	 * This method is private and should only be called by an object constructor.
+	 * This method is public and can be be called by any object.
 	 * <p>
+	 * @param	String	The new stock symbol to set
+	 * @return			A boolean value indicating success or failure at setting a new stock symbol
+	 * @see				GetStockSymbol
 	 */
 	public boolean SetStockSymbol (String ss) {
-		
 		if (this.stockSymbol.equals("")) {
 			this.stockSymbol = ss;
 			return true;
 		}
-
 		return false;
 	}
 	
