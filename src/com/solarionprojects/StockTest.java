@@ -46,8 +46,12 @@ class StockTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testStockSymbolIsSettable() {
+		Stock s = new Stock();
+		
+		assertEquals(true, s.setSymbol("AAPL"));
+		assertEquals(false, s.setSymbol("AMZN"));
+		//fail("Not yet implemented");
 	}
 
 }
