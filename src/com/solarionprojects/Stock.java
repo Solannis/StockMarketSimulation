@@ -2,6 +2,13 @@ package com.solarionprojects;
 
 public class Stock {
 
+	//=========================
+	// OBJECT GLOBAL CONSTANTS
+	//=========================
+	
+	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
+	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
+
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
 	//==========================
@@ -111,7 +118,10 @@ public class Stock {
 	
 	/**
 	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
-	 * to change the stockSymbol will be rejected.  
+	 * to change the stockSymbol will be rejected. Checcks to be performed are:
+	 * 	- Make sure symbol is valid length.
+	 *  - Make sure symbol is not blank.
+	 *  - Make sure symbol is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
@@ -120,6 +130,12 @@ public class Stock {
 	 * @see				GetStockSymbol
 	 */
 	public boolean SetStockSymbol (String ss) {
+		if ((ss.length() < STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > STOCK_SYMBOL_MAX_LENGTH)) {
+			return false;
+		}
+		if (ss.equals("")) {
+			return false;
+		}
 		if (this.stockSymbol.equals("")) {
 			this.stockSymbol = ss;
 			return true;
@@ -127,6 +143,73 @@ public class Stock {
 		return false;
 	}
 	
+	//------------------------
+	// ATTRIBUTE: stockSector
+	//------------------------
 	
+	/**
+	 * This method returns the current stockSector attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A String value representing the current stock sector attribute
+	 * @see				SetStockSector
+	 */
+	public String GetStockSector ( ) {
+		return this.stockSector;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the stockSector attribute value. Subsequent requests
+	 * to change the stockSector will be rejected.  
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	String	The new stock sector to set
+	 * @return			A boolean value indicating success or failure at setting a new stock sector
+	 * @see				GetStockSector
+	 */
+	public boolean SetStockSector (String ss) {
+		if (this.stockSector.equals("")) {
+			this.stockSector = ss;
+			return true;
+		}
+		return false;
+	}
+	
+	
+	//------------------------
+	// ATTRIBUTE: stockExchange
+	//------------------------
+	
+	/**
+	 * This method returns the current stockExchange attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A String value representing the current stock exchange attribute
+	 * @see				SetStockExchange
+	 */
+	public String GetStockExchange ( ) {
+		return this.stockExchange;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the stockExchange attribute value. Subsequent requests
+	 * to change the stockSector will be rejected.  
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	String	The new stock sector to set
+	 * @return			A boolean value indicating success or failure at setting a new stock sector
+	 * @see				GetStockSector
+	 */
+	public boolean SetStockExchange (String se) {
+		if (this.stockExchange.equals("")) {
+			this.stockExchange = se;
+			return true;
+		}
+		return false;
+	}
 	
 }

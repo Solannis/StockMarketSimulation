@@ -46,13 +46,48 @@ class StockTest {
 	}
 
 	@Test
-	void testStockSymbolIsSettable() {
+	void TestSetStockSymbol () {
+		//
+		// Tests to perform:
+		//	1 - Ensure something not-a-string cannot be sent. Prevented by compiler, not a test.
+		//	2 - Ensure parameter value is valid length before setting.
+		//	3 - Ensure parameter value is not blank before setting.
+		//	4 - Ensure symbol can be set.
+		//	5 - Ensure symbol, once set, cannot be reset.
+		//
+		
 		Stock s = new Stock();
 		
-		// need to try a test that sends something not a string, see how that reacts.
+		//
+		// 2 - Ensure parameter value is valid length before setting.
+		//
+		assertEquals(false, s.SetStockSymbol(""));				// Too short for min_length = 1
+		assertEquals(false, s.SetStockSymbol("HelloWorld"));	// Too long for max_length = 5
+		//
+		// 3 - Ensure parameter value is not blank before setting.
+		//
+		assertEquals(false, s.SetStockSymbol(""));
+		//
+		//	4 - Ensure symbol can be set.
+		//
 		assertEquals(true, s.SetStockSymbol("AAPL"));
+		//
+		//	5 - Ensure symbol, once set, cannot be reset.
+		//
 		assertEquals(false, s.SetStockSymbol("AMZN"));
-		//fail("Not yet implemented");
+	}
+	
+	@Test
+	void TestGetStockSymbol () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the proper symbol is returned as a string value.
+		//
+		
+		Stock s = new Stock();
+		
+		boolean pf = s.SetStockSymbol("AAPL");
+		assertEquals("AAPL", s.GetStockSymbol());
 	}
 	
 	@Test
