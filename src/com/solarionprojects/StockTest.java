@@ -12,10 +12,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Mitchell
+ * @author Mitchell Freeman
  *
  */
 class StockTest {
+	
+	private static final String EMPTY_STRING = "";
+	private static final String TEST_STOCK_SYMBOL = "AAPL";
+	private static final String TEST_STOCK_SECTOR = "Technology";
+	private static final String TEST_STOCK_EXCHANGE = "NASDAQ";
 
 	/**
 	 * @throws java.lang.Exception
@@ -49,53 +54,130 @@ class StockTest {
 	void TestSetStockSymbol () {
 		//
 		// Tests to perform:
-		//	1 - Ensure something not-a-string cannot be sent. Prevented by compiler, not a test.
-		//	2 - Ensure parameter value is valid length before setting.
-		//	3 - Ensure parameter value is not blank before setting.
-		//	4 - Ensure symbol can be set.
-		//	5 - Ensure symbol, once set, cannot be reset.
+		//	1 - Ensure parameter value is valid length before setting.
+		//	2 - Ensure parameter value is not blank before setting.
+		//	3 - Ensure symbol can be set.
+		//	4 - Ensure symbol, once set, cannot be reset.
 		//
 		
 		Stock s = new Stock();
 		
 		//
-		// 2 - Ensure parameter value is valid length before setting.
+		// 1 - Ensure parameter value is valid length before setting.
 		//
-		assertEquals(false, s.SetStockSymbol(""));				// Too short for min_length = 1
-		assertEquals(false, s.SetStockSymbol("HelloWorld"));	// Too long for max_length = 5
+		assertEquals(false, s.SetStockSymbol(EMPTY_STRING));		// Too short for min_length = 1
+		assertEquals(false, s.SetStockSymbol("HelloWorld"));		// Too long for max_length = 5
 		//
-		// 3 - Ensure parameter value is not blank before setting.
+		// 2 - Ensure parameter value is not blank before setting.
 		//
-		assertEquals(false, s.SetStockSymbol(""));
+		assertEquals(false, s.SetStockSymbol(EMPTY_STRING));		// Cannot be an empty string
 		//
-		//	4 - Ensure symbol can be set.
+		// 3 - Ensure symbol can be set.
 		//
-		assertEquals(true, s.SetStockSymbol("AAPL"));
+		assertEquals(true, s.SetStockSymbol(TEST_STOCK_SYMBOL));	// Should allow symbol to be set.
 		//
-		//	5 - Ensure symbol, once set, cannot be reset.
+		//	4 - Ensure symbol, once set, cannot be reset.
 		//
-		assertEquals(false, s.SetStockSymbol("AMZN"));
+		assertEquals(false, s.SetStockSymbol("AMZN"));				// Should NOT allow symbol to be set.
 	}
 	
 	@Test
 	void TestGetStockSymbol () {
 		//
 		// Tests to perform:
+		//	1 - Ensure the correct symbol is returned.
+		//
+		
+		Stock s = new Stock();
+		s.SetStockSymbol(TEST_STOCK_SYMBOL);
+
+		//
 		//	1 - Ensure the proper symbol is returned as a string value.
+		//
+		assertEquals(TEST_STOCK_SYMBOL, s.GetStockSymbol());
+	}
+	
+	@Test
+	void TestSetStockSector() {
+		//
+		// Tests to perform:
+		//	1 - Ensure parameter value is not blank before setting.
+		//	2 - Ensure sector can be set.
+		//	3 - Ensure sector, once set, cannot be reset.
 		//
 		
 		Stock s = new Stock();
 		
-		boolean pf = s.SetStockSymbol("AAPL");
-		assertEquals("AAPL", s.GetStockSymbol());
+		//
+		// 	1 - Ensure parameter value is not blank before setting.
+		//
+		assertEquals(false, s.SetStockSector(EMPTY_STRING));
+		//
+		//	2 - Ensure sector can be set.
+		//
+		assertEquals(true, s.SetStockSector(TEST_STOCK_SECTOR));
+		//
+		// 3 - Ensure sector, once set, cannot be reset.
+		//
+		assertEquals(false, s.SetStockSector("Healthcare"));
+	}
+
+	@Test
+	void TestGetStockSector () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct sector is returned.
+		//
+		
+		Stock s = new Stock();
+		s.SetStockSector(TEST_STOCK_SECTOR);
+
+		//
+		//	1 - Ensure the proper symbol is returned as a string value.
+		//
+		assertEquals(TEST_STOCK_SECTOR, s.GetStockSector());
 	}
 	
 	@Test
-	void testStockSectorIsSettable() {
+	void TestSetStockExchange() {
+		//
+		// Tests to perform:
+		//	1 - Ensure parameter value is not blank before setting.
+		//	2 - Ensure exchange can be set.
+		//	3 - Ensure exchange, once set, cannot be reset.
+		//
+		
 		Stock s = new Stock();
 		
-		assertEquals(true, s.SetStockSector("Tech"));
-		assertEquals(false, s.SetStockSector("Healthcare"));
+		//
+		// 	1 - Ensure parameter value is not blank before setting.
+		//
+		assertEquals(false, s.SetStockExchange(EMPTY_STRING));
+		//
+		//	2 - Ensure sector can be set.
+		//
+		assertEquals(true, s.SetStockExchange(TEST_STOCK_EXCHANGE));
+		//
+		// 3 - Ensure sector, once set, cannot be reset.
+		//
+		assertEquals(false, s.SetStockExchange("DOW JONES"));
 	}
+
+	@Test
+	void TestGetStockExchange () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct exchange is returned.
+		//
+		
+		Stock s = new Stock();
+		s.SetStockExchange(TEST_STOCK_EXCHANGE);
+
+		//
+		//	1 - Ensure the proper symbol is returned as a string value.
+		//
+		assertEquals(TEST_STOCK_EXCHANGE, s.GetStockExchange());
+	}
+	
 
 }

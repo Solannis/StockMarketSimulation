@@ -8,6 +8,7 @@ public class Stock {
 	
 	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
 	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
+	private static final String EMPTY_STRING = "";
 
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -72,11 +73,11 @@ public class Stock {
 	 * <p>
 	 */
 	private void InitializeValues ( ) {
-		stockSymbol = "";
-		stockSector = "";
-		stockExchange = "";
-		stockFullName = "";
-		stockDescription = "";
+		stockSymbol = EMPTY_STRING;
+		stockSector = EMPTY_STRING;
+		stockExchange = EMPTY_STRING;
+		stockFullName = EMPTY_STRING;
+		stockDescription = EMPTY_STRING;
 		stockCurrentPrice = 0.0f;
 		stockCurrentPriceAsk = 0.0f;
 		stockCurrentPriceBid = 0.0f;
@@ -133,10 +134,10 @@ public class Stock {
 		if ((ss.length() < STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > STOCK_SYMBOL_MAX_LENGTH)) {
 			return false;
 		}
-		if (ss.equals("")) {
+		if (ss.equals(EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockSymbol.equals("")) {
+		if (this.stockSymbol.equals(EMPTY_STRING)) {
 			this.stockSymbol = ss;
 			return true;
 		}
@@ -170,7 +171,10 @@ public class Stock {
 	 * @see				GetStockSector
 	 */
 	public boolean SetStockSector (String ss) {
-		if (this.stockSector.equals("")) {
+		if (ss.equals(EMPTY_STRING)) {
+			return false;
+		}
+		if (this.stockSector.equals(EMPTY_STRING)) {
 			this.stockSector = ss;
 			return true;
 		}
@@ -205,7 +209,10 @@ public class Stock {
 	 * @see				GetStockSector
 	 */
 	public boolean SetStockExchange (String se) {
-		if (this.stockExchange.equals("")) {
+		if (se.equals(EMPTY_STRING)) {
+			return false;
+		}
+		if (this.stockExchange.equals(EMPTY_STRING)) {
 			this.stockExchange = se;
 			return true;
 		}
