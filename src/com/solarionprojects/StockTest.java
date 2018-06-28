@@ -49,9 +49,18 @@ class StockTest {
 	void testStockSymbolIsSettable() {
 		Stock s = new Stock();
 		
-		assertEquals(true, s.setSymbol("AAPL"));
-		assertEquals(false, s.setSymbol("AMZN"));
+		// need to try a test that sends something not a string, see how that reacts.
+		assertEquals(true, s.SetStockSymbol("AAPL"));
+		assertEquals(false, s.SetStockSymbol("AMZN"));
 		//fail("Not yet implemented");
+	}
+	
+	@Test
+	void testStockSectorIsSettable() {
+		Stock s = new Stock();
+		
+		assertEquals(true, s.SetStockSector("Tech"));
+		assertEquals(false, s.SetStockSector("Healthcare"));
 	}
 
 }
