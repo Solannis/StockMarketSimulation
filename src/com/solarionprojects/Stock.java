@@ -121,9 +121,9 @@ public class Stock {
 	/**
 	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
 	 * to change the stockSymbol will be rejected. Checks to be performed are:
-	 * 	- Make sure symbol is valid length.
-	 *  - Make sure symbol is not blank.
-	 *  - Make sure symbol is not already set.
+	 * 	- Make sure symbol parameter is of valid length.
+	 *  - Make sure symbol parameter is not blank.
+	 *  - Make sure symbol attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
@@ -164,8 +164,8 @@ public class Stock {
 	/**
 	 * This method allows for the one-time setting of the stockSector attribute value. Subsequent requests
 	 * to change the stockSector will be rejected. Checks to be performed are:
-	 *  - Make sure sector is not blank.
-	 *  - Make sure sector is not already set.
+	 *  - Make sure sector parameter is not blank.
+	 *  - Make sure sector attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
@@ -204,8 +204,8 @@ public class Stock {
 	/**
 	 * This method allows for the one-time setting of the stockExchange attribute value. Subsequent requests
 	 * to change the stockExchange will be rejected. Checks to be performed are:
-	 *  - Make sure exchange is not blank.
-	 *  - Make sure exchange is not already set.
+	 *  - Make sure exchange parameter is not blank.
+	 *  - Make sure exchange attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
@@ -243,8 +243,8 @@ public class Stock {
 	/**
 	 * This method allows for the one-time setting of the stockFullName attribute value. Subsequent requests
 	 * to change the stockFullName will be rejected. Checks to be performed are:
-	 *  - Make sure full name is not blank.
-	 *  - Make sure full name is not already set.
+	 *  - Make sure full name parameter is not blank.
+	 *  - Make sure full name attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
@@ -262,6 +262,46 @@ public class Stock {
 		}
 		return false;
 	}
+
+	//-----------------------------
+	// ATTRIBUTE: stockDescription
+	//-----------------------------
+	
+	/**
+	 * This method returns the current stockDescription attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A String value representing the current stock description attribute
+	 * @see				SetStockDescription
+	 */
+	public String GetStockDescription ( ) {
+		return this.stockDescription;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the stockDescription attribute value. Subsequent requests
+	 * to change the stockDescription will be rejected. Checks to be performed are:
+	 *  - Make sure description parameter is not blank.
+	 *  - Make sure description attribute is not already set.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	String	The new stock description to set
+	 * @return			A boolean value indicating success or failure at setting a new stock description
+	 * @see				GetStockDescription
+	 */
+	public boolean SetStockDescription (String sd) {
+		if (sd.equals(EMPTY_STRING)) {
+			return false;
+		}
+		if (this.stockFullName.equals(EMPTY_STRING)) {
+			this.stockFullName = sd;
+			return true;
+		}
+		return false;
+	}
+
 
 
 }

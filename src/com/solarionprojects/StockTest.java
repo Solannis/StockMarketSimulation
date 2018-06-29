@@ -22,6 +22,7 @@ class StockTest {
 	private static final String TEST_STOCK_SECTOR = "Technology";
 	private static final String TEST_STOCK_EXCHANGE = "NASDAQ";
 	private static final String TEST_STOCK_FULL_NAME = "Apple, Inc.";
+	private static final String TEST_STOCK_DESCRIPTION = "Apple, Inc. common stock";
 	
 	/**
 	 * @throws java.lang.Exception
@@ -59,29 +60,29 @@ class StockTest {
 	void TestSetStockSymbol () {
 		//
 		// Tests to perform:
-		//	1 - Ensure parameter value is valid length before setting.
-		//	2 - Ensure parameter value is not blank before setting.
-		//	3 - Ensure symbol can be set.
-		//	4 - Ensure symbol, once set, cannot be reset.
+		//	1 - Ensure symbol parameter value is valid length before setting.
+		//	2 - Ensure symbol parameter value is not blank before setting.
+		//	3 - Ensure symbol attribute can be set.
+		//	4 - Ensure symbol attribute, once set, cannot be reset.
 		//
 		
 		Stock s = new Stock();
 		
 		//
-		// 1 - Ensure parameter value is valid length before setting.
+		//	1 - Ensure symbol parameter value is valid length before setting.
 		//
 		assertEquals(false, s.SetStockSymbol(EMPTY_STRING));		// Too short for min_length = 1
 		assertEquals(false, s.SetStockSymbol("HelloWorld"));		// Too long for max_length = 5
 		//
-		// 2 - Ensure parameter value is not blank before setting.
+		//	2 - Ensure symbol parameter value is not blank before setting.
 		//
 		assertEquals(false, s.SetStockSymbol(EMPTY_STRING));		// Cannot be an empty string
 		//
-		// 3 - Ensure symbol can be set.
+		//	3 - Ensure symbol attribute can be set.
 		//
 		assertEquals(true, s.SetStockSymbol(TEST_STOCK_SYMBOL));	// Should allow symbol to be set.
 		//
-		//	4 - Ensure symbol, once set, cannot be reset.
+		//	4 - Ensure symbol attribute, once set, cannot be reset.
 		//
 		assertEquals(false, s.SetStockSymbol("AMZN"));				// Should NOT allow symbol to be set.
 	}
@@ -110,23 +111,23 @@ class StockTest {
 	void TestSetStockSector() {
 		//
 		// Tests to perform:
-		//	1 - Ensure parameter value is not blank before setting.
-		//	2 - Ensure sector can be set.
-		//	3 - Ensure sector, once set, cannot be reset.
+		//	1 - Ensure sector parameter value is not blank before setting.
+		//	2 - Ensure sector attribute can be set.
+		//	3 - Ensure sector attribute, once set, cannot be reset.
 		//
 		
 		Stock s = new Stock();
 		
 		//
-		// 	1 - Ensure parameter value is not blank before setting.
+		// 	1 - Ensure sector parameter value is not blank before setting.
 		//
 		assertEquals(false, s.SetStockSector(EMPTY_STRING));
 		//
-		//	2 - Ensure sector can be set.
+		//	2 - Ensure sector attribute can be set.
 		//
 		assertEquals(true, s.SetStockSector(TEST_STOCK_SECTOR));
 		//
-		// 3 - Ensure sector, once set, cannot be reset.
+		//	3 - Ensure sector attribute, once set, cannot be reset.
 		//
 		assertEquals(false, s.SetStockSector("Healthcare"));
 	}
@@ -155,23 +156,23 @@ class StockTest {
 	void TestSetStockExchange() {
 		//
 		// Tests to perform:
-		//	1 - Ensure parameter value is not blank before setting.
-		//	2 - Ensure exchange can be set.
-		//	3 - Ensure exchange, once set, cannot be reset.
+		//	1 - Ensure exchange parameter value is not blank before setting.
+		//	2 - Ensure exchange attribute can be set.
+		//	3 - Ensure exchange attribute, once set, cannot be reset.
 		//
 		
 		Stock s = new Stock();
 		
 		//
-		// 	1 - Ensure parameter value is not blank before setting.
+		// 	1 - Ensure exchange parameter value is not blank before setting.
 		//
 		assertEquals(false, s.SetStockExchange(EMPTY_STRING));
 		//
-		//	2 - Ensure exchange can be set.
+		//	2 - Ensure exchange attribute can be set.
 		//
 		assertEquals(true, s.SetStockExchange(TEST_STOCK_EXCHANGE));
 		//
-		// 3 - Ensure exchange, once set, cannot be reset.
+		//	3 - Ensure exchange attribute, once set, cannot be reset.
 		//
 		assertEquals(false, s.SetStockExchange("DOW JONES"));
 	}
@@ -200,23 +201,23 @@ class StockTest {
 	void TestSetStockFullName() {
 		//
 		// Tests to perform:
-		//	1 - Ensure parameter value is not blank before setting.
-		//	2 - Ensure full name can be set.
-		//	3 - Ensure full name, once set, cannot be reset.
+		//	1 - Ensure full name parameter value is not blank before setting.
+		//	2 - Ensure full name attribute can be set.
+		//	3 - Ensure full name attribute, once set, cannot be reset.
 		//
 		
 		Stock s = new Stock();
 		
 		//
-		// 	1 - Ensure parameter value is not blank before setting.
+		// 	1 - Ensure full name parameter value is not blank before setting.
 		//
 		assertEquals(false, s.SetStockFullName(EMPTY_STRING));
 		//
-		//	2 - Ensure full name can be set.
+		//	2 - Ensure full name attribute can be set.
 		//
 		assertEquals(true, s.SetStockFullName(TEST_STOCK_FULL_NAME));
 		//
-		// 3 - Ensure full name, once set, cannot be reset.
+		//	3 - Ensure full name attribute, once set, cannot be reset.
 		//
 		assertEquals(false, s.SetStockFullName("Amazon.com, Inc."));
 	}
@@ -235,6 +236,51 @@ class StockTest {
 		//	1 - Ensure the correct full name is returned.
 		//
 		assertEquals(TEST_STOCK_FULL_NAME, s.GetStockFullName());
+	}
+	
+	//-------------------------
+	// TEST SET: stockDescription
+	//-------------------------
+	
+	@Test
+	void TestSetStockDescription() {
+		//
+		// Tests to perform:
+		//	1 - Ensure description parameter value is not blank before setting.
+		//	2 - Ensure description attribute can be set.
+		//	3 - Ensure description attribute, once set, cannot be reset.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure description parameter value is not blank before setting.
+		//
+		assertEquals(false, s.SetStockDescription(EMPTY_STRING));
+		//
+		//	2 - Ensure description attribute can be set.
+		//
+		assertEquals(true, s.SetStockDescription(TEST_STOCK_DESCRIPTION));
+		//
+		//	3 - Ensure description attribute, once set, cannot be reset.
+		//
+		assertEquals(false, s.SetStockDescription("Amazon.com, Inc. common stock"));
+	}
+
+	@Test
+	void TestGetStockDescription () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct description is returned.
+		//
+		
+		Stock s = new Stock();
+		s.SetStockDescription(TEST_STOCK_DESCRIPTION);
+
+		//
+		//	1 - Ensure the correct description is returned.
+		//
+		assertEquals(TEST_STOCK_DESCRIPTION, s.GetStockDescription());
 	}
 	
 
