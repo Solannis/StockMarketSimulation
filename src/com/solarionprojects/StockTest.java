@@ -21,7 +21,8 @@ class StockTest {
 	private static final String TEST_STOCK_SYMBOL = "AAPL";
 	private static final String TEST_STOCK_SECTOR = "Technology";
 	private static final String TEST_STOCK_EXCHANGE = "NASDAQ";
-
+	private static final String TEST_STOCK_FULL_NAME = "Apple, Inc.";
+	
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -50,6 +51,10 @@ class StockTest {
 	void tearDown() throws Exception {
 	}
 
+	//-----------------------
+	// TEST SET: stockSymbol
+	//-----------------------
+	
 	@Test
 	void TestSetStockSymbol () {
 		//
@@ -92,10 +97,14 @@ class StockTest {
 		s.SetStockSymbol(TEST_STOCK_SYMBOL);
 
 		//
-		//	1 - Ensure the proper symbol is returned as a string value.
+		//	1 - Ensure the correct symbol is returned.
 		//
 		assertEquals(TEST_STOCK_SYMBOL, s.GetStockSymbol());
 	}
+	
+	//-----------------------
+	// TEST SET: stockSector
+	//-----------------------
 	
 	@Test
 	void TestSetStockSector() {
@@ -133,10 +142,14 @@ class StockTest {
 		s.SetStockSector(TEST_STOCK_SECTOR);
 
 		//
-		//	1 - Ensure the proper symbol is returned as a string value.
+		//	1 - Ensure the correct sector is returned.
 		//
 		assertEquals(TEST_STOCK_SECTOR, s.GetStockSector());
 	}
+	
+	//-------------------------
+	// TEST SET: stockExchange
+	//-------------------------
 	
 	@Test
 	void TestSetStockExchange() {
@@ -154,11 +167,11 @@ class StockTest {
 		//
 		assertEquals(false, s.SetStockExchange(EMPTY_STRING));
 		//
-		//	2 - Ensure sector can be set.
+		//	2 - Ensure exchange can be set.
 		//
 		assertEquals(true, s.SetStockExchange(TEST_STOCK_EXCHANGE));
 		//
-		// 3 - Ensure sector, once set, cannot be reset.
+		// 3 - Ensure exchange, once set, cannot be reset.
 		//
 		assertEquals(false, s.SetStockExchange("DOW JONES"));
 	}
@@ -174,9 +187,54 @@ class StockTest {
 		s.SetStockExchange(TEST_STOCK_EXCHANGE);
 
 		//
-		//	1 - Ensure the proper symbol is returned as a string value.
+		//	1 - Ensure the correct exchange is returned.
 		//
 		assertEquals(TEST_STOCK_EXCHANGE, s.GetStockExchange());
+	}
+	
+	//-------------------------
+	// TEST SET: stockFullName
+	//-------------------------
+	
+	@Test
+	void TestSetStockFullName() {
+		//
+		// Tests to perform:
+		//	1 - Ensure parameter value is not blank before setting.
+		//	2 - Ensure full name can be set.
+		//	3 - Ensure full name, once set, cannot be reset.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure parameter value is not blank before setting.
+		//
+		assertEquals(false, s.SetStockFullName(EMPTY_STRING));
+		//
+		//	2 - Ensure full name can be set.
+		//
+		assertEquals(true, s.SetStockFullName(TEST_STOCK_FULL_NAME));
+		//
+		// 3 - Ensure full name, once set, cannot be reset.
+		//
+		assertEquals(false, s.SetStockExchange("Amazon.com, Inc."));
+	}
+
+	@Test
+	void TestGetStockFullName () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct full name is returned.
+		//
+		
+		Stock s = new Stock();
+		s.SetStockFullName(TEST_STOCK_FULL_NAME);
+
+		//
+		//	1 - Ensure the correct full name is returned.
+		//
+		assertEquals(TEST_STOCK_FULL_NAME, s.GetStockFullName());
 	}
 	
 

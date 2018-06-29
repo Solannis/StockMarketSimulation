@@ -8,6 +8,7 @@ public class Stock {
 	
 	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
 	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
+	private static final float ZERO_FLOAT = 0.0f;
 	private static final String EMPTY_STRING = "";
 
 	//==========================
@@ -78,23 +79,23 @@ public class Stock {
 		stockExchange = EMPTY_STRING;
 		stockFullName = EMPTY_STRING;
 		stockDescription = EMPTY_STRING;
-		stockCurrentPrice = 0.0f;
-		stockCurrentPriceAsk = 0.0f;
-		stockCurrentPriceBid = 0.0f;
-		stockSessionClose = 0.0f;
-		stockSessionClosePrevious = 0.0f;
-		stockSessionHigh = 0.0f;
-		stockSessionLow = 0.0f;
-		stockSessionOpen = 0.0f;
-		stockYearHigh = 0.0f;
-		stockYearLow = 0.0f;
+		stockCurrentPrice = ZERO_FLOAT;
+		stockCurrentPriceAsk = ZERO_FLOAT;
+		stockCurrentPriceBid = ZERO_FLOAT;
+		stockSessionClose = ZERO_FLOAT;
+		stockSessionClosePrevious = ZERO_FLOAT;
+		stockSessionHigh = ZERO_FLOAT;
+		stockSessionLow = ZERO_FLOAT;
+		stockSessionOpen = ZERO_FLOAT;
+		stockYearHigh = ZERO_FLOAT;
+		stockYearLow = ZERO_FLOAT;
 		stockSharesTotal = 0;
 		stockSharesOutstanding = 0;
-		stockDividendPaid = 0.0f;
-		stockEarningsPerShare = 0.0f;
-		stockMarketCap = 0.0f;
-		stockProfitEarningsRatio = 0.0f;
-		stockDividendYield = 0.0f;
+		stockDividendPaid = ZERO_FLOAT;
+		stockEarningsPerShare = ZERO_FLOAT;
+		stockMarketCap = ZERO_FLOAT;
+		stockProfitEarningsRatio = ZERO_FLOAT;
+		stockDividendYield = ZERO_FLOAT;
 	}
 	
 	//============================
@@ -119,7 +120,7 @@ public class Stock {
 	
 	/**
 	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
-	 * to change the stockSymbol will be rejected. Checcks to be performed are:
+	 * to change the stockSymbol will be rejected. Checks to be performed are:
 	 * 	- Make sure symbol is valid length.
 	 *  - Make sure symbol is not blank.
 	 *  - Make sure symbol is not already set.
@@ -162,7 +163,9 @@ public class Stock {
 	
 	/**
 	 * This method allows for the one-time setting of the stockSector attribute value. Subsequent requests
-	 * to change the stockSector will be rejected.  
+	 * to change the stockSector will be rejected. Checks to be performed are:
+	 *  - Make sure sector is not blank.
+	 *  - Make sure sector is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
@@ -182,9 +185,9 @@ public class Stock {
 	}
 	
 	
-	//------------------------
+	//--------------------------
 	// ATTRIBUTE: stockExchange
-	//------------------------
+	//--------------------------
 	
 	/**
 	 * This method returns the current stockExchange attribute value. 
@@ -200,13 +203,15 @@ public class Stock {
 	
 	/**
 	 * This method allows for the one-time setting of the stockExchange attribute value. Subsequent requests
-	 * to change the stockSector will be rejected.  
+	 * to change the stockExchange will be rejected. Checks to be performed are:
+	 *  - Make sure exchange is not blank.
+	 *  - Make sure exchange is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock sector to set
-	 * @return			A boolean value indicating success or failure at setting a new stock sector
-	 * @see				GetStockSector
+	 * @param	String	The new stock Exchange to set
+	 * @return			A boolean value indicating success or failure at setting a new stock exchange
+	 * @see				GetStockExchange
 	 */
 	public boolean SetStockExchange (String se) {
 		if (se.equals(EMPTY_STRING)) {
@@ -219,4 +224,44 @@ public class Stock {
 		return false;
 	}
 	
+	//--------------------------
+	// ATTRIBUTE: stockFullName
+	//--------------------------
+	
+	/**
+	 * This method returns the current stockFullName attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A String value representing the current stock full name attribute
+	 * @see				SetStockFullName
+	 */
+	public String GetStockFullName ( ) {
+		return this.stockFullName;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the stockFullName attribute value. Subsequent requests
+	 * to change the stockFullName will be rejected. Checks to be performed are:
+	 *  - Make sure full name is not blank.
+	 *  - Make sure full name is not already set.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	String	The new stock full name to set
+	 * @return			A boolean value indicating success or failure at setting a new stock full name
+	 * @see				GetStockFullName
+	 */
+	public boolean SetStockFullName (String sfn) {
+		if (sfn.equals(EMPTY_STRING)) {
+			return false;
+		}
+		if (this.stockFullName.equals(EMPTY_STRING)) {
+			this.stockFullName = sfn;
+			return true;
+		}
+		return false;
+	}
+
+
 }
