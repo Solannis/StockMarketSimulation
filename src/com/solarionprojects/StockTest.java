@@ -218,7 +218,7 @@ class StockTest {
 		//
 		// 3 - Ensure full name, once set, cannot be reset.
 		//
-		assertEquals(false, s.SetStockExchange("Amazon.com, Inc."));
+		assertEquals(false, s.SetStockFullName("Amazon.com, Inc."));
 	}
 
 	@Test
