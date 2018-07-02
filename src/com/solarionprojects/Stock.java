@@ -295,11 +295,291 @@ public class Stock {
 		if (sd.equals(EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockFullName.equals(EMPTY_STRING)) {
-			this.stockFullName = sd;
+		if (this.stockDescription.equals(EMPTY_STRING)) {
+			this.stockDescription = sd;
 			return true;
 		}
 		return false;
+	}
+
+	//------------------------------
+	// ATTRIBUTE: stockCurrentPrice
+	//------------------------------
+	
+	/**
+	 * This method returns the stockCurrentPrice attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the current stock price attribute
+	 * @see				SetStockCurrentPrice
+	 */
+	public float GetStockCurrentPrice ( ) {
+		return this.stockCurrentPrice;
+	}
+	
+	/**
+	 * This method sets the stockCurrentPrice attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The current stock price to set
+	 * @return			A boolean value indicating success or failure at setting the current stock price
+	 * @see				GetStockCurrentPrice
+	 */
+	public boolean SetStockCurrentPrice (float scp) {
+		if (scp < 0.0f) {
+			return false;
+		}
+		this.stockCurrentPrice = scp;
+		return true;
+	}
+
+	//---------------------------------
+	// ATTRIBUTE: stockCurrentPriceAsk
+	//---------------------------------
+	
+	/**
+	 * This method returns the stockCurrentPriceAsk attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the current stock price ask attribute
+	 * @see				SetStockCurrentPriceAsk
+	 */
+	public float GetStockCurrentPriceAsk ( ) {
+		return this.stockCurrentPriceAsk;
+	}
+	
+	/**
+	 * This method sets the stockCurrentPriceAsk attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The current stock price ask to set
+	 * @return			A boolean value indicating success or failure at setting the current stock price ask
+	 * @see				GetStockCurrentPriceAsk
+	 */
+	public boolean SetStockCurrentPriceAsk (float scpa) {
+		if (scpa < 0.0f) {
+			return false;
+		}
+		this.stockCurrentPriceAsk = scpa;
+		return true;
+	}
+
+	//---------------------------------
+	// ATTRIBUTE: stockCurrentPriceBid
+	//---------------------------------
+	
+	/**
+	 * This method returns the stockCurrentPriceBid attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the current stock price bid attribute
+	 * @see				SetStockCurrentPriceBid
+	 */
+	public float GetStockCurrentPriceBid ( ) {
+		return this.stockCurrentPriceBid;
+	}
+	
+	/**
+	 * This method sets the stockCurrentPriceBid attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The current stock price bid to set
+	 * @return			A boolean value indicating success or failure at setting the current stock price bid
+	 * @see				GetStockCurrentPriceBid
+	 */
+	public boolean SetStockCurrentPriceBid (float scpb) {
+		if (scpb < 0.0f) {
+			return false;
+		}
+		this.stockCurrentPriceBid = scpb;
+		return true;
+	}
+
+	//------------------------------
+	// ATTRIBUTE: stockSessionClose
+	//------------------------------
+	
+	/**
+	 * This method returns the stockSessionClose attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock session close attribute
+	 * @see				SetStockSessionClose
+	 */
+	public float GetStockSessionClose ( ) {
+		return this.stockSessionClose;
+	}
+	
+	/**
+	 * This method sets the stockSessionClose attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock session close value to set
+	 * @return			A boolean value indicating success or failure at setting the stock session close attribute
+	 * @see				GetStockSessionClose
+	 */
+	public boolean SetStockSessionClose (float ssc) {
+		if (ssc < 0.0f) {
+			return false;
+		}
+		this.stockSessionClose = ssc;
+		return true;
+	}
+
+	//--------------------------------------
+	// ATTRIBUTE: stockSessionClosePrevious
+	//--------------------------------------
+	
+	/**
+	 * This method returns the stockSessionClosePrevious attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock session close previous attribute
+	 * @see				SetStockSessionClosePrevious
+	 */
+	public float GetStockSessionClosePrevious ( ) {
+		return this.stockSessionClosePrevious;
+	}
+	
+	/**
+	 * This method sets the stockSessionClosePrevious attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock session close previous value to set
+	 * @return			A boolean value indicating success or failure at setting the stock session close previous attribute
+	 * @see				GetStockSessionClosePrevious
+	 */
+	public boolean SetStockSessionClosePrevious (float sscp) {
+		if (sscp < 0.0f) {
+			return false;
+		}
+		this.stockSessionClosePrevious = sscp;
+		return true;
+	}
+
+	//-----------------------------
+	// ATTRIBUTE: stockSessionHigh
+	//-----------------------------
+	
+	/**
+	 * This method returns the stockSessionHigh attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock session high attribute
+	 * @see				SetStockSessionHigh
+	 */
+	public float GetStockSessionHigh ( ) {
+		return this.stockSessionHigh;
+	}
+	
+	/**
+	 * This method sets the stockSessionHigh attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock session high value to set
+	 * @return			A boolean value indicating success or failure at setting the stock session high attribute
+	 * @see				GetStockSessionHigh
+	 */
+	public boolean SetStockSessionHigh (float ssh) {
+		if (ssh < 0.0f) {
+			return false;
+		}
+		this.stockSessionClose = ssh;
+		return true;
+	}
+
+	//----------------------------
+	// ATTRIBUTE: stockSessionLow
+	//----------------------------
+	
+	/**
+	 * This method returns the stockSessionLow attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock session low attribute
+	 * @see				SetStockSessionLow
+	 */
+	public float GetStockSessionLow ( ) {
+		return this.stockSessionLow;
+	}
+	
+	/**
+	 * This method sets the stockSessionLow attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock session low value to set
+	 * @return			A boolean value indicating success or failure at setting the stock session low attribute
+	 * @see				GetStockSessionLow
+	 */
+	public boolean SetStockSessionLow (float ssl) {
+		if (ssl < 0.0f) {
+			return false;
+		}
+		this.stockSessionLow = ssl;
+		return true;
+	}
+
+	//-----------------------------
+	// ATTRIBUTE: stockSessionOpen
+	//-----------------------------
+	
+	/**
+	 * This method returns the stockSessionOpen attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock session open attribute
+	 * @see				SetStockSessionOpen
+	 */
+	public float GetStockSessionOpen ( ) {
+		return this.stockSessionOpen;
+	}
+	
+	/**
+	 * This method sets the stockSessionOpen attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock session open value to set
+	 * @return			A boolean value indicating success or failure at setting the stock session open attribute
+	 * @see				GetStockSessionOpen
+	 */
+	public boolean SetStockSessionOpen (float sso) {
+		if (sso < 0.0f) {
+			return false;
+		}
+		this.stockSessionOpen = sso;
+		return true;
 	}
 
 

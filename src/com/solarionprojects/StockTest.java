@@ -23,6 +23,9 @@ class StockTest {
 	private static final String TEST_STOCK_EXCHANGE = "NASDAQ";
 	private static final String TEST_STOCK_FULL_NAME = "Apple, Inc.";
 	private static final String TEST_STOCK_DESCRIPTION = "Apple, Inc. common stock";
+	private static final float FLOAT_NEGATIVE = -9.99f;
+	private static final float FLOAT_ZERO = 0.0f;
+	private static final float FLOAT_POSITIVE = 99.99f;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -108,7 +111,7 @@ class StockTest {
 	//-----------------------
 	
 	@Test
-	void TestSetStockSector() {
+	void TestSetStockSector () {
 		//
 		// Tests to perform:
 		//	1 - Ensure sector parameter value is not blank before setting.
@@ -153,7 +156,7 @@ class StockTest {
 	//-------------------------
 	
 	@Test
-	void TestSetStockExchange() {
+	void TestSetStockExchange () {
 		//
 		// Tests to perform:
 		//	1 - Ensure exchange parameter value is not blank before setting.
@@ -198,7 +201,7 @@ class StockTest {
 	//-------------------------
 	
 	@Test
-	void TestSetStockFullName() {
+	void TestSetStockFullName () {
 		//
 		// Tests to perform:
 		//	1 - Ensure full name parameter value is not blank before setting.
@@ -238,12 +241,12 @@ class StockTest {
 		assertEquals(TEST_STOCK_FULL_NAME, s.GetStockFullName());
 	}
 	
-	//-------------------------
+	//----------------------------
 	// TEST SET: stockDescription
-	//-------------------------
+	//----------------------------
 	
 	@Test
-	void TestSetStockDescription() {
+	void TestSetStockDescription () {
 		//
 		// Tests to perform:
 		//	1 - Ensure description parameter value is not blank before setting.
@@ -283,5 +286,261 @@ class StockTest {
 		assertEquals(TEST_STOCK_DESCRIPTION, s.GetStockDescription());
 	}
 	
+	//-----------------------------
+	// TEST SET: stockCurrentPrice
+	//-----------------------------
+	
+	@Test
+	void TestSetStockCurrentPrice () {
+		//
+		// Tests to perform:
+		//	1 - Ensure current price attribute cannot be a set as a negative value.
+		//	2 - Ensure current price attribute can be set as zero (0.0f).
+		//	3 - Ensure current price attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure current price attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockCurrentPrice(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure current price attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_ZERO));
+		//
+		//	3 - Ensure current price attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_POSITIVE));
+	}
 
+	@Test
+	void TestGetStockCurrentPrice () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct current price 0.0f is returned.
+		//	2 - Ensure the correct current price 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct current price 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockCurrentPrice());
+		//
+		//	2 - Ensure the correct current price 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockCurrentPrice());
+	}
+	
+	//--------------------------------
+	// TEST SET: stockCurrentPriceAsk
+	//--------------------------------
+	
+	@Test
+	void TestSetStockCurrentPriceAsk () {
+		//
+		// Tests to perform:
+		//	1 - Ensure current price ask attribute cannot be a set as a negative value.
+		//	2 - Ensure current price ask attribute can be set as zero (0.0f).
+		//	3 - Ensure current price ask attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure current price ask attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockCurrentPriceAsk(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure current price ask attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockCurrentPriceAsk(FLOAT_ZERO));
+		//
+		//	3 - Ensure current price ask attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockCurrentPriceAsk(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockCurrentPriceAsk () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct current price ask 0.0f is returned.
+		//	2 - Ensure the correct current price ask 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct current price ask 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockCurrentPriceAsk(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockCurrentPriceAsk());
+		//
+		//	2 - Ensure the correct current price ask 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockCurrentPriceAsk(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockCurrentPriceAsk());
+	}
+	
+	//--------------------------------
+	// TEST SET: stockCurrentPriceBid
+	//--------------------------------
+	
+	@Test
+	void TestSetStockCurrentPriceBid () {
+		//
+		// Tests to perform:
+		//	1 - Ensure current price bid attribute cannot be a set as a negative value.
+		//	2 - Ensure current price bid attribute can be set as zero (0.0f).
+		//	3 - Ensure current price bid attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure current price bid attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockCurrentPriceBid(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure current price bid attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockCurrentPriceBid(FLOAT_ZERO));
+		//
+		//	3 - Ensure current price bid attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockCurrentPriceBid(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockCurrentPriceBid () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct current price bid 0.0f is returned.
+		//	2 - Ensure the correct current price bid 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct current price bid 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockCurrentPriceBid(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockCurrentPriceBid());
+		//
+		//	2 - Ensure the correct current price bid 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockCurrentPriceBid(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockCurrentPriceBid());
+	}
+	
+	//-----------------------------
+	// TEST SET: stockSessionClose
+	//-----------------------------
+	
+	@Test
+	void TestSetStockSessionClose () {
+		//
+		// Tests to perform:
+		//	1 - Ensure session close attribute cannot be a set as a negative value.
+		//	2 - Ensure session close attribute can be set as zero (0.0f).
+		//	3 - Ensure session close attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure session close attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSessionClose(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure session close attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockSessionClose(FLOAT_ZERO));
+		//
+		//	3 - Ensure session close attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSessionClose(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSessionClose () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct session close 0.0f is returned.
+		//	2 - Ensure the correct session close 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct session close 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockSessionClose(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockSessionClose());
+		//
+		//	2 - Ensure the correct session close 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockSessionClose(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockSessionClose());
+	}
+	
+	//-------------------------------------
+	// TEST SET: stockSessionClosePrevious
+	//-------------------------------------
+	
+	@Test
+	void TestSetStockSessionClosePrevious () {
+		//
+		// Tests to perform:
+		//	1 - Ensure session close previous attribute cannot be a set as a negative value.
+		//	2 - Ensure session close previous attribute can be set as zero (0.0f).
+		//	3 - Ensure session close previous attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure session close previous attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSessionClosePrevious(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure session close previous attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockSessionClosePrevious(FLOAT_ZERO));
+		//
+		//	3 - Ensure session close previous attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSessionClosePrevious(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSessionClosePrevious () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct session close previous 0.0f is returned.
+		//	2 - Ensure the correct session close previous 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct session close previous 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockSessionClosePrevious(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockSessionClosePrevious());
+		//
+		//	2 - Ensure the correct session close previous 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockSessionClosePrevious(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockSessionClosePrevious());
+	}
+	
+
+	
 }
