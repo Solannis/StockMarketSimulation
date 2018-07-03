@@ -8,6 +8,7 @@ public class Stock {
 	
 	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
 	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
+	private static final int ZERO_INT = 0;
 	private static final float ZERO_FLOAT = 0.0f;
 	private static final String EMPTY_STRING = "";
 
@@ -42,6 +43,7 @@ public class Stock {
 	private float stockMarketCap;				// The Market Cap is calculated by multiplying the SharesTotal by the present share price.
 	private float stockProfitEarningsRatio;		// The Profit Earnings Ratio is calculated by dividing the stockCurrentPrice by the stockEarningsPerShare.
 	private float stockDividendYield;			// The Dividend Yield is calculated by dividing the dollar value of dividends paid in a given year per share of stock held by stockCurrentPrice for one share of stock.
+	private float companyProfit;				// The Company Profit is a given value for purposes of calculating the Earnings Per Share.
 	
 	//=====================
 	// OBJECT CONSTRUCTORS
@@ -89,8 +91,8 @@ public class Stock {
 		stockSessionOpen = ZERO_FLOAT;
 		stockYearHigh = ZERO_FLOAT;
 		stockYearLow = ZERO_FLOAT;
-		stockSharesTotal = 0;
-		stockSharesOutstanding = 0;
+		stockSharesTotal = ZERO_INT;
+		stockSharesOutstanding = ZERO_INT;
 		stockDividendPaid = ZERO_FLOAT;
 		stockEarningsPerShare = ZERO_FLOAT;
 		stockMarketCap = ZERO_FLOAT;
@@ -330,7 +332,7 @@ public class Stock {
 	 * @see				GetStockCurrentPrice
 	 */
 	public boolean SetStockCurrentPrice (float scp) {
-		if (scp < 0.0f) {
+		if (scp < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockCurrentPrice = scp;
@@ -365,7 +367,7 @@ public class Stock {
 	 * @see				GetStockCurrentPriceAsk
 	 */
 	public boolean SetStockCurrentPriceAsk (float scpa) {
-		if (scpa < 0.0f) {
+		if (scpa < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockCurrentPriceAsk = scpa;
@@ -400,7 +402,7 @@ public class Stock {
 	 * @see				GetStockCurrentPriceBid
 	 */
 	public boolean SetStockCurrentPriceBid (float scpb) {
-		if (scpb < 0.0f) {
+		if (scpb < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockCurrentPriceBid = scpb;
@@ -435,7 +437,7 @@ public class Stock {
 	 * @see				GetStockSessionClose
 	 */
 	public boolean SetStockSessionClose (float ssc) {
-		if (ssc < 0.0f) {
+		if (ssc < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockSessionClose = ssc;
@@ -470,7 +472,7 @@ public class Stock {
 	 * @see				GetStockSessionClosePrevious
 	 */
 	public boolean SetStockSessionClosePrevious (float sscp) {
-		if (sscp < 0.0f) {
+		if (sscp < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockSessionClosePrevious = sscp;
@@ -505,7 +507,7 @@ public class Stock {
 	 * @see				GetStockSessionHigh
 	 */
 	public boolean SetStockSessionHigh (float ssh) {
-		if (ssh < 0.0f) {
+		if (ssh < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockSessionHigh = ssh;
@@ -540,7 +542,7 @@ public class Stock {
 	 * @see				GetStockSessionLow
 	 */
 	public boolean SetStockSessionLow (float ssl) {
-		if (ssl < 0.0f) {
+		if (ssl < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockSessionLow = ssl;
@@ -575,7 +577,7 @@ public class Stock {
 	 * @see				GetStockSessionOpen
 	 */
 	public boolean SetStockSessionOpen (float sso) {
-		if (sso < 0.0f) {
+		if (sso < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockSessionOpen = sso;
@@ -610,7 +612,7 @@ public class Stock {
 	 * @see				GetStockYearHigh
 	 */
 	public boolean SetStockYearHigh (float syh) {
-		if (syh < 0.0f) {
+		if (syh < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockYearHigh = syh;
@@ -649,7 +651,7 @@ public class Stock {
 		//
 		// First check to make sure that the year low value is not negative.
 		//
-		if (syl < 0.0f) {
+		if (syl < ZERO_FLOAT) {
 			return false;
 		}
 		//
@@ -736,7 +738,7 @@ public class Stock {
 		//
 		// First, make sure the shares outstanding parameter is even valid, meaning it cannot be less than zero.
 		//
-		if (sso < 0) {
+		if (sso < ZERO_INT) {
 			return false;
 		}
 		//
@@ -746,6 +748,216 @@ public class Stock {
 			return false;
 		}
 		this.stockSharesOutstanding = sso;
+		return true;
+	}
+
+	//------------------------------
+	// ATTRIBUTE: stockDividendPaid
+	//------------------------------
+	
+	/**
+	 * This method returns the stockDividendPaid attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock dividend paid attribute
+	 * @see				SetStockDividendPaid
+	 */
+	public float GetStockDividendPaid ( ) {
+		return this.stockDividendPaid;
+	}
+	
+	/**
+	 * This method sets the stock dividend paid attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not negative.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock dividend paid value to set
+	 * @return			A boolean value indicating success or failure at setting the stock dividend paid attribute
+	 * @see				GetStockDividendPaid
+	 */
+	public boolean SetStockDividendPaid (float sdp) {
+		if (sdp < ZERO_FLOAT) {
+			return false;
+		}
+		this.stockDividendPaid = sdp;
+		return true;
+	}
+
+	//----------------------------------
+	// ATTRIBUTE: stockEarningsPerShare
+	//----------------------------------
+	
+	/**
+	 * This method returns the stockEarningsPerShare attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock earnings per share attribute
+	 * @see				SetStockEarningsPerShare
+	 */
+	public float GetStockEarningsPerShare ( ) {
+		return this.stockEarningsPerShare;
+	}
+	
+	/**
+	 * This method sets the stock earnings per share attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not negative.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock earnings per share value to set
+	 * @return			A boolean value indicating success or failure at setting the stock earnings per share attribute
+	 * @see				GetStockEarningsPerShare
+	 */
+	public boolean SetStockEarningsPerShare (float seps) {
+		if (seps < ZERO_FLOAT) {
+			return false;
+		}
+		this.stockEarningsPerShare = seps;
+		return true;
+	}
+
+	//---------------------------
+	// ATTRIBUTE: stockMarketCap
+	//---------------------------
+	
+	/**
+	 * This method returns the stockMarketCap attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock market cap attribute
+	 * @see				SetStockMarketCap
+	 */
+	public float GetStockMarketCap ( ) {
+		return this.stockMarketCap;
+	}
+	
+	/**
+	 * This method sets the stock market cap attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 1.0f to ?.?f, check to see if the
+	 * parameter is greater than 1.0f.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock market cap value to set
+	 * @return			A boolean value indicating success or failure at setting the stock market cap attribute
+	 * @see				GetStockMarketCap
+	 */
+	public boolean SetStockMarketCap (float smc) {
+		if (smc < 1.0f) {
+			return false;
+		}
+		this.stockMarketCap = smc;
+		return true;
+	}
+
+	//-------------------------------------
+	// ATTRIBUTE: stockProfitEarningsRatio
+	//-------------------------------------
+	
+	/**
+	 * This method returns the stockProfitEarningsRatio attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock profit earnings ratio attribute
+	 * @see				SetStockProfitEarningsRatio
+	 */
+	public float GetStockProfitEarningsRatio ( ) {
+		return this.stockProfitEarningsRatio;
+	}
+	
+	/**
+	 * This method sets the stock profit earnings ratio attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.01f to ?.?f, check to see if the
+	 * parameter is greater than 0.01f.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock profit earnings ratio value to set
+	 * @return			A boolean value indicating success or failure at setting the stock profit earnings ratio attribute
+	 * @see				GetStockProfitEarningsRatio
+	 */
+	public boolean SetStockProfitEarningsRatio (float sper) {
+		if (sper < 0.01f) {
+			return false;
+		}
+		this.stockProfitEarningsRatio = sper;
+		return true;
+	}
+
+	//-------------------------------
+	// ATTRIBUTE: stockDividendYield
+	//-------------------------------
+	
+	/**
+	 * This method returns the stockDividendYield attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock dividend yield attribute
+	 * @see				SetStockDividendYield
+	 */
+	public float GetStockDividendYield ( ) {
+		return this.stockDividendYield;
+	}
+	
+	/**
+	 * This method sets the stock dividend yield attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.01f to ?.?f, check to see if the
+	 * parameter is greater than 0.01f.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock dividend yield value to set
+	 * @return			A boolean value indicating success or failure at setting the stock dividend yield attribute
+	 * @see				GetStockDividendYield
+	 */
+	public boolean SetStockDividendYield (float sdy) {
+		if (sdy < 0.01f) {
+			return false;
+		}
+		this.stockDividendYield = sdy;
+		return true;
+	}
+
+	//--------------------------
+	// ATTRIBUTE: companyProfit
+	//--------------------------
+	
+	/**
+	 * This method returns the companyProfit attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the company profit attribute
+	 * @see				SetStockProfitEarningsRatio
+	 */
+	public float GetCompanyProfit ( ) {
+		return this.companyProfit;
+	}
+	
+	/**
+	 * This method sets the company profit attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.01f to ?.?f, check to see if the
+	 * parameter is greater than 0.01f.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The company profit value to set
+	 * @return			A boolean value indicating success or failure at setting the company profit attribute
+	 * @see				GetCompanyProfit
+	 */
+	public boolean SetCompanyProfit (float cp) {
+		if (cp < 0.01f) {
+			return false;
+		}
+		this.companyProfit = cp;
 		return true;
 	}
 

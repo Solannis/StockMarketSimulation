@@ -903,7 +903,7 @@ class StockTest {
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct shares total 99 is returned.
+		//	1 - Ensure the correct shares total 0 is returned.
 		//
 		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE));
 		assertEquals(true, s.SetStockSharesOutstanding(INT_ZERO));
@@ -916,6 +916,349 @@ class StockTest {
 		assertEquals(INT_POSITIVE, s.GetStockSharesOutstanding());
 	}
 	
+	//-----------------------------
+	// TEST SET: stockDividendPaid
+	//-----------------------------
+	
+	@Test
+	void TestSetStockDividendPaid () {
+		//
+		// Tests to perform:
+		//	1 - Ensure dividend paid attribute cannot be a set as a negative value.
+		//	2 - Ensure dividend paid attribute can be set as zero (0.0f).
+		//	3 - Ensure dividend paid attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure dividend paid attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockDividendPaid(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure dividend paid attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockDividendPaid(FLOAT_ZERO));
+		//
+		//	3 - Ensure dividend paid attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockDividendPaid(FLOAT_POSITIVE));
+	}
 
+	@Test
+	void TestGetStockDividendPaid () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct dividend paid 0.0f is returned.
+		//	2 - Ensure the correct dividend paid 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct dividend paid 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockDividendPaid(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockDividendPaid());
+		//
+		//	2 - Ensure the correct dividend paid 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockDividendPaid(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockDividendPaid());
+	}
+	
+	//---------------------------------
+	// TEST SET: stockEarningsPerShare
+	//---------------------------------
+	
+	@Test
+	void TestSetStockEarningsPerShare () {
+		//
+		// Tests to perform:
+		//	1 - Ensure earnings per share attribute cannot be a set as a negative value.
+		//	2 - Ensure earnings per share attribute can be set as zero (0.0f).
+		//	3 - Ensure earnings per share attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure earnings per share attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockEarningsPerShare(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure earnings per share attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockEarningsPerShare(FLOAT_ZERO));
+		//
+		//	3 - Ensure earnings per share attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockEarningsPerShare(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockEarningsPerShare () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct earnings per share 0.0f is returned.
+		//	2 - Ensure the correct earnings per share 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct earnings per share 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockEarningsPerShare(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockEarningsPerShare());
+		//
+		//	2 - Ensure the correct earnings per share 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockEarningsPerShare(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockEarningsPerShare());
+	}
+	
+	//--------------------------
+	// TEST SET: stockMarketCap
+	//--------------------------
+	
+	@Test
+	void TestSetStockMarketCap () {
+		//
+		// Tests to perform:
+		//	1 - Ensure market cap attribute cannot be a set as a negative value.
+		//	2 - Ensure market cap attribute cannot be set as zero (0.0f).
+		//	3 - Ensure market cap attribute cannot be set below 1.0f.
+		//	4 - Ensure market cap attribute can be set at 1.0f.
+		//	5 - Ensure market cap attribute can be set as a positive value.
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure market cap attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockMarketCap(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure market cap attribute cannot be set as zero (0.0f).
+		//
+		assertEquals(false, s.SetStockMarketCap(FLOAT_ZERO));
+		//
+		//	3 - Ensure market cap attribute cannot be set below 1.0f.
+		//
+		assertEquals(false, s.SetStockMarketCap(0.999f));
+		//
+		//	4 - Ensure market cap attribute can be set at 1.0f.
+		//
+		assertEquals(true, s.SetStockMarketCap(1.0f));
+		//
+		//	5 - Ensure market cap attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockMarketCap(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockMarketCap () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct market cap 1.0f is returned.
+		//	2 - Ensure the correct market cap 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct market cap 1.0f is returned.
+		//
+		assertEquals(true, s.SetStockMarketCap(1.0f));
+		assertEquals(1.0f, s.GetStockMarketCap());
+		//
+		//	2 - Ensure the correct market cap 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockMarketCap(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockMarketCap());
+	}
+	
+	//------------------------------------
+	// TEST SET: stockProfitEarningsRatio
+	//------------------------------------
+	
+	@Test
+	void TestSetStockProfitEarningsRatio () {
+		//
+		// Tests to perform:
+		//	1 - Ensure profit earnings ratio attribute cannot be a set as a negative value.
+		//	2 - Ensure profit earnings ratio attribute cannot be set as zero (0.0f).
+		//	3 - Ensure profit earnings ratio attribute cannot be set below 0.01f.
+		//	4 - Ensure profit earnings ratio attribute can be set at 0.01f.
+		//	5 - Ensure profit earnings ratio attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure profit earnings ratio attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockProfitEarningsRatio(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure profit earnings ratio attribute cannot be set as zero (0.0f).
+		//
+		assertEquals(false, s.SetStockProfitEarningsRatio(FLOAT_ZERO));
+		//
+		//	3 - Ensure profit earnings ratio attribute cannot be set below 0.01f.
+		//
+		assertEquals(false, s.SetStockProfitEarningsRatio(0.009f));
+		//
+		//	4 - Ensure profit earnings ratio attribute can be set at 0.01f.
+		//
+		assertEquals(true, s.SetStockProfitEarningsRatio(0.01f));
+		//
+		//	5 - Ensure profit earnings ratio attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockProfitEarningsRatio(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockProfitEarningsRatio () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct profit earnings ratio 0.01f is returned.
+		//	2 - Ensure the correct profit earnings ratio 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct market cap 0.01f is returned.
+		//
+		assertEquals(true, s.SetStockProfitEarningsRatio(0.01f));
+		assertEquals(0.01f, s.GetStockProfitEarningsRatio());
+		//
+		//	2 - Ensure the correct market cap 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockProfitEarningsRatio(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockProfitEarningsRatio());
+	}
+	
+	//------------------------------
+	// TEST SET: stockDividendYield
+	//------------------------------
+	
+	@Test
+	void TestSetStockDividendYield () {
+		//
+		// Tests to perform:
+		//	1 - Ensure dividend yield attribute cannot be a set as a negative value.
+		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0f).
+		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
+		//	4 - Ensure dividend yield attribute can be set at 0.01f.
+		//	5 - Ensure dividend yield attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure dividend yield attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockDividendYield(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0f).
+		//
+		assertEquals(false, s.SetStockDividendYield(FLOAT_ZERO));
+		//
+		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
+		//
+		assertEquals(false, s.SetStockDividendYield(0.009f));
+		//
+		//	4 - Ensure dividend yield attribute can be set at 0.01f.
+		//
+		assertEquals(true, s.SetStockDividendYield(0.01f));
+		//
+		//	5 - Ensure dividend yield attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockDividendYield(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockDividendYield () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct dividend yield 0.01f is returned.
+		//	2 - Ensure the correct dividend yield 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct dividend yield 0.01f is returned.
+		//
+		assertEquals(true, s.SetStockDividendYield(0.01f));
+		assertEquals(0.01f, s.GetStockDividendYield());
+		//
+		//	2 - Ensure the correct dividend yield 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockDividendYield(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockDividendYield());
+	}
+	
+	//------------------------------
+	// TEST SET: companyProfit
+	//------------------------------
+	
+	@Test
+	void TestSetCompanyProfit () {
+		//
+		// Tests to perform:
+		//	1 - Ensure dividend yield attribute cannot be a set as a negative value.
+		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0f).
+		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
+		//	4 - Ensure dividend yield attribute can be set at 0.01f.
+		//	5 - Ensure dividend yield attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure company profit attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetCompanyProfit(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure company profit attribute cannot be set as zero (0.0f).
+		//
+		assertEquals(false, s.SetCompanyProfit(FLOAT_ZERO));
+		//
+		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
+		//
+		assertEquals(false, s.SetCompanyProfit(0.009f));
+		//
+		//	4 - Ensure dividend yield attribute can be set at 0.01f.
+		//
+		assertEquals(true, s.SetCompanyProfit(0.01f));
+		//
+		//	5 - Ensure dividend yield attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetCompanyProfit(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetCompanyProfit () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct company profit 0.01f is returned.
+		//	2 - Ensure the correct company profit 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct company profit 0.01f is returned.
+		//
+		assertEquals(true, s.SetCompanyProfit(0.01f));
+		assertEquals(0.01f, s.GetCompanyProfit());
+		//
+		//	2 - Ensure the correct company profit 99.99f is returned.
+		//
+		assertEquals(true, s.SetCompanyProfit(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetCompanyProfit());
+	}
 	
 }
