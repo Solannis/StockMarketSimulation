@@ -100,6 +100,108 @@ public class Stock {
 		stockDividendYield = ZERO_FLOAT;
 	}
 	
+	/**
+	 * This method forces the earnings per share to be calculated and update
+	 * any associated attributes for the current stock object. 
+	 * <p>
+	 * As stated above, a stock's earnings per share is calculated by dividing the 
+	 * companyProfit by stockSharesOutstanding. The resulting actions of this method 
+	 * will be to update the stockEarningsPerShare attribute.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A boolean value indicating success or failure at calculating the earnings per share
+	 * @see				CalculateMarketCap, CalculateProfitEarningsRatio, CalculateDividendYield
+	 */
+	public boolean CalculateEarningsPerShare () {
+		boolean rv = false;
+		float seps = ZERO_FLOAT; 
+		
+		seps = this.GetCompanyProfit() / this.GetStockSharesOutstanding();
+		rv = this.SetStockEarningsPerShare(seps);
+		//
+		// Need to deal with boolean result of this function.
+		//
+		return rv;
+	}
+	
+	/**
+	 * This method forces the market cap to be calculated and update
+	 * any associated attributes for the current stock object. 
+	 * <p>
+	 * As stated above, a stock's market cap is calculated by multiplying the 
+	 * SharesTotal by the present share price. The resulting actions of this method 
+	 * will be to update the stockMarketCap attribute.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A boolean value indicating success or failure at calculating the market cap
+	 * @see				CalculateEarningsPerShare, CalculateProfitEarningsRatio, CalculateDividendYield
+	 */
+	public boolean CalculateMarketCap () {
+		boolean rv = false;
+		float smc = ZERO_FLOAT;
+		
+		smc = this.GetStockSharesTotal() * this.GetStockCurrentPrice();
+		rv = this.SetStockMarketCap(smc);
+		//
+		// Need to deal with boolean result of this function.
+		//
+		return rv;
+	}
+	
+	/**
+	 * This method forces the profit earnings ratio to be calculated and update
+	 * any associated attributes for the current stock object. 
+	 * <p>
+	 * As stated above, a stock's profit earnings ratio is calculated by dividing 
+	 * the stockCurrentPrice by the stockEarningsPerShare. The resulting actions 
+	 * of this method will be to update the stockProfitEarningsRatio attribute.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A boolean value indicating success or failure at calculating the profit earnings ratio
+	 * @see				CalculateEarningsPerShare, CalculateMarketCap, CalculateDividendYield
+	 */
+	public boolean CalculateProfitEarningsRatio () {
+		boolean rv = false;
+		float sper = ZERO_FLOAT;
+		
+		sper = this.GetStockCurrentPrice() / this.GetStockEarningsPerShare();
+		rv = this.SetStockProfitEarningsRatio(sper);
+		//
+		// Need to deal with boolean result of this function.
+		//
+		return rv;
+	}
+	
+	/**
+	 * This method forces the dividend yield to be calculated and update
+	 * any associated attributes for the current stock object. 
+	 * <p>
+	 * As stated above, a stock's dividend yield is calculated by dividing the dollar 
+	 * value of dividends paid in a given year per share of stock held by 
+	 * stockCurrentPrice for one share of stock. The resulting actions 
+	 * of this method will be to update the dividend yield attribute.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A boolean value indicating success or failure at calculating the dividend yield
+	 * @see				CalculateEarningsPerShare, CalculateMarketCap, CalculateProfitEarningsRatio
+	 */
+	public boolean CalculateDividendYield () {
+		boolean rv = false;
+		float sdy = ZERO_FLOAT;
+		
+		sdy = this.GetStockDividendPaid() / this.GetStockCurrentPrice();
+		rv = this.SetStockDividendYield(sdy);
+		//
+		// Need to deal with boolean result of this function.
+		//
+		return rv;
+	}
+	
+	
 	//============================
 	// OBJECT GETTERS AND SETTERS
 	//============================
@@ -156,7 +258,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the current stock sector attribute
+	 * @return			A String value representing the stock sector attribute
 	 * @see				SetStockSector
 	 */
 	public String GetStockSector ( ) {

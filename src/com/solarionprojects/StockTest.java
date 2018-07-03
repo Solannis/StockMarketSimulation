@@ -1261,4 +1261,28 @@ class StockTest {
 		assertEquals(FLOAT_POSITIVE, s.GetCompanyProfit());
 	}
 	
+	@Test
+	void TestCalculateEarningsPerShare () {
+		//
+		// Tests to perform:
+		//	1 - Ensure below-minimums for SetStockEarningsPerShare fails
+		//	2 - Ensure minimums for SetStockEarningsPerShare passes
+		//	3 - Ensure maximums for SetStockEarningsPerShare passes
+		//
+		// Since there are no theoretical maximums, we do not need to test over-maximum.
+		// Also, there is no need to specifically test negatives since that is checked
+		// in lower-level tests in this same object.
+		//
+		
+		Stock s = new Stock();
+		
+		assertEquals(true, s.SetCompanyProfit(0.01f));
+		assertEquals(true, s.SetStockSharesOutstanding(1));
+	}
+	
+	/*
+	 * 	seps = this.GetCompanyProfit() / this.GetStockSharesOutstanding();
+		rv = this.SetStockEarningsPerShare(seps);
+	 */
+	
 }
