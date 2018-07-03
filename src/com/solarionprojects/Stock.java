@@ -37,7 +37,7 @@ public class Stock {
 	private float stockYearLow;					// The lowest stock value durin the current 52-week period.
 	private	int stockSharesTotal;				// The total number of shares available of this stock.
 	private int stockSharesOutstanding;			// The number of shares held/owned by investors/traders/not in the company's pool; e.g. stockSharesTotal - stockSharesOutstanding = shares available for purchase.
-	private float stockDividendPaid;			// The dollar value of any dividend paid for a single share of stock for the current fiscal year.
+	private float stockDividendPaid;			// The dollar value of any annual dividend paid for a single share of stock for the current fiscal year.
 	private float stockEarningsPerShare;		// The EPS is calculated by dividing the companyProfit by stockSharesOutstanding.
 	private float stockMarketCap;				// The Market Cap is calculated by multiplying the SharesTotal by the present share price.
 	private float stockProfitEarningsRatio;		// The Profit Earnings Ratio is calculated by dividing the stockCurrentPrice by the stockEarningsPerShare.
@@ -508,7 +508,7 @@ public class Stock {
 		if (ssh < 0.0f) {
 			return false;
 		}
-		this.stockSessionClose = ssh;
+		this.stockSessionHigh = ssh;
 		return true;
 	}
 
@@ -579,6 +579,173 @@ public class Stock {
 			return false;
 		}
 		this.stockSessionOpen = sso;
+		return true;
+	}
+
+	//--------------------------
+	// ATTRIBUTE: stockYearHigh
+	//--------------------------
+	
+	/**
+	 * This method returns the stockYearHigh attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock year high attribute
+	 * @see				SetStockYearHigh
+	 */
+	public float GetStockYearHigh ( ) {
+		return this.stockYearHigh;
+	}
+	
+	/**
+	 * This method sets the stockYearHigh attribute value. Since the parameter must be a float or the code
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * is to make sure the parameter is not a negative value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock year high value to set
+	 * @return			A boolean value indicating success or failure at setting the stock year high attribute
+	 * @see				GetStockYearHigh
+	 */
+	public boolean SetStockYearHigh (float syh) {
+		if (syh < 0.0f) {
+			return false;
+		}
+		this.stockYearHigh = syh;
+		return true;
+	}
+
+	//-------------------------
+	// ATTRIBUTE: stockYearLow
+	//-------------------------
+	
+	/**
+	 * This method returns the stockYearLow attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A float value representing the stock year low attribute
+	 * @see				SetStockYearLow
+	 */
+	public float GetStockYearLow ( ) {
+		return this.stockYearLow;
+	}
+	
+	/**
+	 * This method sets the stockYearLow attribute value. Since the parameter must be a float or the code
+	 * won't compile. Since the attribute value can be anything from 0.0f to ?.?f, a check is needed to
+	 * make sure the parameter is not a negative value. Additionally, the year low value cannot be higher
+	 * than the year high value, otherwise by definition, it would be the year high value.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	float	The stock year low value to set
+	 * @return			A boolean value indicating success or failure at setting the stock year low attribute
+	 * @see				GetStockYearLow
+	 */
+	public boolean SetStockYearLow (float syl) {
+		//
+		// First check to make sure that the year low value is not negative.
+		//
+		if (syl < 0.0f) {
+			return false;
+		}
+		//
+		// Next, make sure that the year low value is not higher than the year high value.
+		//
+		if (syl > this.stockYearHigh) {
+			return false;
+		}
+		this.stockYearLow = syl;
+		return true;
+	}
+
+	//-----------------------------
+	// ATTRIBUTE: stockSharesTotal
+	//-----------------------------
+	
+	/**
+	 * This method returns the stockSharesTotal attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			An int value representing the stock shares total attribute
+	 * @see				SetStockSharesTotal
+	 */
+	public int GetStockSharesTotal ( ) {
+		return this.stockSharesTotal;
+	}
+	
+	/**
+	 * This method sets the stockSharesTotal attribute value. Since the parameter must be an int or the code
+	 * won't compile, and since the attribute value can be anything from 1 to ?, the only check needed
+	 * is to make sure the parameter is not less than one (1).
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	int		The stock shares total value to set
+	 * @return			A boolean value indicating success or failure at setting the stock shares total attribute
+	 * @see				GetStockSharesTotal
+	 */
+	public boolean SetStockSharesTotal (int sst) {
+		if (sst < 1) {
+			return false;
+		}
+		this.stockSharesTotal = sst;
+		return true;
+	}
+
+	//-----------------------------------
+	// ATTRIBUTE: stockSharesOutstanding
+	//-----------------------------------
+	
+	/**
+	 * This method returns the stockSharesOutstanding attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			An int value representing the stock shares outstanding attribute
+	 * @see				SetStockSharesOutstanding
+	 */
+	public int GetStockSharesOutstanding ( ) {
+		return this.stockSharesOutstanding;
+	}
+	
+	/**
+	 * This method sets the stockSharesOutstanding attribute value. Since the parameter must be an int or the code
+	 * won't compile, and since the attribute value can be anything from 0 to ?, the only check needed
+	 * is to make sure the parameter is not an invalid value.
+	 * <p>
+	 * Another important aspect to shares outstanding is that this value cannot be larger than the total number of shares
+	 * available in the first place. Since shares outstanding = shares available for purchase, the most shares any company
+	 * can ever have should equal the shares total number. You cannot have a total of 10 shares AND have 11 shares
+	 * outstanding (more shares available to purchase than the company actual has in total shares. You could, however, 
+	 * have 10 shares outstanding (meaning no shares are owned yet), 1 share outstanding (meaning one share is still 
+	 * available for purchase), or 0 shares outstanding (meaning all shares are currently owned by shareholders. You can 
+	 * also never have a negative outstanding share count.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	int		The stock shares outstanding value to set
+	 * @return			A boolean value indicating success or failure at setting the stock shares outstanding attribute
+	 * @see				GetStockSharesOutstanding
+	 */
+	public boolean SetStockSharesOutstanding (int sso) {
+		//
+		// First, make sure the shares outstanding parameter is even valid, meaning it cannot be less than zero.
+		//
+		if (sso < 0) {
+			return false;
+		}
+		//
+		// Next, make sure that the shares outstanding parameter is less than or equal to the total shares value for this stock.
+		//
+		if (sso > this.stockSharesTotal) {
+			return false;
+		}
+		this.stockSharesOutstanding = sso;
 		return true;
 	}
 

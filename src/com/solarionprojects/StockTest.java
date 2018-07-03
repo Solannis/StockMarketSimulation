@@ -17,6 +17,10 @@ import org.junit.jupiter.api.Test;
  */
 class StockTest {
 	
+	//=========================
+	// OBJECT GLOBAL CONSTANTS
+	//=========================
+
 	private static final String EMPTY_STRING = "";
 	private static final String TEST_STOCK_SYMBOL = "AAPL";
 	private static final String TEST_STOCK_SECTOR = "Technology";
@@ -26,6 +30,9 @@ class StockTest {
 	private static final float FLOAT_NEGATIVE = -9.99f;
 	private static final float FLOAT_ZERO = 0.0f;
 	private static final float FLOAT_POSITIVE = 99.99f;
+	private static final int INT_NEGATIVE = -9;
+	private static final int INT_ZERO = 0;
+	private static final int INT_POSITIVE = 99;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -539,6 +546,374 @@ class StockTest {
 		//
 		assertEquals(true, s.SetStockSessionClosePrevious(FLOAT_POSITIVE));
 		assertEquals(FLOAT_POSITIVE, s.GetStockSessionClosePrevious());
+	}
+	
+	//-----------------------------
+	// TEST SET: stockSessionHigh
+	//-----------------------------
+	
+	@Test
+	void TestSetStockSessionHigh () {
+		//
+		// Tests to perform:
+		//	1 - Ensure session high attribute cannot be a set as a negative value.
+		//	2 - Ensure session high attribute can be set as zero (0.0f).
+		//	3 - Ensure session high attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure session high attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSessionHigh(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure session high attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockSessionHigh(FLOAT_ZERO));
+		//
+		//	3 - Ensure session high attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSessionHigh(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSessionHigh () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct session high 0.0f is returned.
+		//	2 - Ensure the correct session high 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct session high 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockSessionHigh(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockSessionHigh());
+		//
+		//	2 - Ensure the correct session high 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockSessionHigh(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockSessionHigh());
+	}
+	
+	//-----------------------------
+	// TEST SET: stockSessionLow
+	//-----------------------------
+	
+	@Test
+	void TestSetStockSessionLow () {
+		//
+		// Tests to perform:
+		//	1 - Ensure session low attribute cannot be a set as a negative value.
+		//	2 - Ensure session low attribute can be set as zero (0.0f).
+		//	3 - Ensure session low attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure session low attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSessionLow(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure session low attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockSessionLow(FLOAT_ZERO));
+		//
+		//	3 - Ensure session low attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSessionLow(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSessionLow () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct session low 0.0f is returned.
+		//	2 - Ensure the correct session low 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct session low 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockSessionLow(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockSessionLow());
+		//
+		//	2 - Ensure the correct session low 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockSessionLow(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockSessionLow());
+	}
+	
+	//-----------------------------
+	// TEST SET: stockSessionOpen
+	//-----------------------------
+	
+	@Test
+	void TestSetStockSessionOpen () {
+		//
+		// Tests to perform:
+		//	1 - Ensure session open attribute cannot be a set as a negative value.
+		//	2 - Ensure session open attribute can be set as zero (0.0f).
+		//	3 - Ensure session open attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure session open attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSessionOpen(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure session open attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockSessionOpen(FLOAT_ZERO));
+		//
+		//	3 - Ensure session open attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSessionOpen(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSessionOpen () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct session open 0.0f is returned.
+		//	2 - Ensure the correct session open 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct session open 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockSessionOpen(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockSessionOpen());
+		//
+		//	2 - Ensure the correct session open 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockSessionOpen(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockSessionOpen());
+	}
+	
+	//-------------------------
+	// TEST SET: stockYearHigh
+	//-------------------------
+	
+	@Test
+	void TestSetStockYearHigh () {
+		//
+		// Tests to perform:
+		//	1 - Ensure year high attribute cannot be a set as a negative value.
+		//	2 - Ensure year high attribute can be set as zero (0.0f).
+		//	3 - Ensure year high attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure year high attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockYearHigh(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure year high attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_ZERO));
+		//
+		//	3 - Ensure year high attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockYearHigh () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct year high 0.0f is returned.
+		//	2 - Ensure the correct year high 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct year high 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockYearHigh());
+		//
+		//	2 - Ensure the correct year high 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockYearHigh());
+	}
+	
+	//------------------------
+	// TEST SET: stockYearLow
+	//------------------------
+	
+	@Test
+	void TestSetStockYearLow () {
+		//
+		// Tests to perform:
+		//	1 - Ensure year low attribute cannot be a set as a negative value.
+		//	2 - Ensure year low attribute can be set as zero (0.0f).
+		//	3 - Ensure year low attribute can be set as a positive value.
+		//	4 - Ensure year low attribute cannot be set above year high attribute.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure year low attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockYearLow(FLOAT_NEGATIVE));
+		//
+		//	2 - Ensure year low attribute can be set as zero (0.0f).
+		//
+		assertEquals(true, s.SetStockYearLow(FLOAT_ZERO));
+		//
+		//	3 - Ensure year low attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockYearLow(FLOAT_POSITIVE));
+		//
+		//	4 - Ensure year low attribute cannot be set above year high attribute.
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_POSITIVE + FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockYearLow(FLOAT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockYearLow () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct year low 0.0f is returned.
+		//	2 - Ensure the correct year low 99.99f is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct year low 0.0f is returned.
+		//
+		assertEquals(true, s.SetStockYearLow(FLOAT_ZERO));
+		assertEquals(FLOAT_ZERO, s.GetStockYearLow());
+		//
+		//	2 - Ensure the correct year low 99.99f is returned.
+		//
+		assertEquals(true, s.SetStockYearHigh(FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockYearLow(FLOAT_POSITIVE));
+		assertEquals(FLOAT_POSITIVE, s.GetStockYearLow());
+	}
+	
+	//----------------------------
+	// TEST SET: stockSharesTotal
+	//----------------------------
+	
+	@Test
+	void TestSetStockSharesTotal () {
+		//
+		// Tests to perform:
+		//	1 - Ensure shares total attribute cannot be a set as a negative value.
+		//	2 - Ensure shares total attribute cannot be set as zero (0).
+		//	3 - Ensure shares total attribute can be set as a positive value.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure shares total attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSharesTotal(INT_NEGATIVE));
+		//
+		//	2 - Ensure shares total attribute cannot be set as zero (0).
+		//
+		assertEquals(false, s.SetStockSharesTotal(INT_ZERO));
+		//
+		//	3 - Ensure shares total attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSharesTotal () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct shares total 99 is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct shares total 99 is returned.
+		//
+		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE));
+		assertEquals(INT_POSITIVE, s.GetStockSharesTotal());
+	}
+	
+	//----------------------------------
+	// TEST SET: stockSharesOutstanding
+	//----------------------------------
+	
+	@Test
+	void TestSetStockSharesOutstanding () {
+		//
+		// Tests to perform:
+		//	1 - Ensure shares outstanding attribute cannot be a set as a negative value.
+		//	2 - Ensure shares outstanding attribute can be set as zero (0).
+		//	3 - Ensure shares outstanding attribute can be set as a positive value.
+		//	4 - Ensure shares outstanding attribute cannot be set above shares total attribute.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		// 	1 - Ensure shares outstanding attribute cannot be a set as a negative value.
+		//
+		assertEquals(false, s.SetStockSharesOutstanding(INT_NEGATIVE));
+		//
+		//	2 - Ensure shares outstanding attribute can be set as zero (0).
+		//
+		assertEquals(true, s.SetStockSharesOutstanding(INT_ZERO));
+		//
+		//	3 - Ensure shares outstanding attribute can be set as a positive value.
+		//
+		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE));
+		assertEquals(true, s.SetStockSharesOutstanding(INT_POSITIVE));
+		//
+		//	4 - Ensure shares outstanding attribute cannot be set above shares total attribute.
+		//
+		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE + INT_NEGATIVE));
+		assertEquals(false, s.SetStockSharesOutstanding(INT_POSITIVE));
+	}
+
+	@Test
+	void TestGetStockSharesOutStanding() {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct shares total 0 is returned.
+		//	2 - Ensure the correct shares total 99 is returned.
+		//
+		
+		Stock s = new Stock();
+
+		//
+		//	1 - Ensure the correct shares total 99 is returned.
+		//
+		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE));
+		assertEquals(true, s.SetStockSharesOutstanding(INT_ZERO));
+		assertEquals(INT_ZERO, s.GetStockSharesOutstanding());
+		//
+		//	2 - Ensure the correct shares total 99 is returned.
+		//
+		assertEquals(true, s.SetStockSharesTotal(INT_POSITIVE));
+		assertEquals(true, s.SetStockSharesOutstanding(INT_POSITIVE));
+		assertEquals(INT_POSITIVE, s.GetStockSharesOutstanding());
 	}
 	
 
