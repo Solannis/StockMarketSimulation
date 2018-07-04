@@ -8,8 +8,10 @@ public class Stock {
 	
 	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
 	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
-	private static final int ZERO_INT = 0;
-	private static final float ZERO_FLOAT = 0.0f;
+	private static final int INT_ZERO = 0;
+	private static final float FLOAT_ZERO = 0.0f;
+	private static final float FLOAT_PENNY = 0.01f;
+	private static final float FLOAT_DOLLAR = 1.0f;
 	private static final String EMPTY_STRING = "";
 	private static final float INFINITY_FLOAT_POSITIVE = Float.POSITIVE_INFINITY;
 	private static final float INFINITY_FLOAT_NEGATIVE = Float.NEGATIVE_INFINITY;
@@ -83,23 +85,23 @@ public class Stock {
 		stockExchange = EMPTY_STRING;
 		stockFullName = EMPTY_STRING;
 		stockDescription = EMPTY_STRING;
-		stockCurrentPrice = ZERO_FLOAT;
-		stockCurrentPriceAsk = ZERO_FLOAT;
-		stockCurrentPriceBid = ZERO_FLOAT;
-		stockSessionClose = ZERO_FLOAT;
-		stockSessionClosePrevious = ZERO_FLOAT;
-		stockSessionHigh = ZERO_FLOAT;
-		stockSessionLow = ZERO_FLOAT;
-		stockSessionOpen = ZERO_FLOAT;
-		stockYearHigh = ZERO_FLOAT;
-		stockYearLow = ZERO_FLOAT;
-		stockSharesTotal = ZERO_INT;
-		stockSharesOutstanding = ZERO_INT;
-		stockDividendPaid = ZERO_FLOAT;
-		stockEarningsPerShare = ZERO_FLOAT;
-		stockMarketCap = ZERO_FLOAT;
-		stockProfitEarningsRatio = ZERO_FLOAT;
-		stockDividendYield = ZERO_FLOAT;
+		stockCurrentPrice = FLOAT_ZERO;
+		stockCurrentPriceAsk = FLOAT_ZERO;
+		stockCurrentPriceBid = FLOAT_ZERO;
+		stockSessionClose = FLOAT_ZERO;
+		stockSessionClosePrevious = FLOAT_ZERO;
+		stockSessionHigh = FLOAT_ZERO;
+		stockSessionLow = FLOAT_ZERO;
+		stockSessionOpen = FLOAT_ZERO;
+		stockYearHigh = FLOAT_ZERO;
+		stockYearLow = FLOAT_ZERO;
+		stockSharesTotal = INT_ZERO;
+		stockSharesOutstanding = INT_ZERO;
+		stockDividendPaid = FLOAT_ZERO;
+		stockEarningsPerShare = FLOAT_ZERO;
+		stockMarketCap = FLOAT_ZERO;
+		stockProfitEarningsRatio = FLOAT_ZERO;
+		stockDividendYield = FLOAT_ZERO;
 	}
 	
 	/**
@@ -117,7 +119,7 @@ public class Stock {
 	 */
 	public boolean CalculateEarningsPerShare () {
 		boolean rv = false;
-		float seps = ZERO_FLOAT; 
+		float seps = FLOAT_ZERO; 
 		
 		//
 		// Derive earnings per share
@@ -167,7 +169,7 @@ public class Stock {
 	 */
 	public boolean CalculateMarketCap () {
 		boolean rv = false;
-		float smc = ZERO_FLOAT;
+		float smc = FLOAT_ZERO;
 		
 		smc = this.GetStockSharesTotal() * this.GetStockCurrentPrice();
 		rv = this.SetStockMarketCap(smc);
@@ -192,7 +194,7 @@ public class Stock {
 	 */
 	public boolean CalculateProfitEarningsRatio () {
 		boolean rv = false;
-		float sper = ZERO_FLOAT;
+		float sper = FLOAT_ZERO;
 		
 		sper = this.GetStockCurrentPrice() / this.GetStockEarningsPerShare();
 		rv = this.SetStockProfitEarningsRatio(sper);
@@ -218,7 +220,7 @@ public class Stock {
 	 */
 	public boolean CalculateDividendYield () {
 		boolean rv = false;
-		float sdy = ZERO_FLOAT;
+		float sdy = FLOAT_ZERO;
 		
 		sdy = this.GetStockDividendPaid() / this.GetStockCurrentPrice();
 		rv = this.SetStockDividendYield(sdy);
@@ -461,7 +463,7 @@ public class Stock {
 	 * @see				GetStockCurrentPrice
 	 */
 	public boolean SetStockCurrentPrice (float scp) {
-		if (scp < ZERO_FLOAT) {
+		if (scp < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockCurrentPrice = scp;
@@ -496,7 +498,7 @@ public class Stock {
 	 * @see				GetStockCurrentPriceAsk
 	 */
 	public boolean SetStockCurrentPriceAsk (float scpa) {
-		if (scpa < ZERO_FLOAT) {
+		if (scpa < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockCurrentPriceAsk = scpa;
@@ -531,7 +533,7 @@ public class Stock {
 	 * @see				GetStockCurrentPriceBid
 	 */
 	public boolean SetStockCurrentPriceBid (float scpb) {
-		if (scpb < ZERO_FLOAT) {
+		if (scpb < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockCurrentPriceBid = scpb;
@@ -566,7 +568,7 @@ public class Stock {
 	 * @see				GetStockSessionClose
 	 */
 	public boolean SetStockSessionClose (float ssc) {
-		if (ssc < ZERO_FLOAT) {
+		if (ssc < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionClose = ssc;
@@ -601,7 +603,7 @@ public class Stock {
 	 * @see				GetStockSessionClosePrevious
 	 */
 	public boolean SetStockSessionClosePrevious (float sscp) {
-		if (sscp < ZERO_FLOAT) {
+		if (sscp < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionClosePrevious = sscp;
@@ -636,7 +638,7 @@ public class Stock {
 	 * @see				GetStockSessionHigh
 	 */
 	public boolean SetStockSessionHigh (float ssh) {
-		if (ssh < ZERO_FLOAT) {
+		if (ssh < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionHigh = ssh;
@@ -671,7 +673,7 @@ public class Stock {
 	 * @see				GetStockSessionLow
 	 */
 	public boolean SetStockSessionLow (float ssl) {
-		if (ssl < ZERO_FLOAT) {
+		if (ssl < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionLow = ssl;
@@ -706,7 +708,7 @@ public class Stock {
 	 * @see				GetStockSessionOpen
 	 */
 	public boolean SetStockSessionOpen (float sso) {
-		if (sso < ZERO_FLOAT) {
+		if (sso < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionOpen = sso;
@@ -741,7 +743,7 @@ public class Stock {
 	 * @see				GetStockYearHigh
 	 */
 	public boolean SetStockYearHigh (float syh) {
-		if (syh < ZERO_FLOAT) {
+		if (syh < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockYearHigh = syh;
@@ -780,7 +782,7 @@ public class Stock {
 		//
 		// First check to make sure that the year low value is not negative.
 		//
-		if (syl < ZERO_FLOAT) {
+		if (syl < FLOAT_ZERO) {
 			return false;
 		}
 		//
@@ -867,7 +869,7 @@ public class Stock {
 		//
 		// First, make sure the shares outstanding parameter is even valid, meaning it cannot be less than zero.
 		//
-		if (sso < ZERO_INT) {
+		if (sso < INT_ZERO) {
 			return false;
 		}
 		//
@@ -908,7 +910,7 @@ public class Stock {
 	 * @see				GetStockDividendPaid
 	 */
 	public boolean SetStockDividendPaid (float sdp) {
-		if (sdp < ZERO_FLOAT) {
+		if (sdp < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockDividendPaid = sdp;
@@ -943,7 +945,7 @@ public class Stock {
 	 * @see				GetStockEarningsPerShare
 	 */
 	public boolean SetStockEarningsPerShare (float seps) {
-		if (seps < ZERO_FLOAT) {
+		if (seps < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockEarningsPerShare = seps;
@@ -978,7 +980,7 @@ public class Stock {
 	 * @see				GetStockMarketCap
 	 */
 	public boolean SetStockMarketCap (float smc) {
-		if (smc < 1.0f) {
+		if (smc < FLOAT_DOLLAR) {
 			return false;
 		}
 		this.stockMarketCap = smc;
@@ -1013,7 +1015,7 @@ public class Stock {
 	 * @see				GetStockProfitEarningsRatio
 	 */
 	public boolean SetStockProfitEarningsRatio (float sper) {
-		if (sper < 0.01f) {
+		if (sper < FLOAT_PENNY) {
 			return false;
 		}
 		this.stockProfitEarningsRatio = sper;
@@ -1048,7 +1050,7 @@ public class Stock {
 	 * @see				GetStockDividendYield
 	 */
 	public boolean SetStockDividendYield (float sdy) {
-		if (sdy < ZERO_FLOAT) {
+		if (sdy < FLOAT_ZERO) {
 			return false;
 		}
 		this.stockDividendYield = sdy;
@@ -1083,7 +1085,7 @@ public class Stock {
 	 * @see				GetCompanyProfit
 	 */
 	public boolean SetCompanyProfit (float cp) {
-		if (cp < 0.01f) {
+		if (cp < FLOAT_PENNY) {
 			return false;
 		}
 		this.companyProfit = cp;

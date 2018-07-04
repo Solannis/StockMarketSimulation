@@ -30,6 +30,7 @@ class StockTest {
 	private static final float FLOAT_NEGATIVE = -9.99f;
 	private static final float FLOAT_ZERO = 0.0f;
 	private static final float FLOAT_PENNY = 0.01f;
+	private static final float FLOAT_DOLLAR = 1.0f;
 	private static final float FLOAT_POSITIVE = 99.99f;
 	private static final int INT_NEGATIVE = -9;
 	private static final int INT_ZERO = 0;
@@ -1050,7 +1051,7 @@ class StockTest {
 		//
 		//	4 - Ensure market cap attribute can be set at 1.0f.
 		//
-		assertEquals(true, s.SetStockMarketCap(1.0f));
+		assertEquals(true, s.SetStockMarketCap(FLOAT_DOLLAR));
 		//
 		//	5 - Ensure market cap attribute can be set as a positive value.
 		//
@@ -1070,8 +1071,8 @@ class StockTest {
 		//
 		//	1 - Ensure the correct market cap 1.0f is returned.
 		//
-		assertEquals(true, s.SetStockMarketCap(1.0f));
-		assertEquals(1.0f, s.GetStockMarketCap());
+		assertEquals(true, s.SetStockMarketCap(FLOAT_DOLLAR));
+		assertEquals(FLOAT_DOLLAR, s.GetStockMarketCap());
 		//
 		//	2 - Ensure the correct market cap 99.99f is returned.
 		//
@@ -1330,7 +1331,7 @@ class StockTest {
 		//	3 - Attempt to calculate the market cap
 		//
 		assertEquals(true, s.SetStockSharesTotal(1));
-		assertEquals(true, s.SetStockCurrentPrice(1.0f));
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_DOLLAR));
 		assertEquals(true, s.CalculateMarketCap());
 		//
 		//	2 - Ensure non-minimums for CalculateMarketCap passes
@@ -1367,8 +1368,8 @@ class StockTest {
 		//	2 - Set the current share price as low as possible
 		//	3 - Attempt to calculate the profit earnings ratio
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(0.1f));
-		assertEquals(true, s.SetStockCurrentPrice(1.0f));
+		assertEquals(true, s.SetStockEarningsPerShare(FLOAT_PENNY));
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_DOLLAR));
 		assertEquals(true, s.CalculateProfitEarningsRatio());
 		//
 		//	2 - Ensure non-minimums for CalculateMarketCap passes
@@ -1405,8 +1406,8 @@ class StockTest {
 		//	2 - Set the current share price as low as possible
 		//	3 - Attempt to calculate the profit earnings ratio
 		//
-		assertEquals(true, s.SetStockDividendPaid(0.0f));
-		assertEquals(true, s.SetStockCurrentPrice(1.0f));
+		assertEquals(true, s.SetStockDividendPaid(FLOAT_ZERO));
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_DOLLAR));
 		assertEquals(true, s.CalculateDividendYield());
 		//
 		//	2 - Ensure non-minimums for CalculateDividendYield passes
