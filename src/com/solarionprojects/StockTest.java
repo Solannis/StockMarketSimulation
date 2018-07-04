@@ -29,6 +29,7 @@ class StockTest {
 	private static final String TEST_STOCK_DESCRIPTION = "Apple, Inc. common stock";
 	private static final float FLOAT_NEGATIVE = -9.99f;
 	private static final float FLOAT_ZERO = 0.0f;
+	private static final float FLOAT_PENNY = 0.01f;
 	private static final float FLOAT_POSITIVE = 99.99f;
 	private static final int INT_NEGATIVE = -9;
 	private static final int INT_ZERO = 0;
@@ -1110,7 +1111,7 @@ class StockTest {
 		//
 		//	4 - Ensure profit earnings ratio attribute can be set at 0.01f.
 		//
-		assertEquals(true, s.SetStockProfitEarningsRatio(0.01f));
+		assertEquals(true, s.SetStockProfitEarningsRatio(FLOAT_PENNY));
 		//
 		//	5 - Ensure profit earnings ratio attribute can be set as a positive value.
 		//
@@ -1130,8 +1131,8 @@ class StockTest {
 		//
 		//	1 - Ensure the correct market cap 0.01f is returned.
 		//
-		assertEquals(true, s.SetStockProfitEarningsRatio(0.01f));
-		assertEquals(0.01f, s.GetStockProfitEarningsRatio());
+		assertEquals(true, s.SetStockProfitEarningsRatio(FLOAT_PENNY));
+		assertEquals(FLOAT_PENNY, s.GetStockProfitEarningsRatio());
 		//
 		//	2 - Ensure the correct market cap 99.99f is returned.
 		//
@@ -1148,10 +1149,9 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure dividend yield attribute cannot be a set as a negative value.
-		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0f).
-		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
-		//	4 - Ensure dividend yield attribute can be set at 0.01f.
-		//	5 - Ensure dividend yield attribute can be set as a positive value.
+		//	2 - Ensure dividend yield attribute can be set as zero (0.0f).
+		//	3 - Ensure dividend yield attribute can be set at 0.01f.
+		//	4 - Ensure dividend yield attribute can be set as a positive value.
 		//
 		
 		Stock s = new Stock();
@@ -1161,19 +1161,15 @@ class StockTest {
 		//
 		assertEquals(false, s.SetStockDividendYield(FLOAT_NEGATIVE));
 		//
-		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0f).
+		//	2 - Ensure dividend yield attribute can be set as zero (0.0f).
 		//
-		assertEquals(false, s.SetStockDividendYield(FLOAT_ZERO));
+		assertEquals(true, s.SetStockDividendYield(FLOAT_ZERO));
 		//
-		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
+		//	3 - Ensure dividend yield attribute can be set at 0.01f.
 		//
-		assertEquals(false, s.SetStockDividendYield(0.009f));
+		assertEquals(true, s.SetStockDividendYield(FLOAT_PENNY));
 		//
-		//	4 - Ensure dividend yield attribute can be set at 0.01f.
-		//
-		assertEquals(true, s.SetStockDividendYield(0.01f));
-		//
-		//	5 - Ensure dividend yield attribute can be set as a positive value.
+		//	4 - Ensure dividend yield attribute can be set as a positive value.
 		//
 		assertEquals(true, s.SetStockDividendYield(FLOAT_POSITIVE));
 	}
@@ -1191,8 +1187,8 @@ class StockTest {
 		//
 		//	1 - Ensure the correct dividend yield 0.01f is returned.
 		//
-		assertEquals(true, s.SetStockDividendYield(0.01f));
-		assertEquals(0.01f, s.GetStockDividendYield());
+		assertEquals(true, s.SetStockDividendYield(FLOAT_PENNY));
+		assertEquals(FLOAT_PENNY, s.GetStockDividendYield());
 		//
 		//	2 - Ensure the correct dividend yield 99.99f is returned.
 		//
@@ -1232,7 +1228,7 @@ class StockTest {
 		//
 		//	4 - Ensure dividend yield attribute can be set at 0.01f.
 		//
-		assertEquals(true, s.SetCompanyProfit(0.01f));
+		assertEquals(true, s.SetCompanyProfit(FLOAT_PENNY));
 		//
 		//	5 - Ensure dividend yield attribute can be set as a positive value.
 		//
@@ -1252,8 +1248,8 @@ class StockTest {
 		//
 		//	1 - Ensure the correct company profit 0.01f is returned.
 		//
-		assertEquals(true, s.SetCompanyProfit(0.01f));
-		assertEquals(0.01f, s.GetCompanyProfit());
+		assertEquals(true, s.SetCompanyProfit(FLOAT_PENNY));
+		assertEquals(FLOAT_PENNY, s.GetCompanyProfit());
 		//
 		//	2 - Ensure the correct company profit 99.99f is returned.
 		//
@@ -1261,28 +1257,163 @@ class StockTest {
 		assertEquals(FLOAT_POSITIVE, s.GetCompanyProfit());
 	}
 	
+	//-------------------------------------
+	// TEST SET: CalculateEarningsPerShare
+	//-------------------------------------
+	
 	@Test
 	void TestCalculateEarningsPerShare () {
 		//
 		// Tests to perform:
-		//	1 - Ensure below-minimums for SetStockEarningsPerShare fails
-		//	2 - Ensure minimums for SetStockEarningsPerShare passes
-		//	3 - Ensure maximums for SetStockEarningsPerShare passes
+		//	1 - Ensure below-minimums for CalculateEarningsPerShare fails
+		//	2 - Ensure minimums for CalculateEarningsPerShare passes
+		//	3 - Ensure non-minimums for CalculateEarningsPerShare passes
 		//
 		// Since there are no theoretical maximums, we do not need to test over-maximum.
 		// Also, there is no need to specifically test negatives since that is checked
 		// in lower-level tests in this same object.
 		//
+		// Due to error prevention checking in the Company Profit, SetStockSharesTotal, and 
+		// SetStockSharesOutstanding, there is no way to test for below-minimums here. That
+		// means test #1 is not needed and is therefore skipped.
+		//
 		
 		Stock s = new Stock();
 		
-		assertEquals(true, s.SetCompanyProfit(0.01f));
+		//
+		//  2 - Ensure minimums for CalculateEarningsPerShare passes
+		//
+		// Steps needed:
+		//	1 - Set the company profit as low as possible
+		//	2 - Set the total shares as low as possible
+		//	3 - Set the outstanding shares as low as possible
+		//	4 - Attempt to calculate the earnings per share
+		//
+		assertEquals(true, s.SetCompanyProfit(FLOAT_PENNY));
+		assertEquals(true, s.SetStockSharesTotal(1));
 		assertEquals(true, s.SetStockSharesOutstanding(1));
+		assertEquals(true, s.CalculateEarningsPerShare());
+		//
+		//	3 - Ensure non-minimums for CalculateEarningsPerShare passes
+		//
+		assertEquals(true, s.SetCompanyProfit(FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockSharesTotal(100000));
+		assertEquals(true, s.SetStockSharesOutstanding(1000));
+		assertEquals(true, s.CalculateEarningsPerShare());
 	}
 	
-	/*
-	 * 	seps = this.GetCompanyProfit() / this.GetStockSharesOutstanding();
-		rv = this.SetStockEarningsPerShare(seps);
-	 */
+	//------------------------------
+	// TEST SET: CalculateMarketCap
+	//------------------------------
+	
+	@Test
+	void TestCalculateMarketCap () {
+		//
+		// Tests to perform:
+		//	1 - Ensure minimums for CalculateMarketCap passes
+		//	2 - Ensure non-minimums for CalculateMarketCap passes
+		//
+		// Since there are no theoretical maximums, and since minimums are error checked
+		// within the lower-level methods, we do not need to test under-minimum or over-maximum
+		// values. Also, there is no need to specifically test negatives since that is checked
+		// in lower-level tests as well.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		//  1 - Ensure minimums for CalculateMarketCap passes
+		//
+		// Steps needed:
+		//	1 - Set the total shares as low as possible
+		//	2 - Set the current share price as low as possible
+		//	3 - Attempt to calculate the market cap
+		//
+		assertEquals(true, s.SetStockSharesTotal(1));
+		assertEquals(true, s.SetStockCurrentPrice(1.0f));
+		assertEquals(true, s.CalculateMarketCap());
+		//
+		//	2 - Ensure non-minimums for CalculateMarketCap passes
+		//
+		assertEquals(true, s.SetStockSharesTotal(100000));
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_POSITIVE));
+		assertEquals(true, s.CalculateMarketCap());
+	}
+	
+	//----------------------------------------
+	// TEST SET: CalculateProfitEarningsRatio
+	//----------------------------------------
+	
+	@Test
+	void TestCalculateProfitEarningsRatio () {
+		//
+		// Tests to perform:
+		//	1 - Ensure minimums for CalculateProfitEarningsRatio passes
+		//	2 - Ensure non-minimums for CalculateProfitEarningsRatio passes
+		//
+		// Since there are no theoretical maximums, and since minimums are error checked
+		// within the lower-level methods, we do not need to test under-minimum or over-maximum
+		// values. Also, there is no need to specifically test negatives since that is checked
+		// in lower-level tests as well.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		//  1 - Ensure minimums for CalculateProfitEarningsRatio passes
+		//
+		// Steps needed:
+		//	1 - Set the earnings per share as low as possible
+		//	2 - Set the current share price as low as possible
+		//	3 - Attempt to calculate the profit earnings ratio
+		//
+		assertEquals(true, s.SetStockEarningsPerShare(0.1f));
+		assertEquals(true, s.SetStockCurrentPrice(1.0f));
+		assertEquals(true, s.CalculateProfitEarningsRatio());
+		//
+		//	2 - Ensure non-minimums for CalculateMarketCap passes
+		//
+		assertEquals(true, s.SetStockEarningsPerShare(FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_POSITIVE));
+		assertEquals(true, s.CalculateProfitEarningsRatio());
+	}
+	
+	//----------------------------------
+	// TEST SET: CalculateDividendYield
+	//----------------------------------
+	
+	@Test
+	void TestCalculateDividendYield () {
+		//
+		// Tests to perform:
+		//	1 - Ensure minimums for CalculateDividendYield passes
+		//	2 - Ensure non-minimums for CalculateDividendYield passes
+		//
+		// Since there are no theoretical maximums, and since minimums are error checked
+		// within the lower-level methods, we do not need to test under-minimum or over-maximum
+		// values. Also, there is no need to specifically test negatives since that is checked
+		// in lower-level tests as well.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		//  1 - Ensure minimums for CalculateDividendYield passes
+		//
+		// Steps needed:
+		//	1 - Set the earnings per share as low as possible
+		//	2 - Set the current share price as low as possible
+		//	3 - Attempt to calculate the profit earnings ratio
+		//
+		assertEquals(true, s.SetStockDividendPaid(0.0f));
+		assertEquals(true, s.SetStockCurrentPrice(1.0f));
+		assertEquals(true, s.CalculateDividendYield());
+		//
+		//	2 - Ensure non-minimums for CalculateDividendYield passes
+		//
+		assertEquals(true, s.SetStockDividendPaid(FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPrice(FLOAT_POSITIVE));
+		assertEquals(true, s.CalculateDividendYield());
+	}
 	
 }

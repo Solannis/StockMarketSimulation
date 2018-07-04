@@ -11,6 +11,8 @@ public class Stock {
 	private static final int ZERO_INT = 0;
 	private static final float ZERO_FLOAT = 0.0f;
 	private static final String EMPTY_STRING = "";
+	private static final float INFINITY_FLOAT_POSITIVE = Float.POSITIVE_INFINITY;
+	private static final float INFINITY_FLOAT_NEGATIVE = Float.NEGATIVE_INFINITY;
 
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -117,7 +119,32 @@ public class Stock {
 		boolean rv = false;
 		float seps = ZERO_FLOAT; 
 		
+		//
+		// Derive earnings per share
+		//
 		seps = this.GetCompanyProfit() / this.GetStockSharesOutstanding();
+		//
+		// Check if earnings per share is a valid value (meaning non-infinite)
+		//
+		if ((seps == INFINITY_FLOAT_POSITIVE) || (seps == INFINITY_FLOAT_NEGATIVE)) {
+			//
+			// Earnings per share value is infinite, which means it is an invalid value. Since the
+			// value is invalid, there is no further need to set the earnings per share attribute.
+			// Return immediately (rv = false).
+			//
+			/*
+			 * Diagnostic code only -- not needed for production.
+			 * 
+			if (seps == INFINITY_FLOAT_POSITIVE) {
+				System.out.println("Posistive Infinity");
+			} else {
+				System.out.println("Negative Infinity");
+			}
+			*
+			*/
+			return rv;
+		}
+		//System.out.println("Earnings per share = " + seps);
 		rv = this.SetStockEarningsPerShare(seps);
 		//
 		// Need to deal with boolean result of this function.
@@ -1011,7 +1038,7 @@ public class Stock {
 	
 	/**
 	 * This method sets the stock dividend yield attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.01f to ?.?f, check to see if the
+	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, check to see if the
 	 * parameter is greater than 0.01f.
 	 * <p>
 	 * This method is public and can be be called by any object.
@@ -1021,7 +1048,7 @@ public class Stock {
 	 * @see				GetStockDividendYield
 	 */
 	public boolean SetStockDividendYield (float sdy) {
-		if (sdy < 0.01f) {
+		if (sdy < ZERO_FLOAT) {
 			return false;
 		}
 		this.stockDividendYield = sdy;
