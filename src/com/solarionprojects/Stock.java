@@ -12,9 +12,9 @@ public class Stock {
 	private static final float FLOAT_ZERO = 0.0f;
 	private static final float FLOAT_PENNY = 0.01f;
 	private static final float FLOAT_DOLLAR = 1.0f;
+	private static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
+	private static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
 	private static final String EMPTY_STRING = "";
-	private static final float INFINITY_FLOAT_POSITIVE = Float.POSITIVE_INFINITY;
-	private static final float INFINITY_FLOAT_NEGATIVE = Float.NEGATIVE_INFINITY;
 
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -128,7 +128,7 @@ public class Stock {
 		//
 		// Check if earnings per share is a valid value (meaning non-infinite)
 		//
-		if ((seps == INFINITY_FLOAT_POSITIVE) || (seps == INFINITY_FLOAT_NEGATIVE)) {
+		if ((seps == FLOAT_INFINITY_POSITIVE) || (seps == FLOAT_INFINITY_NEGATIVE)) {
 			//
 			// Earnings per share value is infinite, which means it is an invalid value. Since the
 			// value is invalid, there is no further need to set the earnings per share attribute.
