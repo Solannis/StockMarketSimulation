@@ -5,4 +5,4 @@
  * @author Mitchell
  *
  */
-package com.solarionprojects;
+package com.solarionprojects.stocksim;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.solarionprojects;
+package com.solarionprojects.stocksim;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package com.solarionprojects;
+package com.solarionprojects.stocksim;
 
 public class Stock {
 
