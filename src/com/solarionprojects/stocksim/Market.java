@@ -1,5 +1,6 @@
 package com.solarionprojects.stocksim;
 
+import java.util.Arrays;
 import java.util.Currency;
 import java.util.Date;
 import java.util.Hashtable;
@@ -106,27 +107,22 @@ public class Market {
 		
 		int rnd;
 		Integer indexInt;
-		String indexStr;
 		boolean indexIsUnique;
-		
-		//Hashtable<String, Integer> indexHash = new Hashtable(STOCK_SELECT_QTY_TUTORIAL);
-		TreeMap<String, Integer> indexHash = new TreeMap<String, Integer>();
-		
+		TreeMap<Integer, Integer> indexHashShadow = new TreeMap<Integer, Integer>();
+
 		for (int i = 0; i < STOCK_SELECT_QTY_TUTORIAL; i++) {
 			System.out.println("Iteration: " + i);
 			indexIsUnique = false;
 			while (!indexIsUnique) {
 				rnd = RNG.NextInt(18);
 				System.out.println("\tRandom number:" + rnd);
-				indexStr = StockData.TUTORIAL_BASIC_SYMBOLS[rnd];
-				System.out.println("\tSymbol: " + indexStr);
-				indexInt = indexHash.get(indexStr);
+				indexInt = indexHashShadow.get(Integer.valueOf(rnd));
 				if (indexInt != null) {
 					System.out.println("\t\tNot unique.");
 					indexIsUnique = false;
 				} else {
 					System.out.println("\t\tUnique, adding to hashtable.");
-					indexHash.put(indexStr, rnd);
+					indexHashShadow.put(rnd, rnd);
 					indexIsUnique = true;
 				}
 			}
@@ -134,6 +130,7 @@ public class Market {
 			//marketStockList = new Stock[STOCK_SELECT_QTY_TUTORIAL];
 				
 		}
-		System.out.println("==========Final Result==========\n"+indexHash);
+		System.out.println("==========Final Result==========\n"+indexHashShadow);
+		
 	}
 }
