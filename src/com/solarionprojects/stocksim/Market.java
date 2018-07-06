@@ -2,7 +2,10 @@ package com.solarionprojects.stocksim;
 
 import java.util.Currency;
 import java.util.Date;
+import java.util.Hashtable;
+import java.util.TreeMap;
 import java.sql.Time;
+import com.solarionprojects.utility.RNG;
 
 public class Market {
 
@@ -25,6 +28,8 @@ public class Market {
 	private static final int MODE_EASY = 0x04;
 	private static final int MODE_MODERATE = 0x05;
 	private static final int MODE_ADVANCED = 0x06;
+	
+	private static final int STOCK_SELECT_QTY_TUTORIAL = 10;
 	
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -98,5 +103,37 @@ public class Market {
 		// 4) Populate stock object with data for that index number.
 		// 5) Repeat steps 1 through 5 until ten of the 18 tutorial stocks has been selected. No duplicates. 
 		//
+		
+		int rnd;
+		Integer indexInt;
+		String indexStr;
+		boolean indexIsUnique;
+		
+		//Hashtable<String, Integer> indexHash = new Hashtable(STOCK_SELECT_QTY_TUTORIAL);
+		TreeMap<String, Integer> indexHash = new TreeMap<String, Integer>();
+		
+		for (int i = 0; i < STOCK_SELECT_QTY_TUTORIAL; i++) {
+			System.out.println("Iteration: " + i);
+			indexIsUnique = false;
+			while (!indexIsUnique) {
+				rnd = RNG.NextInt(18);
+				System.out.println("\tRandom number:" + rnd);
+				indexStr = StockData.TUTORIAL_BASIC_SYMBOLS[rnd];
+				System.out.println("\tSymbol: " + indexStr);
+				indexInt = indexHash.get(indexStr);
+				if (indexInt != null) {
+					System.out.println("\t\tNot unique.");
+					indexIsUnique = false;
+				} else {
+					System.out.println("\t\tUnique, adding to hashtable.");
+					indexHash.put(indexStr, rnd);
+					indexIsUnique = true;
+				}
+			}
+			
+			//marketStockList = new Stock[STOCK_SELECT_QTY_TUTORIAL];
+				
+		}
+		System.out.println("==========Final Result==========\n"+indexHash);
 	}
 }
