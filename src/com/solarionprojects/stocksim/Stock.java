@@ -25,6 +25,7 @@ public class Stock {
 	// will be used in all difficulty levels of the simulation. The introductory/tutorial difficulty level (easiest)
 	// will most likely ignore all but a handful of these attributes.
 	//
+	public int stockIndexNumber;				// Assigned index number of this stock. Defined in the stock data, selected and populated by the stock market.
 	private String stockSymbol;					// Stock ticker symbol. Can be anywhere from one to five letters, typically three or four.
 	private String stockSector; 				// The market sector the stock belongs to, e.g. Tech, Healthcare, Industrials, Utilities, Transportation.
 	private String stockExchange;				// The specific market exchange the stock is traded upon/within, e.g. NYSE, DOW, NASDAQ.
