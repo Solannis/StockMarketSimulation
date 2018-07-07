@@ -1,8 +1,13 @@
 package com.solarionprojects.stocksim;
 
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Currency;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.sql.Time;
 import com.solarionprojects.utility.RNG;
@@ -137,14 +142,82 @@ public class Market {
 	 * @see		SelectStocks				
 	 */
 	private void SelectStocksTutorialBasic () {
-		int rnd;							// Random number variable
-		Integer indexInt;					// The current index integer
-		boolean indexIsUnique;				// Boolean to represent uniqueness of a given random number
-		TreeMap<Integer, Integer> indexHash = new TreeMap<Integer, Integer>();
-											// TreeMap is a variation of a hash table that has a built-in 
-											// sorting function to keep key/val pairs sorted by key 
-		marketStockList = new Stock[STOCK_SELECT_QTY_TUTORIAL];
+		int sourceLength = StockData.TUTORIAL_BASIC_SYMBOLS.length;			// Source set which contains the complete set of tutorial stocks available
+		int targetLength = STOCK_SELECT_QTY_TUTORIAL;						// Target set which contains the selected set of tutorial stocks for this session
+		marketStockList = new Stock[targetLength];							// The actual array of selected stock objects to be populated
+		int rnd = 0;														// Random number variable
+
+		//
+		// First, select the stocks used for this tutorial session.
+		//
+		// A lot of different processes were tried here, mostly in the Collections and Map libraries.
+		// Due to the process described below and the desire to keep things as simple as possible,
+		// the final decision came to creating a master list of unique numbers (the source/complete 
+		// set), creating a second list of just the randomly selected numbers (the target/selected 
+		// set, sorting the target set, then populating the actual stock list array with the stock
+		// data from the sorted target set. After a lot of trial and error (e.g. how to iterate over
+		// hash tables and array lists, how to get the list sorted), the method below is, in my
+		// opinion, the easiest and most obvious way to do things. Perhaps, over time, I will find
+		// a different/better way to do this.
+		//
 		
+		//
+		// 1) Create the source ArrayList (numbersList)
+		//
+		// Create an ArrayList representing each possible stock index number that can be
+		// selected. For the tutorial list, there is a total of 18 stocks listed in the StockData 
+		// object for the tutorial, so create an ArrayList with a size of 18 elements where the 
+		// elements are 1, 2, 3, ... 16, 17, 18.
+		//
+		ArrayList<Integer> numbersList = new ArrayList<>(sourceLength);
+		for (int i = 0; i < sourceLength; i++){
+		    numbersList.add(i);
+		}
+		//
+		// 2) Create the target List (selectionList)
+		//
+		// Create a list of the number of selected stocks for this mode. For the tutorial mode,
+		// the number of stocks selected for each session is 10. To do this, we will randomly select
+		// an item from the ArrayList above (numbersList), add it to the List below (selectionList)
+		// and, at the same time, remove that number from the ArrayList (numbersList). The next time
+		// a number is selected, it will have to be unique since any number previously selected will
+		// have been removed from the ArrayList.
+		//
+		// The reason this is a List and not any other type of collection is that List objects are
+		// clearly and easily sortable.
+		//
+		List<Integer> selectionList = new ArrayList<Integer>();
+		for (int i = 0; i < targetLength; i++) {
+			//
+			// Pick a random number within the range of the size of the numbers list
+			//
+			rnd = RNG.NextInt(numbersList.size());
+		    selectionList.add(numbersList.remove(rnd));
+		}
+		//
+		// Now that a list of selected stocks has been made, the list needs to be sorted.
+		//
+		Collections.sort(selectionList);
+
+		for (int i = 0; i < targetLength; i++) {
+			Stock s = new Stock();
+			//
+			// Get an entry in the TreeMap
+			//
+			s.stockIndexNumber = selectionList.get(i);
+			//
+			// Load the tutorial mode stock data for the selected stockIndexNumber
+			//
+			s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[s.stockIndexNumber]);
+			s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[s.stockIndexNumber]);
+			s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[s.stockIndexNumber]);
+			s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[s.stockIndexNumber]);
+			s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[s.stockIndexNumber]);
+			s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[s.stockIndexNumber]);
+			marketStockList[i] = s;
+			System.out.println("Stock " + i + " is: " + marketStockList[i].toString(1) + "\n");
+		}
+/*
 		//
 		// Set up the for loop to represent the ten selected stocks for basic tutorial mode
 		//
@@ -182,18 +255,6 @@ public class Market {
 					//
 					indexHash.put(rnd, rnd);
 					//
-					// Load the stock data for tutorial mode
-					//
-					Stock s = new Stock();
-					s.stockIndexNumber = rnd;
-					s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[rnd]);
-					s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[rnd]);
-					s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[rnd]);
-					s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[rnd]);
-					s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[rnd]);
-					s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[rnd]);
-					marketStockList[i] = s;
-					//
 					// Since the value was unique, set the boolean to true to allow us to exit the while 
 					// loop (for random number selection) and let us skip to the next iteration of the
 					// selection loop.
@@ -203,6 +264,34 @@ public class Market {
 			}
 			
 		}
-		System.out.println("Stock 0 is: " + marketStockList[0].toString(1));
+		int i = 0;
+		Set<Integer> is = indexHash.keySet();
+		Object[] I = is.toArray();
+		for(Object entry : I) {
+
+			//
+			// Create an empty stock object
+			//
+			Stock s = new Stock();
+			//
+			// Get an entry in the TreeMap
+			//
+			int key = (Integer) entry;
+			s.stockIndexNumber = key;
+			//
+			// Load the tutorial mode stock data for the selected stockIndexNumber
+			//
+			s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[s.stockIndexNumber]);
+			s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[s.stockIndexNumber]);
+			s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[s.stockIndexNumber]);
+			s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[s.stockIndexNumber]);
+			s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[s.stockIndexNumber]);
+			s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[s.stockIndexNumber]);
+			marketStockList[i] = s;
+			System.out.println("Stock 0 is: " + marketStockList[0].toString(1));
+			i++;
+			
+		}
+*/		
 	}
 }
