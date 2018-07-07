@@ -15,6 +15,8 @@ public class Stock {
 	private static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
 	private static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
 	private static final String EMPTY_STRING = "";
+	private static final String NEW_LINE = "\n";
+	private static final String TAB = "\t";
 
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -231,6 +233,67 @@ public class Stock {
 		return rv;
 	}
 	
+	/**
+	 * This method is an override of the default toString method. This will provide the
+	 * correct output of the stock object attribute values when called. This method should
+	 * function correctly for both explicit .toString() calls as well as implicit string
+	 * manipulations (..." + stockObject + "...).
+	 * <p>
+	 * The method will accept an int parameter to determine which version of toString will
+	 * be called. TUTORIAL_MODE_BASIC and TUTORIAL_MODE_ADVANCED will call a brief version
+	 * of toString, only outputting a small number of stock attributes. Any other value will
+	 * result in the complete output of all stock attributes. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			A String value representing attributes of the stock object
+	 */
+	public String toString (int mm) {
+		String outputStr = "";
+		
+		if (mm < 3) {
+			//
+			// The market mode is tutorial basic or tutorial advanced. Gather only the
+			// limited stock attributes associated with that market mode.
+			//
+			outputStr = outputStr + "      stockIndexNumber: " + stockIndexNumber + NEW_LINE;
+			outputStr = outputStr + "           stockSymbol: " + this.GetStockSymbol() + NEW_LINE;
+			outputStr = outputStr + "         stockFullName: " + this.GetStockFullName() + NEW_LINE;
+			outputStr = outputStr + "      stockDescription: " + this.GetStockDescription() + NEW_LINE;
+			outputStr = outputStr + "     stockCurrentPrice: " + this.GetStockCurrentPrice() + NEW_LINE;
+			outputStr = outputStr + "      stockSharesTotal: " + this.GetStockSharesTotal() + NEW_LINE;
+			outputStr = outputStr + "stockSharesOutstanding: " + this.GetStockSharesOutstanding();
+		} else {
+			//
+			// The market mode is not a tutorial mode. Gather all the stock attributes.
+			//
+			outputStr = outputStr + "         stockIndexNumber: " + stockIndexNumber + NEW_LINE;
+			outputStr = outputStr + "              stockSymbol: " + this.GetStockSymbol() + NEW_LINE;
+			outputStr = outputStr + "              stockSector: " + this.GetStockSector() + NEW_LINE;
+			outputStr = outputStr + "            stockExchange: " + this.GetStockExchange() + NEW_LINE;
+			outputStr = outputStr + "            stockFullName: " + this.GetStockFullName() + NEW_LINE;
+			outputStr = outputStr + "         stockDescription: " + this.GetStockDescription() + NEW_LINE;
+			outputStr = outputStr + "        stockCurrentPrice: " + this.GetStockCurrentPrice() + NEW_LINE;
+			outputStr = outputStr + "     stockCurrentPriceAsk: " + this.GetStockCurrentPriceAsk() + NEW_LINE;
+			outputStr = outputStr + "     stockCurrentPriceBid: " + this.GetStockCurrentPriceBid() + NEW_LINE;
+			outputStr = outputStr + "        stockSessionClose: " + this.GetStockSessionClose() + NEW_LINE;
+			outputStr = outputStr + "stockSessionClosePrevious: " + this.GetStockSessionClosePrevious() + NEW_LINE;
+			outputStr = outputStr + "         stockSessionHigh: " + this.GetStockSessionHigh() + NEW_LINE;
+			outputStr = outputStr + "          stockSessionLow: " + this.GetStockSessionLow() + NEW_LINE;
+			outputStr = outputStr + "         stockSessionOpen: " + this.GetStockSessionOpen() + NEW_LINE;
+			outputStr = outputStr + "            stockYearHigh: " + this.GetStockYearHigh() + NEW_LINE;
+			outputStr = outputStr + "             stockYearLow: " + this.GetStockYearLow() + NEW_LINE;
+			outputStr = outputStr + "         stockSharesTotal: " + this.GetStockSharesTotal() + NEW_LINE;
+			outputStr = outputStr + "   stockSharesOutstanding: " + this.GetStockDescription() + NEW_LINE;
+			outputStr = outputStr + "        stockDividendPaid: " + this.GetStockDividendPaid() + NEW_LINE;
+			outputStr = outputStr + "    stockEarningsPerShare: " + this.GetStockEarningsPerShare() + NEW_LINE;
+			outputStr = outputStr + "           stockMarketCap: " + this.GetStockMarketCap() + NEW_LINE;
+			outputStr = outputStr + " stockProfitEarningsRatio: " + this.GetStockProfitEarningsRatio() + NEW_LINE;
+			outputStr = outputStr + "       stockDividendYield: " + this.GetStockDividendYield() + NEW_LINE;
+			outputStr = outputStr + "            companyProfit: " + this.GetCompanyProfit();
+		}
+		return outputStr;
+	}
 	
 	//============================
 	// OBJECT GETTERS AND SETTERS
