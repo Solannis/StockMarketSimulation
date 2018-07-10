@@ -1,14 +1,14 @@
 package com.solarionprojects.stocksim;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Currency;
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+//import java.util.Map;
+//import java.util.Set;
+//import java.util.TreeMap;
 import java.sql.Time;
 import com.solarionprojects.utility.RNG;
 
@@ -18,8 +18,6 @@ public class Market {
 	// OBJECT GLOBAL CONSTANTS
 	//=========================
 	
-	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
-	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
 	private static final int INT_ZERO = 0;
 	private static final float FLOAT_ZERO = 0.0f;
 	private static final float FLOAT_PENNY = 0.01f;
@@ -192,17 +190,23 @@ public class Market {
 			// Pick a random number within the range of the size of the numbers list
 			//
 			rnd = RNG.NextInt(numbersList.size());
+			//
+			// Add the randomly selected number to the selection list, then remove that same number 
+			// from the numbers list, keeping that list unique.
+			//
 		    selectionList.add(numbersList.remove(rnd));
 		}
 		//
 		// Now that a list of selected stocks has been made, the list needs to be sorted.
 		//
 		Collections.sort(selectionList);
-
+		//
+		// Now load the selected stock objects with their required data.
+		//
 		for (int i = 0; i < targetLength; i++) {
 			Stock s = new Stock();
 			//
-			// Get an entry in the TreeMap
+			// Get a stock index number from the selection list.
 			//
 			s.stockIndexNumber = selectionList.get(i);
 			//
@@ -217,81 +221,8 @@ public class Market {
 			marketStockList[i] = s;
 			System.out.println("Stock " + i + " is: " + marketStockList[i].toString(1) + "\n");
 		}
-/*
 		//
-		// Set up the for loop to represent the ten selected stocks for basic tutorial mode
+		// All tutorial stocks are now loaded and ready to go.
 		//
-		for (int i = 0; i < STOCK_SELECT_QTY_TUTORIAL; i++) {
-			//
-			// Set the boolean uniqueness value to false (presumed not unique)
-			//
-			indexIsUnique = false;
-			//
-			// While the random value is not unique, keep pulling new random values
-			//
-			while (!indexIsUnique) {
-				//
-				// Request the next random number (the parameter is the MAX value for the random
-				// number, exclusive (not included)).
-				//
-				rnd = RNG.NextInt(18);
-				//
-				// Query the TreeMap to see if the selected key already exists
-				//
-				indexInt = indexHash.get(Integer.valueOf(rnd));
-				//
-				// If the key already exists, the indexInt value will be the value of that key. This means the key already exists.
-				// If the key does not exist, the indexInt will be null. This means we can add the key/val pair to the TreeMap.
-				//
-				if (indexInt != null) {
-					//
-					// Found the key, so not unique, so do not add to the TreeMap and perform 
-					// another loop to request an additional random number
-					//
-					indexIsUnique = false;
-				} else {
-					//
-					// No key was found, so this random value is unique, therefore add it to the TreeMap.
-					//
-					indexHash.put(rnd, rnd);
-					//
-					// Since the value was unique, set the boolean to true to allow us to exit the while 
-					// loop (for random number selection) and let us skip to the next iteration of the
-					// selection loop.
-					//
-					indexIsUnique = true;
-				}
-			}
-			
-		}
-		int i = 0;
-		Set<Integer> is = indexHash.keySet();
-		Object[] I = is.toArray();
-		for(Object entry : I) {
-
-			//
-			// Create an empty stock object
-			//
-			Stock s = new Stock();
-			//
-			// Get an entry in the TreeMap
-			//
-			int key = (Integer) entry;
-			s.stockIndexNumber = key;
-			//
-			// Load the tutorial mode stock data for the selected stockIndexNumber
-			//
-			s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[s.stockIndexNumber]);
-			s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[s.stockIndexNumber]);
-			s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[s.stockIndexNumber]);
-			s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[s.stockIndexNumber]);
-			s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[s.stockIndexNumber]);
-			s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[s.stockIndexNumber]);
-			marketStockList[i] = s;
-			System.out.println("Stock 0 is: " + marketStockList[0].toString(1));
-			i++;
-			
-		}
-*/		
 	}
 }
