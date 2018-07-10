@@ -11,6 +11,7 @@ import java.util.List;
 //import java.util.TreeMap;
 import java.sql.Time;
 import com.solarionprojects.utility.RNG;
+import com.solarionprojects.stocksim.GameController;
 
 public class Market {
 
@@ -25,14 +26,15 @@ public class Market {
 	private static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
 	private static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
 	private static final String EMPTY_STRING = "";
+	private static final int STOCK_DATA_BASIC = 0x01;
+	private static final int STOCK_DATA_ADVANCED = 0x02;
 
-	private static final int MODE_TUTORIAL_BASIC = 0x01;
-	private static final int MODE_TUTORIAL_ADVANCED = 0x02;
-	private static final int MODE_EASY = 0x04;
-	private static final int MODE_MODERATE = 0x05;
-	private static final int MODE_ADVANCED = 0x06;
-	
-	private static final int STOCK_SELECT_QTY_TUTORIAL = 10;
+	//
+	// Tutorial mode constants
+	//
+	private static final int TUTORIAL_STOCK_SELECT_QTY = 10;
+	private static final int TUTORIAL_STOCK_DATA_= STOCK_DATA_BASIC;
+	private static final int TUTORIAL_TRADER_QTY = 4;
 	
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -76,9 +78,8 @@ public class Market {
 		// basic tutorial mode. In the future, there will be an overload of this constructor that
 		// will allow for any market mode to be selected as an argument.
 		//
-		InitializeMarket(MODE_TUTORIAL_BASIC);
+		InitializeMarket(GameController.MODE_TUTORIAL_BASIC);
 		SelectStocks();
-		//PopulateStockData();
 	}
 
 	//================
@@ -101,7 +102,7 @@ public class Market {
 		//
 		// Range check the market mode parameter value to make sure it's valid
 		//
-		if ((mm < Market.MODE_TUTORIAL_BASIC) || (mm > MODE_ADVANCED)) {
+		if ((mm < GameController.MODE_TUTORIAL_BASIC) || (mm > GameController.MODE_ADVANCED)) {
 			return false;
 		}
 		this.marketMode = mm;
@@ -121,7 +122,7 @@ public class Market {
 	 */
 	private void SelectStocks () {
 		switch (this.marketMode) {
-		case MODE_TUTORIAL_BASIC:
+		case GameController.MODE_TUTORIAL_BASIC:
 				SelectStocksTutorialBasic();
 		}
 	}
@@ -141,7 +142,7 @@ public class Market {
 	 */
 	private void SelectStocksTutorialBasic () {
 		int sourceLength = StockData.TUTORIAL_BASIC_SYMBOLS.length;			// Source set which contains the complete set of tutorial stocks available
-		int targetLength = STOCK_SELECT_QTY_TUTORIAL;						// Target set which contains the selected set of tutorial stocks for this session
+		int targetLength = TUTORIAL_STOCK_SELECT_QTY;						// Target set which contains the selected set of tutorial stocks for this session
 		marketStockList = new Stock[targetLength];							// The actual array of selected stock objects to be populated
 		int rnd = 0;														// Random number variable
 
