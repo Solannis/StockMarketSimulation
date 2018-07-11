@@ -6,17 +6,6 @@ public class Stock {
 	// OBJECT GLOBAL CONSTANTS
 	//=========================
 	
-	private static final int STOCK_SYMBOL_MIN_LENGTH = 1;
-	private static final int STOCK_SYMBOL_MAX_LENGTH = 5;
-	private static final int INT_ZERO = 0;
-	private static final float FLOAT_ZERO = 0.0f;
-	private static final float FLOAT_PENNY = 0.01f;
-	private static final float FLOAT_DOLLAR = 1.0f;
-	private static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
-	private static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
-	private static final String EMPTY_STRING = "";
-	private static final String NEW_LINE = "\n";
-	private static final String TAB = "\t";
 
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -27,7 +16,7 @@ public class Stock {
 	// will be used in all difficulty levels of the simulation. The introductory/tutorial difficulty level (easiest)
 	// will most likely ignore all but a handful of these attributes.
 	//
-	public int stockIndexNumber;				// Assigned index number of this stock. Defined in the stock data, selected and populated by the stock market.
+	public int stockID;							// Assigned index number of this stock. Defined in the stock data, selected and populated by the stock market.
 	private String stockSymbol;					// Stock ticker symbol. Can be anywhere from one to five letters, typically three or four.
 	private String stockSector; 				// The market sector the stock belongs to, e.g. Tech, Healthcare, Industrials, Utilities, Transportation.
 	private String stockExchange;				// The specific market exchange the stock is traded upon/within, e.g. NYSE, DOW, NASDAQ.
@@ -83,28 +72,28 @@ public class Stock {
 	 * <p>
 	 */
 	private void InitializeValues ( ) {
-		stockSymbol = EMPTY_STRING;
-		stockSector = EMPTY_STRING;
-		stockExchange = EMPTY_STRING;
-		stockFullName = EMPTY_STRING;
-		stockDescription = EMPTY_STRING;
-		stockCurrentPrice = FLOAT_ZERO;
-		stockCurrentPriceAsk = FLOAT_ZERO;
-		stockCurrentPriceBid = FLOAT_ZERO;
-		stockSessionClose = FLOAT_ZERO;
-		stockSessionClosePrevious = FLOAT_ZERO;
-		stockSessionHigh = FLOAT_ZERO;
-		stockSessionLow = FLOAT_ZERO;
-		stockSessionOpen = FLOAT_ZERO;
-		stockYearHigh = FLOAT_ZERO;
-		stockYearLow = FLOAT_ZERO;
-		stockSharesTotal = INT_ZERO;
-		stockSharesOutstanding = INT_ZERO;
-		stockDividendPaid = FLOAT_ZERO;
-		stockEarningsPerShare = FLOAT_ZERO;
-		stockMarketCap = FLOAT_ZERO;
-		stockProfitEarningsRatio = FLOAT_ZERO;
-		stockDividendYield = FLOAT_ZERO;
+		stockSymbol = SimConstants.EMPTY_STRING;
+		stockSector = SimConstants.EMPTY_STRING;
+		stockExchange = SimConstants.EMPTY_STRING;
+		stockFullName = SimConstants.EMPTY_STRING;
+		stockDescription = SimConstants.EMPTY_STRING;
+		stockCurrentPrice = SimConstants.FLOAT_ZERO;
+		stockCurrentPriceAsk = SimConstants.FLOAT_ZERO;
+		stockCurrentPriceBid = SimConstants.FLOAT_ZERO;
+		stockSessionClose = SimConstants.FLOAT_ZERO;
+		stockSessionClosePrevious = SimConstants.FLOAT_ZERO;
+		stockSessionHigh = SimConstants.FLOAT_ZERO;
+		stockSessionLow = SimConstants.FLOAT_ZERO;
+		stockSessionOpen = SimConstants.FLOAT_ZERO;
+		stockYearHigh = SimConstants.FLOAT_ZERO;
+		stockYearLow = SimConstants.FLOAT_ZERO;
+		stockSharesTotal = SimConstants.INT_ZERO;
+		stockSharesOutstanding = SimConstants.INT_ZERO;
+		stockDividendPaid = SimConstants.FLOAT_ZERO;
+		stockEarningsPerShare = SimConstants.FLOAT_ZERO;
+		stockMarketCap = SimConstants.FLOAT_ZERO;
+		stockProfitEarningsRatio = SimConstants.FLOAT_ZERO;
+		stockDividendYield = SimConstants.FLOAT_ZERO;
 	}
 	
 	/**
@@ -122,7 +111,7 @@ public class Stock {
 	 */
 	public boolean CalculateEarningsPerShare () {
 		boolean rv = false;
-		float seps = FLOAT_ZERO; 
+		float seps = SimConstants.FLOAT_ZERO; 
 		
 		//
 		// Derive earnings per share
@@ -131,7 +120,7 @@ public class Stock {
 		//
 		// Check if earnings per share is a valid value (meaning non-infinite)
 		//
-		if ((seps == FLOAT_INFINITY_POSITIVE) || (seps == FLOAT_INFINITY_NEGATIVE)) {
+		if ((seps == SimConstants.FLOAT_INFINITY_POSITIVE) || (seps == SimConstants.FLOAT_INFINITY_NEGATIVE)) {
 			//
 			// Earnings per share value is infinite, which means it is an invalid value. Since the
 			// value is invalid, there is no further need to set the earnings per share attribute.
@@ -172,7 +161,7 @@ public class Stock {
 	 */
 	public boolean CalculateMarketCap () {
 		boolean rv = false;
-		float smc = FLOAT_ZERO;
+		float smc = SimConstants.FLOAT_ZERO;
 		
 		smc = this.GetStockSharesTotal() * this.GetStockCurrentPrice();
 		rv = this.SetStockMarketCap(smc);
@@ -197,7 +186,7 @@ public class Stock {
 	 */
 	public boolean CalculateProfitEarningsRatio () {
 		boolean rv = false;
-		float sper = FLOAT_ZERO;
+		float sper = SimConstants.FLOAT_ZERO;
 		
 		sper = this.GetStockCurrentPrice() / this.GetStockEarningsPerShare();
 		rv = this.SetStockProfitEarningsRatio(sper);
@@ -223,7 +212,7 @@ public class Stock {
 	 */
 	public boolean CalculateDividendYield () {
 		boolean rv = false;
-		float sdy = FLOAT_ZERO;
+		float sdy = SimConstants.FLOAT_ZERO;
 		
 		sdy = this.GetStockDividendPaid() / this.GetStockCurrentPrice();
 		rv = this.SetStockDividendYield(sdy);
@@ -256,40 +245,40 @@ public class Stock {
 			// The market mode is tutorial basic or tutorial advanced. Gather only the
 			// limited stock attributes associated with that market mode.
 			//
-			outputStr = outputStr + "      stockIndexNumber: " + stockIndexNumber + NEW_LINE;
-			outputStr = outputStr + "           stockSymbol: " + this.GetStockSymbol() + NEW_LINE;
-			outputStr = outputStr + "         stockFullName: " + this.GetStockFullName() + NEW_LINE;
-			outputStr = outputStr + "      stockDescription: " + this.GetStockDescription() + NEW_LINE;
-			outputStr = outputStr + "     stockCurrentPrice: " + this.GetStockCurrentPrice() + NEW_LINE;
-			outputStr = outputStr + "      stockSharesTotal: " + this.GetStockSharesTotal() + NEW_LINE;
+			outputStr = outputStr + "      stockIndexNumber: " + stockID + SimConstants.NEW_LINE;
+			outputStr = outputStr + "           stockSymbol: " + this.GetStockSymbol() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "         stockFullName: " + this.GetStockFullName() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "      stockDescription: " + this.GetStockDescription() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "     stockCurrentPrice: " + this.GetStockCurrentPrice() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "      stockSharesTotal: " + this.GetStockSharesTotal() + SimConstants.NEW_LINE;
 			outputStr = outputStr + "stockSharesOutstanding: " + this.GetStockSharesOutstanding();
 		} else {
 			//
 			// The market mode is not a tutorial mode. Gather all the stock attributes.
 			//
-			outputStr = outputStr + "         stockIndexNumber: " + stockIndexNumber + NEW_LINE;
-			outputStr = outputStr + "              stockSymbol: " + this.GetStockSymbol() + NEW_LINE;
-			outputStr = outputStr + "              stockSector: " + this.GetStockSector() + NEW_LINE;
-			outputStr = outputStr + "            stockExchange: " + this.GetStockExchange() + NEW_LINE;
-			outputStr = outputStr + "            stockFullName: " + this.GetStockFullName() + NEW_LINE;
-			outputStr = outputStr + "         stockDescription: " + this.GetStockDescription() + NEW_LINE;
-			outputStr = outputStr + "        stockCurrentPrice: " + this.GetStockCurrentPrice() + NEW_LINE;
-			outputStr = outputStr + "     stockCurrentPriceAsk: " + this.GetStockCurrentPriceAsk() + NEW_LINE;
-			outputStr = outputStr + "     stockCurrentPriceBid: " + this.GetStockCurrentPriceBid() + NEW_LINE;
-			outputStr = outputStr + "        stockSessionClose: " + this.GetStockSessionClose() + NEW_LINE;
-			outputStr = outputStr + "stockSessionClosePrevious: " + this.GetStockSessionClosePrevious() + NEW_LINE;
-			outputStr = outputStr + "         stockSessionHigh: " + this.GetStockSessionHigh() + NEW_LINE;
-			outputStr = outputStr + "          stockSessionLow: " + this.GetStockSessionLow() + NEW_LINE;
-			outputStr = outputStr + "         stockSessionOpen: " + this.GetStockSessionOpen() + NEW_LINE;
-			outputStr = outputStr + "            stockYearHigh: " + this.GetStockYearHigh() + NEW_LINE;
-			outputStr = outputStr + "             stockYearLow: " + this.GetStockYearLow() + NEW_LINE;
-			outputStr = outputStr + "         stockSharesTotal: " + this.GetStockSharesTotal() + NEW_LINE;
-			outputStr = outputStr + "   stockSharesOutstanding: " + this.GetStockDescription() + NEW_LINE;
-			outputStr = outputStr + "        stockDividendPaid: " + this.GetStockDividendPaid() + NEW_LINE;
-			outputStr = outputStr + "    stockEarningsPerShare: " + this.GetStockEarningsPerShare() + NEW_LINE;
-			outputStr = outputStr + "           stockMarketCap: " + this.GetStockMarketCap() + NEW_LINE;
-			outputStr = outputStr + " stockProfitEarningsRatio: " + this.GetStockProfitEarningsRatio() + NEW_LINE;
-			outputStr = outputStr + "       stockDividendYield: " + this.GetStockDividendYield() + NEW_LINE;
+			outputStr = outputStr + "         stockIndexNumber: " + stockID + SimConstants.NEW_LINE;
+			outputStr = outputStr + "              stockSymbol: " + this.GetStockSymbol() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "              stockSector: " + this.GetStockSector() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "            stockExchange: " + this.GetStockExchange() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "            stockFullName: " + this.GetStockFullName() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "         stockDescription: " + this.GetStockDescription() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "        stockCurrentPrice: " + this.GetStockCurrentPrice() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "     stockCurrentPriceAsk: " + this.GetStockCurrentPriceAsk() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "     stockCurrentPriceBid: " + this.GetStockCurrentPriceBid() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "        stockSessionClose: " + this.GetStockSessionClose() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "stockSessionClosePrevious: " + this.GetStockSessionClosePrevious() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "         stockSessionHigh: " + this.GetStockSessionHigh() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "          stockSessionLow: " + this.GetStockSessionLow() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "         stockSessionOpen: " + this.GetStockSessionOpen() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "            stockYearHigh: " + this.GetStockYearHigh() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "             stockYearLow: " + this.GetStockYearLow() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "         stockSharesTotal: " + this.GetStockSharesTotal() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "   stockSharesOutstanding: " + this.GetStockDescription() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "        stockDividendPaid: " + this.GetStockDividendPaid() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "    stockEarningsPerShare: " + this.GetStockEarningsPerShare() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "           stockMarketCap: " + this.GetStockMarketCap() + SimConstants.NEW_LINE;
+			outputStr = outputStr + " stockProfitEarningsRatio: " + this.GetStockProfitEarningsRatio() + SimConstants.NEW_LINE;
+			outputStr = outputStr + "       stockDividendYield: " + this.GetStockDividendYield() + SimConstants.NEW_LINE;
 			outputStr = outputStr + "            companyProfit: " + this.GetCompanyProfit();
 		}
 		return outputStr;
@@ -329,13 +318,13 @@ public class Stock {
 	 * @see				GetStockSymbol
 	 */
 	public boolean SetStockSymbol (String ss) {
-		if ((ss.length() < STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > STOCK_SYMBOL_MAX_LENGTH)) {
+		if ((ss.length() < SimConstants.STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > SimConstants.STOCK_SYMBOL_MAX_LENGTH)) {
 			return false;
 		}
-		if (ss.equals(EMPTY_STRING)) {
+		if (ss.equals(SimConstants.EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockSymbol.equals(EMPTY_STRING)) {
+		if (this.stockSymbol.equals(SimConstants.EMPTY_STRING)) {
 			this.stockSymbol = ss;
 			return true;
 		}
@@ -371,10 +360,10 @@ public class Stock {
 	 * @see				GetStockSector
 	 */
 	public boolean SetStockSector (String ss) {
-		if (ss.equals(EMPTY_STRING)) {
+		if (ss.equals(SimConstants.EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockSector.equals(EMPTY_STRING)) {
+		if (this.stockSector.equals(SimConstants.EMPTY_STRING)) {
 			this.stockSector = ss;
 			return true;
 		}
@@ -411,10 +400,10 @@ public class Stock {
 	 * @see				GetStockExchange
 	 */
 	public boolean SetStockExchange (String se) {
-		if (se.equals(EMPTY_STRING)) {
+		if (se.equals(SimConstants.EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockExchange.equals(EMPTY_STRING)) {
+		if (this.stockExchange.equals(SimConstants.EMPTY_STRING)) {
 			this.stockExchange = se;
 			return true;
 		}
@@ -450,10 +439,10 @@ public class Stock {
 	 * @see				GetStockFullName
 	 */
 	public boolean SetStockFullName (String sfn) {
-		if (sfn.equals(EMPTY_STRING)) {
+		if (sfn.equals(SimConstants.EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockFullName.equals(EMPTY_STRING)) {
+		if (this.stockFullName.equals(SimConstants.EMPTY_STRING)) {
 			this.stockFullName = sfn;
 			return true;
 		}
@@ -489,10 +478,10 @@ public class Stock {
 	 * @see				GetStockDescription
 	 */
 	public boolean SetStockDescription (String sd) {
-		if (sd.equals(EMPTY_STRING)) {
+		if (sd.equals(SimConstants.EMPTY_STRING)) {
 			return false;
 		}
-		if (this.stockDescription.equals(EMPTY_STRING)) {
+		if (this.stockDescription.equals(SimConstants.EMPTY_STRING)) {
 			this.stockDescription = sd;
 			return true;
 		}
@@ -527,7 +516,7 @@ public class Stock {
 	 * @see				GetStockCurrentPrice
 	 */
 	public boolean SetStockCurrentPrice (float scp) {
-		if (scp < FLOAT_ZERO) {
+		if (scp < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockCurrentPrice = scp;
@@ -562,7 +551,7 @@ public class Stock {
 	 * @see				GetStockCurrentPriceAsk
 	 */
 	public boolean SetStockCurrentPriceAsk (float scpa) {
-		if (scpa < FLOAT_ZERO) {
+		if (scpa < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockCurrentPriceAsk = scpa;
@@ -597,7 +586,7 @@ public class Stock {
 	 * @see				GetStockCurrentPriceBid
 	 */
 	public boolean SetStockCurrentPriceBid (float scpb) {
-		if (scpb < FLOAT_ZERO) {
+		if (scpb < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockCurrentPriceBid = scpb;
@@ -632,7 +621,7 @@ public class Stock {
 	 * @see				GetStockSessionClose
 	 */
 	public boolean SetStockSessionClose (float ssc) {
-		if (ssc < FLOAT_ZERO) {
+		if (ssc < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionClose = ssc;
@@ -667,7 +656,7 @@ public class Stock {
 	 * @see				GetStockSessionClosePrevious
 	 */
 	public boolean SetStockSessionClosePrevious (float sscp) {
-		if (sscp < FLOAT_ZERO) {
+		if (sscp < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionClosePrevious = sscp;
@@ -702,7 +691,7 @@ public class Stock {
 	 * @see				GetStockSessionHigh
 	 */
 	public boolean SetStockSessionHigh (float ssh) {
-		if (ssh < FLOAT_ZERO) {
+		if (ssh < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionHigh = ssh;
@@ -737,7 +726,7 @@ public class Stock {
 	 * @see				GetStockSessionLow
 	 */
 	public boolean SetStockSessionLow (float ssl) {
-		if (ssl < FLOAT_ZERO) {
+		if (ssl < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionLow = ssl;
@@ -772,7 +761,7 @@ public class Stock {
 	 * @see				GetStockSessionOpen
 	 */
 	public boolean SetStockSessionOpen (float sso) {
-		if (sso < FLOAT_ZERO) {
+		if (sso < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockSessionOpen = sso;
@@ -807,7 +796,7 @@ public class Stock {
 	 * @see				GetStockYearHigh
 	 */
 	public boolean SetStockYearHigh (float syh) {
-		if (syh < FLOAT_ZERO) {
+		if (syh < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockYearHigh = syh;
@@ -846,7 +835,7 @@ public class Stock {
 		//
 		// First check to make sure that the year low value is not negative.
 		//
-		if (syl < FLOAT_ZERO) {
+		if (syl < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		//
@@ -933,7 +922,7 @@ public class Stock {
 		//
 		// First, make sure the shares outstanding parameter is even valid, meaning it cannot be less than zero.
 		//
-		if (sso < INT_ZERO) {
+		if (sso < SimConstants.INT_ZERO) {
 			return false;
 		}
 		//
@@ -974,7 +963,7 @@ public class Stock {
 	 * @see				GetStockDividendPaid
 	 */
 	public boolean SetStockDividendPaid (float sdp) {
-		if (sdp < FLOAT_ZERO) {
+		if (sdp < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockDividendPaid = sdp;
@@ -1009,7 +998,7 @@ public class Stock {
 	 * @see				GetStockEarningsPerShare
 	 */
 	public boolean SetStockEarningsPerShare (float seps) {
-		if (seps < FLOAT_ZERO) {
+		if (seps < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockEarningsPerShare = seps;
@@ -1044,7 +1033,7 @@ public class Stock {
 	 * @see				GetStockMarketCap
 	 */
 	public boolean SetStockMarketCap (float smc) {
-		if (smc < FLOAT_DOLLAR) {
+		if (smc < SimConstants.FLOAT_DOLLAR) {
 			return false;
 		}
 		this.stockMarketCap = smc;
@@ -1079,7 +1068,7 @@ public class Stock {
 	 * @see				GetStockProfitEarningsRatio
 	 */
 	public boolean SetStockProfitEarningsRatio (float sper) {
-		if (sper < FLOAT_PENNY) {
+		if (sper < SimConstants.FLOAT_PENNY) {
 			return false;
 		}
 		this.stockProfitEarningsRatio = sper;
@@ -1114,7 +1103,7 @@ public class Stock {
 	 * @see				GetStockDividendYield
 	 */
 	public boolean SetStockDividendYield (float sdy) {
-		if (sdy < FLOAT_ZERO) {
+		if (sdy < SimConstants.FLOAT_ZERO) {
 			return false;
 		}
 		this.stockDividendYield = sdy;
@@ -1149,13 +1138,11 @@ public class Stock {
 	 * @see				GetCompanyProfit
 	 */
 	public boolean SetCompanyProfit (float cp) {
-		if (cp < FLOAT_PENNY) {
+		if (cp < SimConstants.FLOAT_PENNY) {
 			return false;
 		}
 		this.companyProfit = cp;
 		return true;
 	}
-
-
 
 }

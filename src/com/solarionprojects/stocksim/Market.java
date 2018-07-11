@@ -11,30 +11,14 @@ import java.util.List;
 //import java.util.TreeMap;
 import java.sql.Time;
 import com.solarionprojects.utility.RNG;
-import com.solarionprojects.stocksim.GameController;
+import com.solarionprojects.stocksim.SimController;
 
 public class Market {
 
 	//=========================
 	// OBJECT GLOBAL CONSTANTS
 	//=========================
-	
-	private static final int INT_ZERO = 0;
-	private static final float FLOAT_ZERO = 0.0f;
-	private static final float FLOAT_PENNY = 0.01f;
-	private static final float FLOAT_DOLLAR = 1.0f;
-	private static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
-	private static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
-	private static final String EMPTY_STRING = "";
-	private static final int STOCK_DATA_BASIC = 0x01;
-	private static final int STOCK_DATA_ADVANCED = 0x02;
 
-	//
-	// Tutorial mode constants
-	//
-	private static final int TUTORIAL_STOCK_SELECT_QTY = 10;
-	private static final int TUTORIAL_STOCK_DATA_= STOCK_DATA_BASIC;
-	private static final int TUTORIAL_TRADER_QTY = 4;
 	
 	//==========================
 	// OBJECT GLOBAL ATTRIBUTES
@@ -78,7 +62,7 @@ public class Market {
 		// basic tutorial mode. In the future, there will be an overload of this constructor that
 		// will allow for any market mode to be selected as an argument.
 		//
-		InitializeMarket(GameController.MODE_TUTORIAL_BASIC);
+		InitializeMarket(SimConstants.MODE_TUTORIAL_BASIC);
 		SelectStocks();
 	}
 
@@ -102,7 +86,7 @@ public class Market {
 		//
 		// Range check the market mode parameter value to make sure it's valid
 		//
-		if ((mm < GameController.MODE_TUTORIAL_BASIC) || (mm > GameController.MODE_ADVANCED)) {
+		if ((mm < SimConstants.MODE_TUTORIAL_BASIC) || (mm > SimConstants.MODE_ADVANCED)) {
 			return false;
 		}
 		this.marketMode = mm;
@@ -122,7 +106,7 @@ public class Market {
 	 */
 	private void SelectStocks () {
 		switch (this.marketMode) {
-		case GameController.MODE_TUTORIAL_BASIC:
+		case SimConstants.MODE_TUTORIAL_BASIC:
 				SelectStocksTutorialBasic();
 		}
 	}
@@ -142,7 +126,7 @@ public class Market {
 	 */
 	private void SelectStocksTutorialBasic () {
 		int sourceLength = StockData.TUTORIAL_BASIC_SYMBOLS.length;			// Source set which contains the complete set of tutorial stocks available
-		int targetLength = TUTORIAL_STOCK_SELECT_QTY;						// Target set which contains the selected set of tutorial stocks for this session
+		int targetLength = SimConstants.TUTORIAL_STOCK_SELECT_QTY;			// Target set which contains the selected set of tutorial stocks for this session
 		marketStockList = new Stock[targetLength];							// The actual array of selected stock objects to be populated
 		int rnd = 0;														// Random number variable
 
@@ -163,7 +147,7 @@ public class Market {
 		//
 		// 1) Create the source ArrayList (numbersList)
 		//
-		// Create an ArrayList representing each possible stock index number that can be
+		// Create an ArrayList representing each possible stockID number that can be
 		// selected. For the tutorial list, there is a total of 18 stocks listed in the StockData 
 		// object for the tutorial, so create an ArrayList with a size of 18 elements where the 
 		// elements are 1, 2, 3, ... 16, 17, 18.
@@ -207,20 +191,20 @@ public class Market {
 		for (int i = 0; i < targetLength; i++) {
 			Stock s = new Stock();
 			//
-			// Get a stock index number from the selection list.
+			// Get a stockID number from the selection list.
 			//
-			s.stockIndexNumber = selectionList.get(i);
+			s.stockID = selectionList.get(i);
 			//
-			// Load the tutorial mode stock data for the selected stockIndexNumber
+			// Load the tutorial mode stock data for the selected stockID
 			//
-			s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[s.stockIndexNumber]);
-			s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[s.stockIndexNumber]);
-			s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[s.stockIndexNumber]);
-			s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[s.stockIndexNumber]);
-			s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[s.stockIndexNumber]);
-			s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[s.stockIndexNumber]);
+			s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[s.stockID]);
+			s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[s.stockID]);
+			s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[s.stockID]);
+			s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[s.stockID]);
+			s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[s.stockID]);
+			s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[s.stockID]);
 			marketStockList[i] = s;
-			System.out.println("Stock " + i + " is: " + marketStockList[i].toString(1) + "\n");
+			System.out.println("Stock " + i + " is: " + marketStockList[i].toString(1) + SimConstants.NEW_LINE);
 		}
 		//
 		// All tutorial stocks are now loaded and ready to go.
