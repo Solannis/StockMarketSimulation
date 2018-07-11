@@ -125,7 +125,7 @@ class StockTest {
 		//
 		//	2 - Ensure sector attribute can be set.
 		//
-		assertEquals(true, s.SetStockSector(TEST_STOCK_SECTOR));
+		assertEquals(true, s.SetStockSector(SimConstants.TEST_STOCK_SECTOR));
 		//
 		//	3 - Ensure sector attribute, once set, cannot be reset.
 		//
