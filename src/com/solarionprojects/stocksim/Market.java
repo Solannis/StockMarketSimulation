@@ -1,17 +1,17 @@
 package com.solarionprojects.stocksim;
 
 //import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Currency;
 //import java.util.Date;
-import java.util.List;
 //import java.util.Map;
 //import java.util.Set;
 //import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Currency;
+import java.util.List;
 import java.sql.Time;
 import com.solarionprojects.utility.RNG;
-import com.solarionprojects.stocksim.SimController;
+
 
 public class Market {
 
