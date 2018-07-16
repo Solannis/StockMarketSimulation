@@ -72,6 +72,7 @@ public class Stock {
 	 * <p>
 	 */
 	private void InitializeValues ( ) {
+		stockID = SimConstants.INT_ZERO;
 		stockSymbol = SimConstants.EMPTY_STRING;
 		stockSector = SimConstants.EMPTY_STRING;
 		stockExchange = SimConstants.EMPTY_STRING;
