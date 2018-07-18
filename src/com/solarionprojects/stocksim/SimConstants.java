@@ -15,6 +15,7 @@ public class SimConstants {
 	public static final int STOCK_DATA_BASIC = 0x01;
 	public static final int STOCK_DATA_ADVANCED = 0x02;
 
+	public static final int TUTORIAL_STOCK_TOTAL_QTY = 18;
 	public static final int TUTORIAL_STOCK_SELECT_QTY = 10;
 	public static final int TUTORIAL_STOCK_DATA_= STOCK_DATA_BASIC;
 	public static final int TUTORIAL_TRADER_QTY = 4;
@@ -44,6 +45,7 @@ public class SimConstants {
 	public static final int INT_NEGATIVE = -9;
 	public static final int INT_ZERO = 0;
 	public static final int INT_POSITIVE = 99;
+
 	public static final int STOCK_SYMBOL_MIN_LENGTH = 1;
 	public static final int STOCK_SYMBOL_MAX_LENGTH = 5;
 

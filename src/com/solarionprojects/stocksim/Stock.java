@@ -246,7 +246,7 @@ public class Stock {
 			// The market mode is tutorial basic or tutorial advanced. Gather only the
 			// limited stock attributes associated with that market mode.
 			//
-			outputStr = outputStr + "      stockIndexNumber: " + stockID + SimConstants.NEW_LINE;
+			outputStr = outputStr + "               stockID: " + stockID + SimConstants.NEW_LINE;
 			outputStr = outputStr + "           stockSymbol: " + this.GetStockSymbol() + SimConstants.NEW_LINE;
 			outputStr = outputStr + "         stockFullName: " + this.GetStockFullName() + SimConstants.NEW_LINE;
 			outputStr = outputStr + "      stockDescription: " + this.GetStockDescription() + SimConstants.NEW_LINE;
@@ -257,7 +257,7 @@ public class Stock {
 			//
 			// The market mode is not a tutorial mode. Gather all the stock attributes.
 			//
-			outputStr = outputStr + "         stockIndexNumber: " + stockID + SimConstants.NEW_LINE;
+			outputStr = outputStr + "                  stockID: " + stockID + SimConstants.NEW_LINE;
 			outputStr = outputStr + "              stockSymbol: " + this.GetStockSymbol() + SimConstants.NEW_LINE;
 			outputStr = outputStr + "              stockSector: " + this.GetStockSector() + SimConstants.NEW_LINE;
 			outputStr = outputStr + "            stockExchange: " + this.GetStockExchange() + SimConstants.NEW_LINE;
@@ -288,6 +288,46 @@ public class Stock {
 	//============================
 	// OBJECT GETTERS AND SETTERS
 	//============================
+	
+	//--------------------
+	// ATTRIBUTE: stockID
+	//--------------------
+	
+	/**
+	 * This method returns the stockID attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			An int value representing the stockID attribute
+	 * @see				SetStockID
+	 */
+	public int GetStockID ( ) {
+		return this.stockID;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the stockID 
+	 * attribute value. Subsequent requests to change the stockID 
+	 * will be rejected. Checks to be performed are:
+	 * 	- Make sure the ID parameter is valid (positive, non-zero).
+	 *  - Make sure stockID attribute is not already set.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	int 	The new stockID to set
+	 * @return			A boolean value indicating success or failure at setting a new stockID
+	 * @see				GetStockID
+	 */
+	public boolean SetStockID (int sid) {
+		if (sid <= SimConstants.INT_ZERO) {
+			return false;
+		}
+		if (this.stockID == SimConstants.INT_ZERO) {
+			this.stockID = sid;
+			return true;
+		}
+		return false;
+	}
 	
 	//------------------------
 	// ATTRIBUTE: stockSymbol

@@ -52,6 +52,52 @@ class StockTest {
 	void tearDown() throws Exception {
 	}
 
+	//-------------------
+	// TEST SET: stockID
+	//-------------------
+	
+	@Test
+	void TestSetStockID () {
+		//
+		// Tests to perform:
+		//	1 - Ensure parameter value is valid (positive, non-zero).
+		//	2 - Ensure stockID attribute can be set.
+		//	3 - Ensure stockID attribute, once set, cannot be reset.
+		//
+		
+		Stock s = new Stock();
+		
+		//
+		//	1 - Ensure parameter value is valid (positive, non-zero).
+		//
+		assertEquals(false, s.SetStockID(SimConstants.INT_NEGATIVE));			// Parameter value cannot be negative
+		assertEquals(false, s.SetStockID(SimConstants.INT_ZERO));				// Parameter value cannot be zero
+		//
+		//	2 - Ensure stockID attribute can be set.
+		//
+		assertEquals(true, s.SetStockID(SimConstants.INT_POSITIVE));			// Should allow stockID to be set.
+		//
+		//	3 - Ensure stockID attribute, once set, cannot be reset.
+		//
+		assertEquals(false, s.SetStockID(SimConstants.INT_POSITIVE));			// Should NOT allow stockID to be set.
+	}
+	
+	@Test
+	void TestGetStockID () {
+		//
+		// Tests to perform:
+		//	1 - Ensure the correct stockID is returned.
+		//
+		
+		Stock s = new Stock();
+		s.SetStockID(SimConstants.INT_POSITIVE);
+
+		//
+		//	1 - Ensure the correct symbol is returned.
+		//
+		assertEquals(SimConstants.INT_POSITIVE, s.GetStockID());
+	}
+	
 	//-----------------------
 	// TEST SET: stockSymbol
 	//-----------------------
