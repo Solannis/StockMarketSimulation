@@ -239,7 +239,7 @@ public class Stock {
 	 * @return			A String value representing attributes of the stock object
 	 */
 	public String toString (int mm) {
-		String outputStr = "";
+		String outputStr = SimConstants.EMPTY_STRING;
 		
 		if (mm < 3) {
 			//
@@ -309,7 +309,7 @@ public class Stock {
 	 * This method allows for the one-time setting of the stockID 
 	 * attribute value. Subsequent requests to change the stockID 
 	 * will be rejected. Checks to be performed are:
-	 * 	- Make sure the ID parameter is valid (positive, non-zero).
+	 * 	- Make sure the parameter is valid (positive, non-zero).
 	 *  - Make sure stockID attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
@@ -334,11 +334,11 @@ public class Stock {
 	//------------------------
 	
 	/**
-	 * This method returns the current stockSymbol attribute value. 
+	 * This method returns the stockSymbol attribute value. 
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the current stock symbol attribute
+	 * @return			A String value representing the stockSymbol attribute
 	 * @see				SetStockSymbol
 	 */
 	public String GetStockSymbol ( ) {
@@ -346,23 +346,24 @@ public class Stock {
 	}
 	
 	/**
-	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
-	 * to change the stockSymbol will be rejected. Checks to be performed are:
-	 * 	- Make sure symbol parameter is of valid length.
-	 *  - Make sure symbol parameter is not blank.
-	 *  - Make sure symbol attribute is not already set.
+	 * This method allows for the one-time setting of the stockSymbol
+	 * attribute value. Subsequent requests to change the stockSymbol 
+	 * will be rejected. Checks to be performed are:
+	 *  - Make sure parameter value is not blank.
+	 * 	- Make sure parameter value is of valid length.
+	 *  - Make sure stockSymbol attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock symbol to set
-	 * @return			A boolean value indicating success or failure at setting a new stock symbol
+	 * @param	String	The new stockSymbol to set
+	 * @return			A boolean value indicating success or failure at setting a new stockSymbol
 	 * @see				GetStockSymbol
 	 */
 	public boolean SetStockSymbol (String ss) {
-		if ((ss.length() < SimConstants.STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > SimConstants.STOCK_SYMBOL_MAX_LENGTH)) {
+		if (ss.equals(SimConstants.EMPTY_STRING)) {
 			return false;
 		}
-		if (ss.equals(SimConstants.EMPTY_STRING)) {
+		if ((ss.length() < SimConstants.STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > SimConstants.STOCK_SYMBOL_MAX_LENGTH)) {
 			return false;
 		}
 		if (this.stockSymbol.equals(SimConstants.EMPTY_STRING)) {
@@ -377,11 +378,11 @@ public class Stock {
 	//------------------------
 	
 	/**
-	 * This method returns the current stockSector attribute value. 
+	 * This method returns the stockSector attribute value. 
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the stock sector attribute
+	 * @return			A String value representing the stockSector attribute
 	 * @see				SetStockSector
 	 */
 	public String GetStockSector ( ) {
@@ -389,15 +390,16 @@ public class Stock {
 	}
 	
 	/**
-	 * This method allows for the one-time setting of the stockSector attribute value. Subsequent requests
-	 * to change the stockSector will be rejected. Checks to be performed are:
-	 *  - Make sure sector parameter is not blank.
-	 *  - Make sure sector attribute is not already set.
+	 * This method allows for the one-time setting of the stockSector 
+	 * attribute value. Subsequent requests to change the stockSector 
+	 * will be rejected. Checks to be performed are:
+	 *  - Make sure parameter value is not blank.
+	 *  - Make sure stockSector attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock sector to set
-	 * @return			A boolean value indicating success or failure at setting a new stock sector
+	 * @param	String	The new stockSector to set
+	 * @return			A boolean value indicating success or failure at setting a new stockSector
 	 * @see				GetStockSector
 	 */
 	public boolean SetStockSector (String ss) {
@@ -417,11 +419,11 @@ public class Stock {
 	//--------------------------
 	
 	/**
-	 * This method returns the current stockExchange attribute value. 
+	 * This method returns the stockExchange attribute value. 
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the current stock exchange attribute
+	 * @return			A String value representing the current stockExchange attribute
 	 * @see				SetStockExchange
 	 */
 	public String GetStockExchange ( ) {
@@ -429,15 +431,16 @@ public class Stock {
 	}
 	
 	/**
-	 * This method allows for the one-time setting of the stockExchange attribute value. Subsequent requests
-	 * to change the stockExchange will be rejected. Checks to be performed are:
-	 *  - Make sure exchange parameter is not blank.
-	 *  - Make sure exchange attribute is not already set.
+	 * This method allows for the one-time setting of the stockExchange
+	 * attribute value. Subsequent requests to change the stockExchange 
+	 * will be rejected. Checks to be performed are:
+	 *  - Make sure parameter value is not blank.
+	 *  - Make sure stockExchange attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock Exchange to set
-	 * @return			A boolean value indicating success or failure at setting a new stock exchange
+	 * @param	String	The new stockExchange to set
+	 * @return			A boolean value indicating success or failure at setting a new stockExchange
 	 * @see				GetStockExchange
 	 */
 	public boolean SetStockExchange (String se) {
@@ -456,11 +459,11 @@ public class Stock {
 	//--------------------------
 	
 	/**
-	 * This method returns the current stockFullName attribute value. 
+	 * This method returns the stockFullName attribute value. 
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the current stock full name attribute
+	 * @return			A String value representing the stockFullName attribute
 	 * @see				SetStockFullName
 	 */
 	public String GetStockFullName ( ) {
@@ -468,15 +471,16 @@ public class Stock {
 	}
 	
 	/**
-	 * This method allows for the one-time setting of the stockFullName attribute value. Subsequent requests
-	 * to change the stockFullName will be rejected. Checks to be performed are:
-	 *  - Make sure full name parameter is not blank.
-	 *  - Make sure full name attribute is not already set.
+	 * This method allows for the one-time setting of the stockFullName 
+	 * attribute value. Subsequent requests to change the stockFullName 
+	 * will be rejected. Checks to be performed are:
+	 *  - Make sure parameter value is not blank.
+	 *  - Make sure stockFullName attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock full name to set
-	 * @return			A boolean value indicating success or failure at setting a new stock full name
+	 * @param	String	The new stockFullName to set
+	 * @return			A boolean value indicating success or failure at setting a new stockFullName
 	 * @see				GetStockFullName
 	 */
 	public boolean SetStockFullName (String sfn) {
@@ -495,11 +499,11 @@ public class Stock {
 	//-----------------------------
 	
 	/**
-	 * This method returns the current stockDescription attribute value. 
+	 * This method returns the stockDescription attribute value. 
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the current stock description attribute
+	 * @return			A String value representing the stockDescription attribute
 	 * @see				SetStockDescription
 	 */
 	public String GetStockDescription ( ) {
@@ -507,15 +511,16 @@ public class Stock {
 	}
 	
 	/**
-	 * This method allows for the one-time setting of the stockDescription attribute value. Subsequent requests
-	 * to change the stockDescription will be rejected. Checks to be performed are:
-	 *  - Make sure description parameter is not blank.
-	 *  - Make sure description attribute is not already set.
+	 * This method allows for the one-time setting of the stockDescription
+	 * attribute value. Subsequent requests to change the stockDescription 
+	 * will be rejected. Checks to be performed are:
+	 *  - Make sure parameter value is not blank.
+	 *  - Make sure stockDescription attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock description to set
-	 * @return			A boolean value indicating success or failure at setting a new stock description
+	 * @param	String	The new stockDescription to set
+	 * @return			A boolean value indicating success or failure at setting a new stockDescription
 	 * @see				GetStockDescription
 	 */
 	public boolean SetStockDescription (String sd) {
@@ -538,7 +543,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the current stock price attribute
+	 * @return			A float value representing the stockPCurrentrice attribute
 	 * @see				SetStockCurrentPrice
 	 */
 	public float GetStockCurrentPrice ( ) {
@@ -546,14 +551,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockCurrentPrice attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockCurrentPrice attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The current stock price to set
-	 * @return			A boolean value indicating success or failure at setting the current stock price
+	 * @param	float	The new stockCurrentPrice to set
+	 * @return			A boolean value indicating success or failure at setting the stockCurrentPrice
 	 * @see				GetStockCurrentPrice
 	 */
 	public boolean SetStockCurrentPrice (float scp) {
@@ -573,7 +579,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the current stock price ask attribute
+	 * @return			A float value representing the stockCurrentPriceAsk attribute
 	 * @see				SetStockCurrentPriceAsk
 	 */
 	public float GetStockCurrentPriceAsk ( ) {
@@ -581,14 +587,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockCurrentPriceAsk attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockCurrentPriceAsk attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The current stock price ask to set
-	 * @return			A boolean value indicating success or failure at setting the current stock price ask
+	 * @param	float	The new stockCurrentPriceAsk to set
+	 * @return			A boolean value indicating success or failure at setting the stockCurrentPriceAsk
 	 * @see				GetStockCurrentPriceAsk
 	 */
 	public boolean SetStockCurrentPriceAsk (float scpa) {
@@ -608,7 +615,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the current stock price bid attribute
+	 * @return			A float value representing the stockCurrentPriceBid attribute
 	 * @see				SetStockCurrentPriceBid
 	 */
 	public float GetStockCurrentPriceBid ( ) {
@@ -616,14 +623,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockCurrentPriceBid attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockCurrentPriceBid attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The current stock price bid to set
-	 * @return			A boolean value indicating success or failure at setting the current stock price bid
+	 * @param	float	The stockCurrentPriceBid to set
+	 * @return			A boolean value indicating success or failure at setting the stockCurrentPriceBid
 	 * @see				GetStockCurrentPriceBid
 	 */
 	public boolean SetStockCurrentPriceBid (float scpb) {
@@ -643,7 +651,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock session close attribute
+	 * @return			A float value representing the stockSessionClose attribute
 	 * @see				SetStockSessionClose
 	 */
 	public float GetStockSessionClose ( ) {
@@ -651,14 +659,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSessionClose attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockSessionClose attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock session close value to set
-	 * @return			A boolean value indicating success or failure at setting the stock session close attribute
+	 * @param	float	The stockSessionClose value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSessionClose attribute
 	 * @see				GetStockSessionClose
 	 */
 	public boolean SetStockSessionClose (float ssc) {
@@ -678,7 +687,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock session close previous attribute
+	 * @return			A float value representing the stockSessionClosePrevious attribute
 	 * @see				SetStockSessionClosePrevious
 	 */
 	public float GetStockSessionClosePrevious ( ) {
@@ -686,14 +695,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSessionClosePrevious attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockSessionClosePrevious attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock session close previous value to set
-	 * @return			A boolean value indicating success or failure at setting the stock session close previous attribute
+	 * @param	float	The stockSessionClosePrevious value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSessionClosePrevious attribute
 	 * @see				GetStockSessionClosePrevious
 	 */
 	public boolean SetStockSessionClosePrevious (float sscp) {
@@ -713,7 +723,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock session high attribute
+	 * @return			A float value representing the stockSessionHigh attribute
 	 * @see				SetStockSessionHigh
 	 */
 	public float GetStockSessionHigh ( ) {
@@ -721,14 +731,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSessionHigh attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockSessionHigh attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock session high value to set
-	 * @return			A boolean value indicating success or failure at setting the stock session high attribute
+	 * @param	float	The stockSessionHigh value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSessionHigh attribute
 	 * @see				GetStockSessionHigh
 	 */
 	public boolean SetStockSessionHigh (float ssh) {
@@ -748,7 +759,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock session low attribute
+	 * @return			A float value representing the stockSessionLow attribute
 	 * @see				SetStockSessionLow
 	 */
 	public float GetStockSessionLow ( ) {
@@ -756,14 +767,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSessionLow attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockSessionLow attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock session low value to set
-	 * @return			A boolean value indicating success or failure at setting the stock session low attribute
+	 * @param	float	The stockSessionLow value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSessionLow attribute
 	 * @see				GetStockSessionLow
 	 */
 	public boolean SetStockSessionLow (float ssl) {
@@ -783,7 +795,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock session open attribute
+	 * @return			A float value representing the stockSessionOpen attribute
 	 * @see				SetStockSessionOpen
 	 */
 	public float GetStockSessionOpen ( ) {
@@ -791,14 +803,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSessionOpen attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockSessionOpen attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock session open value to set
-	 * @return			A boolean value indicating success or failure at setting the stock session open attribute
+	 * @param	float	The stockSessionOpen value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSessionOpen attribute
 	 * @see				GetStockSessionOpen
 	 */
 	public boolean SetStockSessionOpen (float sso) {
@@ -826,14 +839,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockYearHigh attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockYearHigh attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
 	 * @param	float	The stock year high value to set
-	 * @return			A boolean value indicating success or failure at setting the stock year high attribute
+	 * @return			A boolean value indicating success or failure at setting the stockYearHigh attribute
 	 * @see				GetStockYearHigh
 	 */
 	public boolean SetStockYearHigh (float syh) {
@@ -853,7 +867,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock year low attribute
+	 * @return			A float value representing the stockYearLow attribute
 	 * @see				SetStockYearLow
 	 */
 	public float GetStockYearLow ( ) {
@@ -861,15 +875,18 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockYearLow attribute value. Since the parameter must be a float or the code
-	 * won't compile. Since the attribute value can be anything from 0.0f to ?.?f, a check is needed to
-	 * make sure the parameter is not a negative value. Additionally, the year low value cannot be higher
-	 * than the year high value, otherwise by definition, it would be the year high value.
+	 * This method sets the stockYearLow attribute value. Since the 
+	 * parameter must be a float or the code won't compile. Since the 
+	 * attribute value can be anything from 0.0f to ?.?f, a check is 
+	 * needed to make sure the parameter is not a negative value. 
+	 * Additionally, the year low value cannot be higher
+	 * than the year high value, otherwise by definition, it would be 
+	 * the year high value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock year low value to set
-	 * @return			A boolean value indicating success or failure at setting the stock year low attribute
+	 * @param	float	The stockYearLow value to set
+	 * @return			A boolean value indicating success or failure at setting the stockYearLow attribute
 	 * @see				GetStockYearLow
 	 */
 	public boolean SetStockYearLow (float syl) {
@@ -898,7 +915,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			An int value representing the stock shares total attribute
+	 * @return			An int value representing the stockSharesTotal attribute
 	 * @see				SetStockSharesTotal
 	 */
 	public int GetStockSharesTotal ( ) {
@@ -906,14 +923,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSharesTotal attribute value. Since the parameter must be an int or the code
-	 * won't compile, and since the attribute value can be anything from 1 to ?, the only check needed
+	 * This method sets the stockSharesTotal attribute value. Since the 
+	 * parameter must be an int or the code won't compile, and since the 
+	 * attribute value can be anything from 1 to ?, the only check needed
 	 * is to make sure the parameter is not less than one (1).
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	int		The stock shares total value to set
-	 * @return			A boolean value indicating success or failure at setting the stock shares total attribute
+	 * @param	int		The stockSharesTotal value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSharesTotal attribute
 	 * @see				GetStockSharesTotal
 	 */
 	public boolean SetStockSharesTotal (int sst) {
@@ -933,7 +951,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			An int value representing the stock shares outstanding attribute
+	 * @return			An int value representing the stockSharesOutstanding attribute
 	 * @see				SetStockSharesOutstanding
 	 */
 	public int GetStockSharesOutstanding ( ) {
@@ -941,33 +959,41 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stockSharesOutstanding attribute value. Since the parameter must be an int or the code
-	 * won't compile, and since the attribute value can be anything from 0 to ?, the only check needed
+	 * This method sets the stockSharesOutstanding attribute value. Since the 
+	 * parameter must be an int or the code won't compile, and since the 
+	 * attribute value can be anything from 0 to ?, the only check needed
 	 * is to make sure the parameter is not an invalid value.
 	 * <p>
-	 * Another important aspect to shares outstanding is that this value cannot be larger than the total number of shares
-	 * available in the first place. Since shares outstanding = shares available for purchase, the most shares any company
-	 * can ever have should equal the shares total number. You cannot have a total of 10 shares AND have 11 shares
-	 * outstanding (more shares available to purchase than the company actual has in total shares. You could, however, 
-	 * have 10 shares outstanding (meaning no shares are owned yet), 1 share outstanding (meaning one share is still 
-	 * available for purchase), or 0 shares outstanding (meaning all shares are currently owned by shareholders. You can 
-	 * also never have a negative outstanding share count.
+	 * Additional important aspects to shares outstanding:
+	 * 1) this value cannot be larger than the total number of shares available 
+	 * in the first place. Since shares outstanding = shares available for 
+	 * purchase, the most shares any company can ever have should equal the 
+	 * shares total number. 
+	 * <p>
+	 * 2) You cannot have a total of 10 shares AND have 11 shares outstanding 
+	 * (e.g. more shares available to purchase than the company actual has in 
+	 * total shares). You could, however, have 10 shares outstanding (meaning 
+	 * no shares are owned yet), 1 share outstanding (meaning one share is 
+	 * still available for purchase), or 0 shares outstanding (meaning all 
+	 * shares are currently owned by shareholders. 
+	 * <p>
+	 * 3) You can never have a negative outstanding share count.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	int		The stock shares outstanding value to set
-	 * @return			A boolean value indicating success or failure at setting the stock shares outstanding attribute
+	 * @param	int		The stockSharesOutstanding value to set
+	 * @return			A boolean value indicating success or failure at setting the stockSharesOutstanding attribute
 	 * @see				GetStockSharesOutstanding
 	 */
 	public boolean SetStockSharesOutstanding (int sso) {
 		//
-		// First, make sure the shares outstanding parameter is even valid, meaning it cannot be less than zero.
+		// First, make sure the parameter value is even valid, meaning it cannot be less than zero.
 		//
 		if (sso < SimConstants.INT_ZERO) {
 			return false;
 		}
 		//
-		// Next, make sure that the shares outstanding parameter is less than or equal to the total shares value for this stock.
+		// Make sure that the parameter value is less than or equal to the total shares value for this stock.
 		//
 		if (sso > this.stockSharesTotal) {
 			return false;
@@ -985,7 +1011,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock dividend paid attribute
+	 * @return			A float value representing the stockDividendPaid attribute
 	 * @see				SetStockDividendPaid
 	 */
 	public float GetStockDividendPaid ( ) {
@@ -993,14 +1019,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stock dividend paid attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockDividendPaid attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not negative.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock dividend paid value to set
-	 * @return			A boolean value indicating success or failure at setting the stock dividend paid attribute
+	 * @param	float	The stockDividendPaid value to set
+	 * @return			A boolean value indicating success or failure at setting the stockDividendPaid attribute
 	 * @see				GetStockDividendPaid
 	 */
 	public boolean SetStockDividendPaid (float sdp) {
@@ -1020,7 +1047,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock earnings per share attribute
+	 * @return			A float value representing the stockEarningsPerShare attribute
 	 * @see				SetStockEarningsPerShare
 	 */
 	public float GetStockEarningsPerShare ( ) {
@@ -1028,14 +1055,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stock earnings per share attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * This method sets the stockEarningsPerShare attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
 	 * is to make sure the parameter is not negative.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock earnings per share value to set
-	 * @return			A boolean value indicating success or failure at setting the stock earnings per share attribute
+	 * @param	float	The stockEarningsPerShare value to set
+	 * @return			A boolean value indicating success or failure at setting the stockEarningsPerShare attribute
 	 * @see				GetStockEarningsPerShare
 	 */
 	public boolean SetStockEarningsPerShare (float seps) {
@@ -1055,7 +1083,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock market cap attribute
+	 * @return			A float value representing the stockMarketCap attribute
 	 * @see				SetStockMarketCap
 	 */
 	public float GetStockMarketCap ( ) {
@@ -1063,14 +1091,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stock market cap attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 1.0f to ?.?f, check to see if the
+	 * This method sets the stockMarketCap attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 1.0f to ?.?f, check to see if the
 	 * parameter is greater than 1.0f.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock market cap value to set
-	 * @return			A boolean value indicating success or failure at setting the stock market cap attribute
+	 * @param	float	The stockMarketCap value to set
+	 * @return			A boolean value indicating success or failure at setting the stockMarketCap attribute
 	 * @see				GetStockMarketCap
 	 */
 	public boolean SetStockMarketCap (float smc) {
@@ -1090,7 +1119,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock profit earnings ratio attribute
+	 * @return			A float value representing the stockProfitEarningsRatio attribute
 	 * @see				SetStockProfitEarningsRatio
 	 */
 	public float GetStockProfitEarningsRatio ( ) {
@@ -1098,14 +1127,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stock profit earnings ratio attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.01f to ?.?f, check to see if the
+	 * This method sets the stockProfitEarningsRatio attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.01f to ?.?f, check to see if the
 	 * parameter is greater than 0.01f.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock profit earnings ratio value to set
-	 * @return			A boolean value indicating success or failure at setting the stock profit earnings ratio attribute
+	 * @param	float	The stockProfitEarningsRatio value to set
+	 * @return			A boolean value indicating success or failure at setting the stockProfitEarningsRatio attribute
 	 * @see				GetStockProfitEarningsRatio
 	 */
 	public boolean SetStockProfitEarningsRatio (float sper) {
@@ -1125,7 +1155,7 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock dividend yield attribute
+	 * @return			A float value representing the stockDividendYield attribute
 	 * @see				SetStockDividendYield
 	 */
 	public float GetStockDividendYield ( ) {
@@ -1133,14 +1163,15 @@ public class Stock {
 	}
 	
 	/**
-	 * This method sets the stock dividend yield attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.0f to ?.?f, check to see if the
+	 * This method sets the stockDividendYield attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0f to ?.?f, check to see if the
 	 * parameter is greater than 0.01f.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock dividend yield value to set
-	 * @return			A boolean value indicating success or failure at setting the stock dividend yield attribute
+	 * @param	float	The stockDividendYield value to set
+	 * @return			A boolean value indicating success or failure at setting the stockDividendYield attribute
 	 * @see				GetStockDividendYield
 	 */
 	public boolean SetStockDividendYield (float sdy) {
@@ -1160,22 +1191,23 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the company profit attribute
-	 * @see				SetStockProfitEarningsRatio
+	 * @return			A float value representing the companyProfit attribute
+	 * @see				SetCompanyProfit
 	 */
 	public float GetCompanyProfit ( ) {
 		return this.companyProfit;
 	}
 	
 	/**
-	 * This method sets the company profit attribute value. Since the parameter must be a float or the code
-	 * won't compile, and since the attribute value can be anything from 0.01f to ?.?f, check to see if the
+	 * This method sets the companyProfit attribute value. Since the 
+	 * parameter must be a float or the code won't compile, and since the 
+	 * attribute value can be anything from 0.01f to ?.?f, check to see if the
 	 * parameter is greater than 0.01f.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The company profit value to set
-	 * @return			A boolean value indicating success or failure at setting the company profit attribute
+	 * @param	float	The companyProfit value to set
+	 * @return			A boolean value indicating success or failure at setting the companyProfit attribute
 	 * @see				GetCompanyProfit
 	 */
 	public boolean SetCompanyProfit (float cp) {
