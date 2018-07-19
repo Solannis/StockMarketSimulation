@@ -82,39 +82,36 @@ public class Trader extends Thread {
 	//---------------------
 	
 	/**
-	 * This method returns the current traderID attribute value. 
+	 * This method returns the traderID attribute value. 
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A String value representing the current stock symbol attribute
-	 * @see				SetStockSymbol
+	 * @return			An int value representing the traderID attribute
+	 * @see				SetTraderID
 	 */
-	public String GetStockSymbol ( ) {
-		return this.stockSymbol;
+	public int GetTraderID ( ) {
+		return this.traderID;
 	}
 	
 	/**
-	 * This method allows for the one-time setting of the stockSymbol attribute value. Subsequent requests
-	 * to change the stockSymbol will be rejected. Checks to be performed are:
-	 * 	- Make sure symbol parameter is of valid length.
-	 *  - Make sure symbol parameter is not blank.
-	 *  - Make sure symbol attribute is not already set.
+	 * This method allows for the one-time setting of the traderID attribute value. 
+	 * Subsequent requests to change the stockSymbol will be rejected. Checks to 
+	 * be performed are:
+	 * 	- Make sure parameter value is not zero and not negative.
+	 *  - Make sure traderID attribute is not already set.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	String	The new stock symbol to set
-	 * @return			A boolean value indicating success or failure at setting a new stock symbol
-	 * @see				GetStockSymbol
+	 * @param	String	The new traderID to set
+	 * @return			A boolean value indicating success or failure at setting a new traderID
+	 * @see				GetTraderID
 	 */
-	public boolean SetStockSymbol (String ss) {
-		if ((ss.length() < SimConstants.STOCK_SYMBOL_MIN_LENGTH) || (ss.length() > SimConstants.STOCK_SYMBOL_MAX_LENGTH)) {
+	public boolean SetTraderID (int tid) {
+		if (tid <= SimConstants.INT_ZERO) {
 			return false;
 		}
-		if (ss.equals(SimConstants.EMPTY_STRING)) {
-			return false;
-		}
-		if (this.stockSymbol.equals(SimConstants.EMPTY_STRING)) {
-			this.stockSymbol = ss;
+		if (this.traderID == SimConstants.INT_ZERO) {
+			this.traderID = tid;
 			return true;
 		}
 		return false;
