@@ -17,6 +17,13 @@ public class SimConstants {
 	
 	public static final int TRADER_BEHAVIOR_BEAR = 0x01;
 	public static final int TRADER_BEHAVIOR_BULL = 0x02;
+	public static final int TRADER_BEHAVIOR_MIXED = 0x03;
+	
+	public static final int TRADER_FREQUENCY_LOWEST = 0x01;
+	public static final int TRADER_FREQUENCY_LOW = 0x02;
+	public static final int TRADER_FREQUENCY_MEDIUM = 0x03;
+	public static final int TRADER_FREQUENCY_HIGH = 0x04;
+	public static final int TRADER_FREQUENCY_HIGHEST = 0x05;
 
 	public static final int TUTORIAL_STOCK_TOTAL_QTY = 18;
 	public static final int TUTORIAL_STOCK_SELECT_QTY = 10;
@@ -39,8 +46,7 @@ public class SimConstants {
 	public static final String TEST_TRADER_FIRST_NAME = "Matthew";
 	public static final String TEST_TRADER_LAST_NAME = "Farrell";
 	public static final String TEST_TRADER_BIO = "A bullish trader who prefers to focus on technology stocks";
-	public static final String ;
-	public static final String ;
+
 	public static final float FLOAT_NEGATIVE = -9.99f;
 	public static final float FLOAT_ZERO = 0.0f;
 	public static final float FLOAT_PENNY = 0.01f;
@@ -56,7 +62,4 @@ public class SimConstants {
 	public static final int STOCK_SYMBOL_MIN_LENGTH = 1;
 	public static final int STOCK_SYMBOL_MAX_LENGTH = 5;
 
-
-	
-	
 }
