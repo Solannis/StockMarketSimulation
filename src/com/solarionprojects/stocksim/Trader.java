@@ -20,7 +20,7 @@ public class Trader extends Thread {
 	private int traderBehavior;						// The trader's trading behavior, e.g. bearish, bullish.	
 	private float traderWallet;						// The amount of money the trader has access to.	
 	private int	traderFrequency;					// The trader's trading frequency, e.g. how many trades per "hour" (minute).	
-	private Image traderPicture;					// The trader's picture.	
+	private Image traderImage;						// The trader's picture.	
 	//private TraderFavoriteStock[] traderFavoriteStocks;		// The trader's favorite stock(s) to trade.	
 	//private TraderFavoriteSector[] traderFavoriteSectors;		// The trader's market sector specialty(ies).	
 	//private Market[] traderFavoriteMarkets;		// The trader's market preference.	
@@ -66,7 +66,7 @@ public class Trader extends Thread {
 		traderBehavior = SimConstants.INT_ZERO;
 		traderWallet = SimConstants.FLOAT_ZERO;
 		traderFrequency = SimConstants.INT_ZERO;
-		traderPicture = null;
+		traderImage = null;
 		//traderStockFavorites = null;
 		//traderSectorFavorites = null;
 		//traderMarketFavorites = null;
@@ -382,6 +382,46 @@ public class Trader extends Thread {
 		}
 		if (this.traderFrequency == SimConstants.INT_ZERO) {
 			this.traderFrequency = tf;
+			return true;
+		}
+		return false;
+	}
+	
+	//------------------------
+	// ATTRIBUTE: traderImage
+	//------------------------
+	
+	/**
+	 * This method returns the traderImage attribute value. 
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @return			An Image object representing the traderImage attribute
+	 * @see				SetTraderImage
+	 */
+	public Image GetTraderImage ( ) {
+		return this.traderImage;
+	}
+	
+	/**
+	 * This method allows for the one-time setting of the traderImage attribute value. 
+	 * Subsequent requests to change the traderImage will be rejected. Checks to 
+	 * be performed are:
+	 * 	- Make sure parameter value is not null.
+	 *  - Make sure traderImage attribute is not already set.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @param	Image	The new traderImage to set
+	 * @return			A boolean value indicating success or failure at setting a new traderImage
+	 * @see				GetTraderImage
+	 */
+	public boolean SetTraderImage (Image ti) {
+		if (ti == null) {
+			return false;
+		}
+		if (this.traderImage == null) {
+			this.traderImage = ti;
 			return true;
 		}
 		return false;
