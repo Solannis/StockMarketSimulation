@@ -406,7 +406,7 @@ public class Trader extends Thread {
 	/**
 	 * This method allows for the one-time setting of the traderImage attribute value. 
 	 * Subsequent requests to change the traderImage will be rejected. Checks to 
-	 * be performed are:
+	 * be performed are as follows:
 	 * 	- Make sure parameter value is not null.
 	 *  - Make sure traderImage attribute is not already set.
 	 * <p>
