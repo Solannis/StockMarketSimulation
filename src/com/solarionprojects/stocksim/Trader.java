@@ -271,7 +271,7 @@ public class Trader extends Thread {
 		if (tb <= SimConstants.INT_ZERO) {
 			return false;
 		}
-		if ((tb < SimConstants.TRADER_BEHAVIOR_BEAR) || (tb > SimConstants.TRADER_BEHAVIOR_MIXED)) {
+		if ((tb < SimConstants.TRADER_BEHAVIOR_BULL) || (tb > SimConstants.TRADER_BEHAVIOR_MIXED)) {
 			return false;
 		}
 		if (this.traderBehavior == SimConstants.INT_ZERO) {

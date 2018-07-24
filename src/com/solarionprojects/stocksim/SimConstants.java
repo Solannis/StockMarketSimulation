@@ -15,15 +15,15 @@ public class SimConstants {
 	public static final int STOCK_DATA_BASIC = 0x01;
 	public static final int STOCK_DATA_ADVANCED = 0x02;
 	
-	public static final int TRADER_BEHAVIOR_BEAR = 0x01;
-	public static final int TRADER_BEHAVIOR_BULL = 0x02;
+	public static final int TRADER_BEHAVIOR_BULL = 0x01;
+	public static final int TRADER_BEHAVIOR_BEAR = 0x02;
 	public static final int TRADER_BEHAVIOR_MIXED = 0x03;
 	
-	public static final int TRADER_FREQUENCY_LOWEST = 0x01;
-	public static final int TRADER_FREQUENCY_LOW = 0x02;
-	public static final int TRADER_FREQUENCY_MEDIUM = 0x03;
-	public static final int TRADER_FREQUENCY_HIGH = 0x04;
-	public static final int TRADER_FREQUENCY_HIGHEST = 0x05;
+	public static final int TRADER_FREQUENCY_LOWEST = 0x01;				// One trade per "hour" (1 every 60s)
+	public static final int TRADER_FREQUENCY_LOW = 0x02;				// Two trades per "hour" (1 every 30s)
+	public static final int TRADER_FREQUENCY_MEDIUM = 0x03;				// Four trades per hour (1 every 15s)
+	public static final int TRADER_FREQUENCY_HIGH = 0x04;				// Six trades per hour (1 every 10s)
+	public static final int TRADER_FREQUENCY_HIGHEST = 0x05;			// Twelve trades per hour 1 every 5s) 
 
 	public static final int TUTORIAL_STOCK_TOTAL_QTY = 18;
 	public static final int TUTORIAL_STOCK_SELECT_QTY = 10;
