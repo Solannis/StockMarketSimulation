@@ -321,8 +321,9 @@ public class Trader extends Thread {
 	 * This method allows for the changing of the traderWallet attribute value. 
 	 * Since the parameter must be a float or the code won't compile, and since the 
 	 * attribute value can be any float value (indicating profit or loss to the 
-	 * trader's wallet), the only check needed is to make sure the balance of the
-	 * traderWallet attribute does not go down below $0.00.
+	 * trader's wallet), the only checks needed are
+	 * 	- Make sure the parameter passed in is not zero (no change, would be pointless)
+	 * 	- Make sure the traderWallet attribute value does not go down below $0.00.
 	 * <p>
 	 * The only real difference between the Set and Change methods is that the Set
 	 * method forces the parameter value as the new traderWallet value, whereas this
@@ -336,6 +337,9 @@ public class Trader extends Thread {
 	 * @see				GetTraderWallet, SetTraderWallet
 	 */
 	public boolean ChangeTraderWallet (float tw) {
+		if (tw == SimConstants.FLOAT_ZERO) {
+			return false;
+		}
 		if ((this.traderWallet + tw) < 0.0f) {
 			return false;
 		}

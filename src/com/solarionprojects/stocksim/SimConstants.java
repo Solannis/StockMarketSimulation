@@ -47,11 +47,11 @@ public class SimConstants {
 	public static final String TEST_TRADER_LAST_NAME = "Farrell";
 	public static final String TEST_TRADER_BIO = "A bullish trader who prefers to focus on technology stocks";
 
-	public static final float FLOAT_NEGATIVE = -9.99f;
+	public static final float FLOAT_NEGATIVE = -9.990f;
 	public static final float FLOAT_ZERO = 0.0f;
-	public static final float FLOAT_PENNY = 0.01f;
-	public static final float FLOAT_DOLLAR = 1.0f;
-	public static final float FLOAT_POSITIVE = 99.99f;
+	public static final float FLOAT_PENNY = 0.010f;
+	public static final float FLOAT_DOLLAR = 1.00f;
+	public static final float FLOAT_POSITIVE = 99.990f;
 	public static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
 	public static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
 

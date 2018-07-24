@@ -300,11 +300,50 @@ class TraderTest {
 		//
 		//	2 - Ensure traderWallet attribute can be set.
 		//
-		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_POSITIVE));		// Should allow traderBehavior to be set.
+		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_POSITIVE));		// Should allow traderWallet to be set.
 		//
-		//	3 - Ensure traderBio attribute, once set, CAN be reset.
+		//	3 - Ensure traderWallet attribute, once set, CAN be set again.
 		//
-		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_ZERO));			// Should NOT allow traderBehavior to be set.
+		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_ZERO));			// Should allow traderWallet to be set again.
+	}
+	
+	@Test
+	void TestChangeTraderWallet () {
+		//
+		// Tests to perform:
+		//	1 - Ensure parameter value is valid (non-zero).
+		//	2 - Ensure new traderWallet change math is correct.
+		//
+		
+		Trader t = new Trader();
+		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_POSITIVE));		// Initial traderWallet attribute value is set to 99.99f
+		
+		//
+		//	1 - Ensure parameter value is valid (non-zero).
+		//
+		assertEquals(false, t.ChangeTraderWallet(SimConstants.FLOAT_ZERO));		// Parameter value cannot be a negative number
+		//
+		//	2 - Ensure new traderWallet is correct.
+		//
+		// Multiple sub-tests here:
+		//	Presuming traderWallet starts at 99.99f, 
+		//		A) Make sure we can add FLOAT_PENNY to the traderWallet (results in 100.0f)
+		//		B) Make sure we can subtract FLOAT_POSITIVE from the traderWallet (results in 0.01f)
+		//		C) Make sure we CANNOT subtract FLOAT_POSITIVE from the traderWallet again (bring traderWallet balance below 0.0f)
+		//
+		// Sub-test A
+		//
+		assertEquals(true, t.ChangeTraderWallet(SimConstants.FLOAT_PENNY));		// Should allow traderWallet to be changed.
+		assertEquals(100.0f, t.GetTraderWallet());
+		//
+		// Sub-test B
+		//
+		assertEquals(true, t.ChangeTraderWallet(-(SimConstants.FLOAT_POSITIVE)));	// Should allow traderWallet to be changed.
+		assertEquals(SimConstants.FLOAT_PENNY, t.GetTraderWallet(), SimConstants.FLOAT_PENNY);
+		//
+		//	Sub-test C
+		//
+		assertEquals(false, t.ChangeTraderWallet(-(SimConstants.FLOAT_POSITIVE)));	// Should NOT allow traderWallet to be changed.
 	}
 	
 	@Test
@@ -322,6 +361,8 @@ class TraderTest {
 		//
 		assertEquals(SimConstants.FLOAT_POSITIVE, t.GetTraderWallet());
 	}
+	
+	
 	
 	//---------------------------
 	// TEST SET: traderFrequency
