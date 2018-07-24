@@ -1,0 +1,23 @@
+DEVELOPER JOURNAL
+
+24-Jul-2018 - 1:51 p.m. - MBF
+
+Stock class is initial complete. Accompanying JUnit test class (StockTest) is equally complete.
+Trader class is mostly complete. Accompanying Junit test class (TraderTest) is equally complete. 
+
+May need to look at whether or not using Float for numerical transactions is a good idea. Apparently there are some rounding/math issues that may become a
+problem. This was noted when developing the ChangeWallet tests for the TraderTest class. Starting with a value of 99.99f (FLOAT_POSITIVE) and adding a value
+of 0.01f (FLOAT_PENNY) worked correctly and gave me 100.00f. When I then subtracted 99.99f ( -(FLOAT_POSITIVE) ), the result was 0.010002136. I briefly
+looked into rounding and whatnot, but this could, over time (perhaps a very short amount of time) become a math problem that could impact the game in the
+long term. Not by a whole lot (a penny, plus or minus over time), but it is worth keeping an eye on.
+
+Need to start defining the attributes/settings used in the different modes, starting with TUTORIAL_BASIC and TUTORIAL_ADVANCED. One of my key thoughts on
+the difference between those two is that the _BASIC mode will only last a few trading days long, as it is really designed to get players used to how the
+game works. The _ADVANCED mode will have a goal/term setting like the other modes, but will otherwise remain the same kind of game (very limited stocks,
+all useful news stories, limited competing traders, etc.). Another difference will be that in the _BASIC mode, all trader attributes will be fixed, but 
+in _ADVANCED mode, the traders' attributes will be randomized so it's not always the same replay.
+
+Defining attributes used in _BASIC for the Stock object is already done, as those values are already coded and documented in the StockData class. A 
+similar class will be needed for the Trader class and (potentially?) the Market class.
+
+TODO: Need to go through the Stock and StockTest classes to find my notes left over about dealing with return errors.

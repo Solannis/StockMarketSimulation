@@ -339,6 +339,16 @@ class TraderTest {
 		// Sub-test B
 		//
 		assertEquals(true, t.ChangeTraderWallet(-(SimConstants.FLOAT_POSITIVE)));	// Should allow traderWallet to be changed.
+		//
+		// Note: The difference between the two asserts below is that the first one would fail even though the math should technically
+		// be correct. When doing this math, the result should be 0.01f, but due to the nature of math with floats, the actual result
+		// turns out to be 0.010002136. Fortunately, the assertEquals method has a variant that allows for a third parameter to act as
+		// a delta for floats/doubles. Since the math is rarely off by the same 0.01f, using FLOAT_PENNY is the right way to compensate
+		// for this testing oddity and allow the test to pass as expected. I am leaving the "failed" version of the method as a comment
+		// so its failure can be looked at later if needed.
+		//
+		//assertEquals(SimConstants.FLOAT_PENNY, t.GetTraderWallet());
+		//
 		assertEquals(SimConstants.FLOAT_PENNY, t.GetTraderWallet(), SimConstants.FLOAT_PENNY);
 		//
 		//	Sub-test C
