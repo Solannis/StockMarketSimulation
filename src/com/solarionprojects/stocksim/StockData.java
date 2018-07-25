@@ -46,7 +46,7 @@ public class StockData {
 	//
 	// Holdings used in Tutorial Mode (COMMODITIES)
 	//
-	// Holdings available in tutorial mode:
+	// Holdings available in Tutorial Mode:
 	// COCOA		- COCO	- CJ	- Agricultural crop gathered from farming, primarily consumed as food
 	// COFFEE		- COFE	- KT	- Agricultural crop gathered from farming, primarily consumed as food
 	// COPPER		- COPR	- HG	- Mineral gathered from mining, primarily used as a resource for tools
