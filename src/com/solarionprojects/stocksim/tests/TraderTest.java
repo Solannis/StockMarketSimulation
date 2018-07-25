@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.solarionprojects.stocksim;
+package com.solarionprojects.stocksim.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,6 +10,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.solarionprojects.stocksim.SimConstants;
+import com.solarionprojects.stocksim.Trader;
 
 /**
  * @author mfreeman

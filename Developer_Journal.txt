@@ -22,3 +22,12 @@ similar class will be needed for the Trader class and (potentially?) the Market 
 
 TODO: Need to go through the Stock and StockTest classes to find my notes left over about dealing with return errors.
 
+
+25-Jul-2018 - 2:52 pm. - MBF
+
+- Moved the JUnit test classes to their own package, added import statements for the classes being tested, cleaned the build, and re-ran all the tests to
+make sure they still passed.
+
+- Changed the comments in StockData to reflect /* */ syntax instead of // syntax.
+
+- Added a new class: TraderData. This class will serve the same general purpose as the StockData class.
