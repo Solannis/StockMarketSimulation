@@ -3,7 +3,7 @@ package com.solarionprojects.stocksim;
 public class StockData {
 
 	/*
-	 * Note: the attributes below represent the full functionality of the stock object, however not all attributes
+	 * Note: the attributes below represent the full functionality of the Stock class, however not all attributes
 	 * will be used in all difficulty levels of the simulation. The introductory/tutorial difficulty level (easiest)
 	 * will most likely ignore all but a handful of these attributes.
 	 *
