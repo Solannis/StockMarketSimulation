@@ -125,7 +125,7 @@ public class Market {
 	 * @see		SelectStocks				
 	 */
 	private void SelectStocksTutorialBasic () {
-		int sourceLength = StockData.TUTORIAL_BASIC_SYMBOLS.length;			// Source set which contains the complete set of tutorial stocks available
+		int sourceLength = StockData.TUTORIAL_BASIC_STOCK_SYMBOLS.length;			// Source set which contains the complete set of tutorial stocks available
 		int targetLength = SimConstants.TUTORIAL_STOCK_SELECT_QTY;			// Target set which contains the selected set of tutorial stocks for this session
 		marketStockList = new Stock[targetLength];							// The actual array of selected stock objects to be populated
 		int rnd = 0;														// Random number variable
@@ -197,12 +197,12 @@ public class Market {
 			//
 			// Load the tutorial mode stock data for the selected stockID
 			//
-			s.SetStockSymbol(StockData.TUTORIAL_BASIC_SYMBOLS[s.stockID]);
-			s.SetStockFullName(StockData.TUTORIAL_FULL_NAMES[s.stockID]);
-			s.SetStockDescription(StockData.TUTORIAL_DESCRIPTIONS[s.stockID]);
-			s.SetStockCurrentPrice(StockData.TUTORIAL_CURRENT_PRICE[s.stockID]);
-			s.SetStockSharesTotal(StockData.TUTORIAL_SHARES_TOTAL[s.stockID]);
-			s.SetStockSharesOutstanding(StockData.TUTORIAL_SHARES_OUTSTANDING[s.stockID]);
+			s.SetStockSymbol(StockData.TUTORIAL_BASIC_STOCK_SYMBOLS[s.stockID]);
+			s.SetStockFullName(StockData.TUTORIAL_STOCK_FULL_NAMES[s.stockID]);
+			s.SetStockDescription(StockData.TUTORIAL_STOCK_DESCRIPTIONS[s.stockID]);
+			s.SetStockCurrentPrice(StockData.TUTORIAL_STOCK_CURRENT_PRICE[s.stockID]);
+			s.SetStockSharesTotal(StockData.TUTORIAL_STOCK_SHARES_TOTAL[s.stockID]);
+			s.SetStockSharesOutstanding(StockData.TUTORIAL_STOCK_SHARES_OUTSTANDING[s.stockID]);
 			marketStockList[i] = s;
 			System.out.println("Stock " + i + " is: " + marketStockList[i].toString(1) + SimConstants.NEW_LINE);
 		}

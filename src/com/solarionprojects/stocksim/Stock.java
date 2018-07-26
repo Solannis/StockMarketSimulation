@@ -241,7 +241,7 @@ public class Stock {
 	public String toString (int mm) {
 		String outputStr = SimConstants.EMPTY_STRING;
 		
-		if (mm < 3) {
+		if (mm < SimConstants.MODE_EASY) {
 			//
 			// The market mode is tutorial basic or tutorial advanced. Gather only the
 			// limited stock attributes associated with that market mode.

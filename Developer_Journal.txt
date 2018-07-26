@@ -31,3 +31,10 @@ make sure they still passed.
 - Changed the comments in StockData to reflect /* */ syntax instead of // syntax.
 
 - Added a new class: TraderData. This class will serve the same general purpose as the StockData class.
+
+It occurs to me that, for trader names and bios, I may need a much longer list of first names, last names, and bios, and let the simulation select the
+appropriate number of first and last names and bios and build the object inventory randomly. For now, since I am only working on the basic tutorial mode,
+I am pre-loading and fixing both the stock and trader data for now. I may want to make the trader data random even in the tutorial modes, but the stock
+data for the tutorial should stay the way it is -- simplified and limited.
+
+ 
