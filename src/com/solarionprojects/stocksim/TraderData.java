@@ -30,7 +30,6 @@ public class TraderData {
 	 * public int traderID;							// The sequential, unique number assigned to this trader.
 	 * private String traderFirstName;				// The trader's first name.
 	 * private String traderLastName;				// The trader's last name.
-	 * private String traderBio;					// The trader's background biography.
 	 * private float traderWallet;					// The amount of money the trader has access to.
 	 * private int traderFrequency;					// The trader's trading frequency, e.g. how many trades per "hour" (minute).
 	 * private Image traderImage;					// The trader's picture.									NOT YET IMPLEMENTED
@@ -52,22 +51,15 @@ public class TraderData {
 			"Gruding", "Hengegrove", "Lee", "Mason", "Putnam", 
 			"Revel", "Stoddard", "Vesubara", "Wasser"    
 			};
-	
-	public static final String [] TUTORIAL_TRADER_BIO = {
-			"Bio 01", 
-			"Bio 02", 
-			"Bio 03", 
-			"Bio 04", 
-			"Bio 05",    
-			"Bio 06", 
-			"Bio 07", 
-			"Bio 08", 
-			"Bio 09", 
-			"Bio 10", 
-			"Bio 11", 
-			"Bio 12", 
-			"Bio 13", 
-			"Bio 14"    
+
+	//
+	// traderWallet and traderFrequency are not represented here, as they can (and should) be randomly generated at the time of
+	// trader instantiation.
+	//
+	public static final Image [] TUTORIAL_TRADER_IMAGE = {
+			null, null, null, null, null,  
+			null, null, null, null, null,  
+			null, null, null, null
 			};
 	
 }

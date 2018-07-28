@@ -23,7 +23,7 @@ similar class will be needed for the Trader class and (potentially?) the Market 
 TODO: Need to go through the Stock and StockTest classes to find my notes left over about dealing with return errors.
 
 
-25-Jul-2018 - 2:52 pm. - MBF
+25-Jul-2018 - 2:52 p.m. - MBF
 
 - Moved the JUnit test classes to their own package, added import statements for the classes being tested, cleaned the build, and re-ran all the tests to
 make sure they still passed.
@@ -37,4 +37,16 @@ appropriate number of first and last names and bios and build the object invento
 I am pre-loading and fixing both the stock and trader data for now. I may want to make the trader data random even in the tutorial modes, but the stock
 data for the tutorial should stay the way it is -- simplified and limited.
 
- 
+
+28-Jul-2018 - 12:01 a.m. - MBF
+
+- Made some minor updates to SimConstants and TraderData.
+
+- TODO L20: Already completed TraderData class for at least the tutorial mode. Still need to do this TODO for the Market class, but that will require
+more thought later on.
+
+TODO: Later this morning, I will need to add some methods to the trader to randomly self-select its own traderWallet amount and traderFrequency. Trader
+wallet will be a random amount based on RNG with TUTORIAL_TRADER_WALLET_ADDITIONAL as the random range parameter and add that to TUTORIAL_TRADER_WALLET_MIN.
+Final wallet will be TUTORIAL_TRADER_WALLET_MIN + RND(TUTORIAL_TRADER_WALLET_ADDITIONAL). May need to create a compatible float version for this or wind
+up doing some fancy int -> float conversions.
+
