@@ -98,4 +98,25 @@ public class RNG {
 		newInt = numberGenerator.nextInt(maxInt);
 		return newInt;
 	}
+
+	/**
+	 * This method returns a random float between 0.0f and 1.0f.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 *
+	 * @param  
+	 * @return      a random float.
+	 * @see			   
+	 */
+	public static float NextFloat () {
+		float newFloat;
+		
+		if (RNG.numberGenerator == null) {
+			RNG.Initialize();
+		}
+		newFloat = numberGenerator.nextFloat();
+		return newFloat;
+	}
+
 }

@@ -50,3 +50,18 @@ wallet will be a random amount based on RNG with TUTORIAL_TRADER_WALLET_ADDITION
 Final wallet will be TUTORIAL_TRADER_WALLET_MIN + RND(TUTORIAL_TRADER_WALLET_ADDITIONAL). May need to create a compatible float version for this or wind
 up doing some fancy int -> float conversions.
 
+
+31-Jul-2018 - 8:33 p.m. - MBF
+
+- Changed RNG by adding a method to produce a random float value (between 0.0f and 1.0f inclusive). Will just have to be aware of the limitations (there
+was no parameter value version that would allow me to create a float within a range based on a provided MAXVALUE parameter).
+
+- Added the first call to create a single Trader object in the Market class. This is only temporary.
+
+- Added a method to the Trader class to allow for the "initialization" of the traderWallet (beyond the 0.0f initialization). This method now populates
+the traderWallet with a starting bankroll of $10,000.00(f) (SimConstants.TUTORIAL_TRADER_WALLET_MIN, the base minimum amount for tutorial traders) plus 
+an additional amount (SimConstants.TUTORIAL_TRADER_WALLET_ADDITIONAL), which is a randomly-created value for each trader.
+
+TODO: Need to finish and refine the TODO L48 methods before modifying the Market class to support an array of traders. In the Market class, need to
+follow the SelectStocks example and make sure there is a switch statement that allows the code to populate the right kind of traders (TUTORIAL or regular)
+based on the Market Mode (TUTORIAL or regular).

@@ -1,5 +1,6 @@
 package com.solarionprojects.stocksim;
 
+import com.solarionprojects.utility.RNG;
 import java.awt.Image;
 
 public class Trader extends Thread {
@@ -44,6 +45,7 @@ public class Trader extends Thread {
 	 */
 	public Trader () {
 		InitializeValues();
+		InitializeTraderWallet();
 	}
 
 	
@@ -73,6 +75,25 @@ public class Trader extends Thread {
 		//traderHoldings = null;
 	}
 
+	/**
+	 * This method sets the initial trader wallet. All traders start with a minimum of $10,000.00
+	 * (10000.0f) and are given a random additional amount of between 0.0f and 10000.0f as their
+	 * initial bankroll.
+	 * <p>
+	 * This method is private and should only be called by an object constructor.
+	 * <p>
+	 */
+	private void InitializeTraderWallet ( ) {
+		float startingBankroll;
+		float additionalBankroll;
+		boolean traderWalletSuccess;
+		
+		startingBankroll = SimConstants.TUTORIAL_TRADER_WALLET_MIN;
+		additionalBankroll = RNG.NextFloat() * SimConstants.TUTORIAL_TRADER_WALLET_ADDITIONAL;
+		
+		traderWalletSuccess = this.SetTraderWallet(startingBankroll + additionalBankroll);
+	}
+	
 	//============================
 	// OBJECT GETTERS AND SETTERS
 	//============================

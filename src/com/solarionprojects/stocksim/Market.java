@@ -36,6 +36,7 @@ public class Market {
 	private Time marketHoursPost;			// Start time of after-hours market trading hours.
 	private Currency marketCurrency;		// The type of currency used in this market.
 	private Stock[] marketStockList;		// List of stocks available in this market.
+	private Trader marketTrader;			// This is just a test for now. 
 	//private Trader[] marketTraderList;		// List of traders using this market. (commented out until the trader object is available)
 	
 	
@@ -64,6 +65,7 @@ public class Market {
 		//
 		InitializeMarket(SimConstants.MODE_TUTORIAL_BASIC);
 		SelectStocks();
+		SelectTraders();
 	}
 
 	//================
@@ -210,4 +212,18 @@ public class Market {
 		// All tutorial stocks are now loaded and ready to go.
 		//
 	}
+
+	/**
+	 * This method determines which market mode the market object is set for and will execute the
+	 * corresponding trader selection method.
+	 * <p>
+	 * This method is public and can be be called by any object.
+	 * <p>
+	 * @see 			SelectStocksTutorialBasic				
+	 */
+	private void SelectTraders () {
+		marketTrader = new Trader();
+	}
+
+	
 }
