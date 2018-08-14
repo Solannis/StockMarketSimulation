@@ -84,3 +84,6 @@ based on the Market Mode (TUTORIAL or regular).
  done, I need to spend some time on TODO L78 as described above.
  
  
+ 13-Aug-2018 - 6:12 p.m. - MBF
+ 
+ - Completed updating Trader and TraderTest classes for the BigDecimal change.
