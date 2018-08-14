@@ -87,3 +87,35 @@ based on the Market Mode (TUTORIAL or regular).
  13-Aug-2018 - 6:12 p.m. - MBF
  
  - Completed updating Trader and TraderTest classes for the BigDecimal change.
+ 
+ - Interesting epiphany: in the context of the code I've written, a stock really isn't *just a stock* so much as it is a company. After all, a stock
+ does not have a "company profit." It may reflect one, and have an associated attribute (as does mine) but it seems as if the two are one and the
+ same as far as my code is concerned. Still, I think stock is the right approach for this class (as opposed to company).
+ 
+ - For all of the following attributes, I need to decide what the proper floor is: 0.00 or 0.01, decide what the ceiling is (if there even is one, 
+ decide what the norm/typical range should be, then make sure the appropriate getters and setters do the right things based on those decisions.
+ 	- stockSharesTotal;				// The total number of shares available of this stock.
+	- stockSharesOutstanding;		// The number of shares held/owned by investors/traders/not in the company's pool; e.g. stockSharesTotal - stockSharesOutstanding = shares available for purchase.
+	- stockDividendPaid;			// The dollar value of any annual dividend paid for a single share of stock for the current fiscal year.
+	- stockEarningsPerShare;		// The EPS is calculated by dividing the companyProfit by stockSharesOutstanding.
+	- stockMarketCap;				// The Market Cap is calculated by multiplying the SharesTotal by the present share price.
+	- stockProfitEarningsRatio;		// The Profit Earnings Ratio is calculated by dividing the stockCurrentPrice by the stockEarningsPerShare.
+	- stockDividendYield;			// The Dividend Yield is calculated by dividing the dollar value of dividends paid in a given year per share of stock held by stockCurrentPrice for one share of stock.
+	- companyProfit;				// The Company Profit is a given value for purposes of calculating the Earnings Per Share.
+	
+	int stockSharesTotal
+	====================
+	Total shares of stock, which includes both outstanding (owned by the player and other AI traders) and available (shares which are available to
+	be purchased) shares. stockSharesAvailable (not a tracked attribute) = stockSharesTotal - stockSharesOutstanding.
+	- Floor: 1 - There cannot be less than one share, or the compamny would not be tradeable at all.
+	- Celing: n.max - Determined from the StockData array provided.
+	- Typical: n - Determined from the StockData array provided. Will depend on the type of company and the game mode. In the tutorial modes, the 
+	stockSharesTotal will be limited to 80,000 shares or less. The more rare/valuable the resource, the fewer the total shares. Reasoning: Having 80,000
+	shares of gold (for example) would allow a player to ratchet up artificially high artificially fast. My thinking is that keeping a limit on the more
+	valuable stocks will be good for making the player work for it. This thinking can and should be revisited later. 
+	
+	int stockSharesOutstanding
+	==========================
+	Number of shares in investors/individuals hands. These are people who "bought" shares in the company. As described above, total shares minus
+	outstanding shares = total shares available.
+	
