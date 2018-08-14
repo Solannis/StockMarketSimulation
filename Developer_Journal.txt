@@ -118,4 +118,33 @@ based on the Market Mode (TUTORIAL or regular).
 	==========================
 	Number of shares in investors/individuals hands. These are people who "bought" shares in the company. As described above, total shares minus
 	outstanding shares = total shares available.
+	- Floor: 0 - There can be zero outstanding shares, which means no one has purchased ANY shares of this stock.
+	- Ceiling: stockSharesTotal - The maxium this value can be is the total number of stock shares. This would mean the stock is sold out.
+	- Typical: n - Determined by how many shares of a given stock are held (sold) by the player and AI traders.
+	
+	BigDecimal companyProfit
+	========================
+	The companyProfit value is a fixed number for the duration of the simulation session. This will ultimately work like the trader wallet: a base
+	value with some 15% variance added before main session play begins. The base value will be a fixed value provided in the stockData ckass. This value
+	is not likely to change during the length of the session, so floor and ceiling value thoughts are not needed here.
+	- Typical: $0.100M ($100,000.00) to $1.0T ($1,000,000,000,000) depending on the stock. 
+	
+	BigDecimal stockDividendPaid
+	============================
+	This is the amount of dividend paid out to investors as of the last quarter/half/year. I need to look further into how a company decides whether
+	and/or how much dividend should be paid out.
+	- Floor: 0.00 - A company can decide not to pay a dividend at all.
+	- Ceiling: n^x - A dividend, for the purposes of this simulation, should reflect a percent of company profit or, at the very least, a scrape from
+	finance web.
+	- Typical: Some distribution of stocks that pay and stocks that don't pay will need to be determined. For the short duration that the simulation
+	sessions will cover, it probably won't matter, but if longer simulations are in the works, then this will play a small factor in the finances of
+	those longer simulations.
+	
+	BigDecimal stockEarningsPerShare
+	================================
+	One of many ways to measure the value of a stock, earnings per share is a derivation of the companyProfit divided by stockSharesOutstanding. How 
+	much profit a company has made per share within a given period. EPS is a fairly arbitrary number by itself, because the company can control the 
+	number of shares outstanding through splits and buybacks. But comparing a company's most recent EPS to its EPS in previous years and quarters 
+	(adjusted for any splits) is one of the most common ways of telling how fast the company's profits are growing (Source: Morningstar).
+	- Floor: since companyProfit will typically be at least $100,000 and outstanding shares can be zero
 	
