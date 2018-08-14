@@ -1,5 +1,7 @@
 package com.solarionprojects.stocksim;
 
+import java.math.BigDecimal;
+
 public class StockData {
 
 	/*
@@ -76,11 +78,13 @@ public class StockData {
 			"GOLD", "LIVC", "LMBR", "NATG", "OATS", "ORJU", 
 			"PLAT", "RICE", "SLVR", "SOYB", "SUGR", "WEAT"
 			};
+	
 	public static final String[] TUTORIAL_STOCK_FULL_NAMES = {
 			"Cocoa", "Coffee", "Copper", "Corn", "Cotton","Crude Oil", 
 			"Gold", "Live Cattle", "Lumber", "Natural Gas", "Oats", "Orange Juice", 
 			"Platinum", "Rough Rice", "Silver", "Soybeans", "Sugar", "Wheat"
 			};
+	
 	public static final String[] TUTORIAL_STOCK_DESCRIPTIONS = {
 			"Agricultural crop gathered from farming, primarily consumed as food", "Agricultural crop gathered from farming, primarily consumed as food", 
 			"Mineral gathered from mining, primarily used as a resource for tools", "Agricultural crop gathered from farming, primarily consumed as food and used for fuels",
@@ -92,16 +96,19 @@ public class StockData {
 			"Mineral gathered from mining, primarily used for currency and jewelry", "Agricultural crop gathered from farming, primarily consumed as food",
 			"Agricultural crop gathered from farming, primarily consumed as food", "Agricultural crop gathered from farming, primarily consumed as food"
 			};
-	public static final float[] TUTORIAL_STOCK_CURRENT_PRICE = {
-			1.0f, 1.25f, 2.50f, 1.0f, 1.0f, 4.5f,
-			7.0f, 4.0f,	1.5f, 3.0f, 1.25f, 2.0f,
-			10.0f, 1.25f, 5.0f, 1.25f, 1.5f, 1.25f
+	
+	public static final BigDecimal[] TUTORIAL_STOCK_CURRENT_PRICE = {
+			new BigDecimal("1.0"), new BigDecimal("1.25"), new BigDecimal("2.50"), new BigDecimal("1.0"), new BigDecimal("1.0"), new BigDecimal("4.5"),
+			new BigDecimal("7.0"), new BigDecimal("4.0"), new BigDecimal("1.5"), new BigDecimal("3.0"), new BigDecimal("1.25"), new BigDecimal("2.0"),
+			new BigDecimal("10.0"), new BigDecimal("1.25"), new BigDecimal("5.0"), new BigDecimal("1.25"), new BigDecimal("1.5"), new BigDecimal("1.25")
 			};
+	
 	public static final int[] TUTORIAL_STOCK_SHARES_TOTAL = {
 			35000, 45000, 10000, 60000, 65000, 20000,
 			3000, 35000, 75000, 25000, 80000, 45000,
 			1000, 65000, 5000, 70000, 55000, 70000
 			};
+	
 	public static final int[] TUTORIAL_STOCK_SHARES_OUTSTANDING = {
 			0, 0, 0, 0, 0, 0,
 			0, 0, 0, 0, 0, 0,

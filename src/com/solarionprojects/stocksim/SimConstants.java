@@ -1,5 +1,7 @@
 package com.solarionprojects.stocksim;
 
+import java.math.BigDecimal;
+
 public class SimConstants {
 
 	//==============================
@@ -31,8 +33,8 @@ public class SimConstants {
 	public static final int TUTORIAL_STOCK_SELECT_QTY = 10;
 	public static final int TUTORIAL_STOCK_DATA_= STOCK_DATA_BASIC;		// Why did I think I needed this?
 	public static final int TUTORIAL_TRADER_QTY = 4;
-	public static final float TUTORIAL_TRADER_WALLET_MIN = 10000.0f;
-	public static final float TUTORIAL_TRADER_WALLET_ADDITIONAL = TUTORIAL_TRADER_WALLET_MIN;
+	public static final BigDecimal TUTORIAL_TRADER_WALLET_MIN = new BigDecimal("10000.00");
+	public static final BigDecimal TUTORIAL_TRADER_WALLET_ADDITIONAL = TUTORIAL_TRADER_WALLET_MIN;
 
 
 	//==============================
@@ -51,6 +53,7 @@ public class SimConstants {
 	public static final String TEST_TRADER_LAST_NAME = "Farrell";
 	public static final String TEST_TRADER_BIO = "A bullish trader who prefers to focus on technology stocks";
 
+	/*
 	public static final float FLOAT_NEGATIVE = -9.990f;
 	public static final float FLOAT_ZERO = 0.0f;
 	public static final float FLOAT_PENNY = 0.010f;
@@ -58,7 +61,15 @@ public class SimConstants {
 	public static final float FLOAT_POSITIVE = 99.990f;
 	public static final float FLOAT_INFINITY_POSITIVE = Float.POSITIVE_INFINITY;
 	public static final float FLOAT_INFINITY_NEGATIVE = Float.NEGATIVE_INFINITY;
+	 */
+	
+	public static final BigDecimal BD_NEGATIVE = new BigDecimal("-9.99");
+	public static final BigDecimal BD_ZERO = new BigDecimal("0.00");
+	public static final BigDecimal BD_PENNY = new BigDecimal("0.01");
+	public static final BigDecimal BD_DOLLAR = new BigDecimal("1.00");
+	public static final BigDecimal BD_POSITIVE = new BigDecimal("99.99");
 
+	
 	public static final int INT_NEGATIVE = -9;
 	public static final int INT_ZERO = 0;
 	public static final int INT_POSITIVE = 99;

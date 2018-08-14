@@ -65,3 +65,22 @@ an additional amount (SimConstants.TUTORIAL_TRADER_WALLET_ADDITIONAL), which is 
 TODO: Need to finish and refine the TODO L48 methods before modifying the Market class to support an array of traders. In the Market class, need to
 follow the SelectStocks example and make sure there is a switch statement that allows the code to populate the right kind of traders (TUTORIAL or regular)
 based on the Market Mode (TUTORIAL or regular).
+
+
+01-Aug-2018 - 7:59 p.m. - MBF
+
+ - I have begun the long and arduous journey of converting all float references to BigDecimal. This is not just a simple find/replace operation, as the
+ math and comparison operations for BigDecimal are significantly different than simple float. That said, this will ultimately result in a more accurate
+ handling of dollars-and-cents values in comparison to the math error described on L8. I am starting with the Stock class, then will most likely need to
+ update the StockTest class and the StockData class, and then I can move onto the Trader class. I will also make changes to SimConstants as needed in
+ support of changes to the previously-mentioned classes.
+ 
+ TODO: I need to analyze *all* the Stock class numeric (int, BigDecimal) attribute values to see if they can ever be 0.00 or if the lowest value is 0.01.
+ 
+ 
+ 04-Aug-2018 - 1:43 p.m. - MBF
+ 
+ - Completed updating the Stock and StockTest classes for the BigDecimal change. Need to attack the Trader and TraderTest classes next. After that is
+ done, I need to spend some time on TODO L78 as described above.
+ 
+ 

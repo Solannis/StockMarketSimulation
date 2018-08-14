@@ -1,7 +1,8 @@
 package com.solarionprojects.stocksim;
 
-import com.solarionprojects.utility.RNG;
 import java.awt.Image;
+import java.math.BigDecimal;
+import com.solarionprojects.utility.RNG;
 
 public class Trader extends Thread {
 
@@ -14,18 +15,18 @@ public class Trader extends Thread {
 	// OBJECT GLOBAL ATTRIBUTES
 	//==========================
 
-	public int traderID;							// The sequential, unique number assigned to this trader.	
-	private String traderFirstName;					// The trader's first name.	
-	private String traderLastName;					// The trader's last name.	
-	private String traderBio;						// The trader's background biography.	
-	private int traderBehavior;						// The trader's trading behavior, e.g. bearish, bullish.	
-	private float traderWallet;						// The amount of money the trader has access to.	
-	private int	traderFrequency;					// The trader's trading frequency, e.g. how many trades per "hour" (minute).	
-	private Image traderImage;						// The trader's picture.	
+	public int traderID;										// The sequential, unique number assigned to this trader.	
+	private String traderFirstName;								// The trader's first name.	
+	private String traderLastName;								// The trader's last name.	
+	private String traderBio;									// The trader's background biography.	
+	private int traderBehavior;									// The trader's trading behavior, e.g. bearish, bullish.	
+	private BigDecimal traderWallet;							// The amount of money the trader has access to.	
+	private int	traderFrequency;								// The trader's trading frequency, e.g. how many trades per "hour" (minute).	
+	private Image traderImage;									// The trader's picture.	
 	//private TraderFavoriteStock[] traderFavoriteStocks;		// The trader's favorite stock(s) to trade.	
 	//private TraderFavoriteSector[] traderFavoriteSectors;		// The trader's market sector specialty(ies).	
-	//private Market[] traderFavoriteMarkets;		// The trader's market preference.	
-	//private Holding[] traderHoldings;				// The trader's current list of holdings (positions).	
+	//private Market[] traderFavoriteMarkets;					// The trader's market preference.	
+	//private Holding[] traderHoldings;							// The trader's current list of holdings (positions).	
 
 	
 	//=====================
@@ -66,7 +67,7 @@ public class Trader extends Thread {
 		traderLastName = SimConstants.EMPTY_STRING;
 		traderBio = SimConstants.EMPTY_STRING;
 		traderBehavior = SimConstants.INT_ZERO;
-		traderWallet = SimConstants.FLOAT_ZERO;
+		traderWallet = SimConstants.BD_ZERO;
 		traderFrequency = SimConstants.INT_ZERO;
 		traderImage = null;
 		//traderStockFavorites = null;
@@ -84,14 +85,14 @@ public class Trader extends Thread {
 	 * <p>
 	 */
 	private void InitializeTraderWallet ( ) {
-		float startingBankroll;
-		float additionalBankroll;
+		BigDecimal startingBankroll;
+		BigDecimal additionalBankroll;
 		boolean traderWalletSuccess;
 		
 		startingBankroll = SimConstants.TUTORIAL_TRADER_WALLET_MIN;
-		additionalBankroll = RNG.NextFloat() * SimConstants.TUTORIAL_TRADER_WALLET_ADDITIONAL;
+		additionalBankroll = SimConstants.TUTORIAL_TRADER_WALLET_ADDITIONAL.multiply(new BigDecimal("" + RNG.NextFloat()));
 		
-		traderWalletSuccess = this.SetTraderWallet(startingBankroll + additionalBankroll);
+		traderWalletSuccess = this.SetTraderWallet(startingBankroll.add(additionalBankroll));
 	}
 	
 	//============================
@@ -311,27 +312,27 @@ public class Trader extends Thread {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the traderWallet attribute
-	 * @see				SetTraderWallet, ChangeTraderWallet
+	 * @return				A BigDecimal value representing the traderWallet attribute
+	 * @see					SetTraderWallet, ChangeTraderWallet
 	 */
-	public float GetTraderWallet ( ) {
+	public BigDecimal GetTraderWallet ( ) {
 		return this.traderWallet;
 	}
 	
 	/**
 	 * This method allows for the setting of the traderWallet attribute value. 
-	 * Since the parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * Since the parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The new traderWallet to set
-	 * @return			A boolean value indicating success or failure at setting a new traderWallet
-	 * @see				GetTraderWallet, ChangeTraderWallet
+	 * @param	BigDecimal	The new traderWallet to set
+	 * @return				A boolean value indicating success or failure at setting a new traderWallet
+	 * @see					GetTraderWallet, ChangeTraderWallet
 	 */
-	public boolean SetTraderWallet (float tw) {
-		if (tw < SimConstants.FLOAT_ZERO) {
+	public boolean SetTraderWallet (BigDecimal tw) {
+		if (tw.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.traderWallet = tw;
@@ -340,7 +341,7 @@ public class Trader extends Thread {
 	
 	/**
 	 * This method allows for the changing of the traderWallet attribute value. 
-	 * Since the parameter must be a float or the code won't compile, and since the 
+	 * Since the parameter must be a BigDecimal or the code won't compile, and since the 
 	 * attribute value can be any float value (indicating profit or loss to the 
 	 * trader's wallet), the only checks needed are
 	 * 	- Make sure the parameter passed in is not zero (no change, would be pointless)
@@ -353,18 +354,18 @@ public class Trader extends Thread {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The new change to the traderWallet attribute
-	 * @return			A boolean value indicating success or failure at changing a traderWallet
-	 * @see				GetTraderWallet, SetTraderWallet
+	 * @param	BigDecimal	The new change to the traderWallet attribute
+	 * @return				A boolean value indicating success or failure at changing a traderWallet
+	 * @see					GetTraderWallet, SetTraderWallet
 	 */
-	public boolean ChangeTraderWallet (float tw) {
-		if (tw == SimConstants.FLOAT_ZERO) {
+	public boolean ChangeTraderWallet (BigDecimal tw) {
+		if (tw.compareTo(SimConstants.BD_ZERO) == 0) {
 			return false;
 		}
-		if ((this.traderWallet + tw) < 0.0f) {
+		if ((this.traderWallet.add(tw).compareTo(SimConstants.BD_ZERO)) == -1) {
 			return false;
 		}
-		this.traderWallet = this.traderWallet + tw;
+		this.traderWallet = this.traderWallet.add(tw);
 		return true;
 	}
 	

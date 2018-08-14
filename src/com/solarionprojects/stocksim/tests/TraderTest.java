@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import com.solarionprojects.stocksim.SimConstants;
 import com.solarionprojects.stocksim.Trader;
 
@@ -299,15 +301,15 @@ class TraderTest {
 		//
 		//	1 - Ensure parameter value is valid (non-negative).
 		//
-		assertEquals(false, t.SetTraderWallet(SimConstants.FLOAT_NEGATIVE));	// Parameter value cannot be a negative number
+		assertEquals(false, t.SetTraderWallet(SimConstants.BD_NEGATIVE));	// Parameter value cannot be a negative number
 		//
 		//	2 - Ensure traderWallet attribute can be set.
 		//
-		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_POSITIVE));		// Should allow traderWallet to be set.
+		assertEquals(true, t.SetTraderWallet(SimConstants.BD_POSITIVE));		// Should allow traderWallet to be set.
 		//
 		//	3 - Ensure traderWallet attribute, once set, CAN be set again.
 		//
-		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_ZERO));			// Should allow traderWallet to be set again.
+		assertEquals(true, t.SetTraderWallet(SimConstants.BD_ZERO));			// Should allow traderWallet to be set again.
 	}
 	
 	@Test
@@ -319,12 +321,12 @@ class TraderTest {
 		//
 		
 		Trader t = new Trader();
-		assertEquals(true, t.SetTraderWallet(SimConstants.FLOAT_POSITIVE));		// Initial traderWallet attribute value is set to 99.99f
+		assertEquals(true, t.SetTraderWallet(SimConstants.BD_POSITIVE));		// Initial traderWallet attribute value is set to 99.99f
 		
 		//
 		//	1 - Ensure parameter value is valid (non-zero).
 		//
-		assertEquals(false, t.ChangeTraderWallet(SimConstants.FLOAT_ZERO));		// Parameter value cannot be a negative number
+		assertEquals(false, t.ChangeTraderWallet(SimConstants.BD_ZERO));		// Parameter value cannot be a negative number
 		//
 		//	2 - Ensure new traderWallet is correct.
 		//
@@ -336,12 +338,12 @@ class TraderTest {
 		//
 		// Sub-test A
 		//
-		assertEquals(true, t.ChangeTraderWallet(SimConstants.FLOAT_PENNY));		// Should allow traderWallet to be changed.
-		assertEquals(100.0f, t.GetTraderWallet());
+		assertEquals(true, t.ChangeTraderWallet(SimConstants.BD_PENNY));		// Should allow traderWallet to be changed.
+		assertEquals(SimConstants.BD_POSITIVE.add(SimConstants.BD_PENNY), t.GetTraderWallet());
 		//
 		// Sub-test B
 		//
-		assertEquals(true, t.ChangeTraderWallet(-(SimConstants.FLOAT_POSITIVE)));	// Should allow traderWallet to be changed.
+		assertEquals(true, t.ChangeTraderWallet(SimConstants.BD_POSITIVE.negate()));	// Should allow traderWallet to be changed.
 		//
 		// Note: The difference between the two asserts below is that the first one would fail even though the math should technically
 		// be correct. When doing this math, the result should be 0.01f, but due to the nature of math with floats, the actual result
@@ -350,13 +352,13 @@ class TraderTest {
 		// for this testing oddity and allow the test to pass as expected. I am leaving the "failed" version of the method as a comment
 		// so its failure can be looked at later if needed.
 		//
-		//assertEquals(SimConstants.FLOAT_PENNY, t.GetTraderWallet());
+		assertEquals(SimConstants.BD_PENNY, t.GetTraderWallet());
 		//
-		assertEquals(SimConstants.FLOAT_PENNY, t.GetTraderWallet(), SimConstants.FLOAT_PENNY);
+		//assertEquals(SimConstants.BD_PENNY, t.GetTraderWallet(), SimConstants.BD_PENNY);
 		//
 		//	Sub-test C
 		//
-		assertEquals(false, t.ChangeTraderWallet(-(SimConstants.FLOAT_POSITIVE)));	// Should NOT allow traderWallet to be changed.
+		assertEquals(false, t.ChangeTraderWallet(SimConstants.BD_POSITIVE.negate()));	// Should NOT allow traderWallet to be changed.
 	}
 	
 	@Test
@@ -367,12 +369,12 @@ class TraderTest {
 		//
 		
 		Trader t = new Trader();
-		t.SetTraderWallet(SimConstants.FLOAT_POSITIVE);
+		t.SetTraderWallet(SimConstants.BD_POSITIVE);
 
 		//
 		//	1 - Ensure the correct traderWallet is returned.
 		//
-		assertEquals(SimConstants.FLOAT_POSITIVE, t.GetTraderWallet());
+		assertEquals(SimConstants.BD_POSITIVE, t.GetTraderWallet());
 	}
 	
 	

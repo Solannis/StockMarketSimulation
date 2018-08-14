@@ -1,5 +1,7 @@
 package com.solarionprojects.stocksim;
 
+import java.math.BigDecimal;
+
 public class Stock {
 
 	//=========================
@@ -22,24 +24,24 @@ public class Stock {
 	private String stockExchange;				// The specific market exchange the stock is traded upon/within, e.g. NYSE, DOW, NASDAQ.
 	private String stockFullName;				// The full name of the stock, e.g. Symbol AMZN = Full Name Amazon.com, Inc.
 	private String stockDescription; 			// A short description of the stock.
-	private float stockCurrentPrice;			// The current price of the stock.
-	private float stockCurrentPriceAsk;			// The price of the stock a seller is willing to sell shares for.
-	private float stockCurrentPriceBid;			// The price of the stock a buyer is willing to buy shares for.
-	private float stockSessionClose;			// The stock value at close of a given trading ession.
-	private float stockSessionClosePrevious;	// The stock value at close of the prior trading session.
-	private float stockSessionHigh;				// The highest stock value during the current trading session.
-	private float stockSessionLow;				// The lowest stock value during the current trading session.
-	private float stockSessionOpen;				// The stock value at the open of the current trading session.
-	private float stockYearHigh;				// The highest stock value during the current 52-week period.
-	private float stockYearLow;					// The lowest stock value durin the current 52-week period.
+	private BigDecimal stockCurrentPrice;			// The current price of the stock.
+	private BigDecimal stockCurrentPriceAsk;			// The price of the stock a seller is willing to sell shares for.
+	private BigDecimal stockCurrentPriceBid;			// The price of the stock a buyer is willing to buy shares for.
+	private BigDecimal stockSessionClose;			// The stock value at close of a given trading ession.
+	private BigDecimal stockSessionClosePrevious;	// The stock value at close of the prior trading session.
+	private BigDecimal stockSessionHigh;				// The highest stock value during the current trading session.
+	private BigDecimal stockSessionLow;				// The lowest stock value during the current trading session.
+	private BigDecimal stockSessionOpen;				// The stock value at the open of the current trading session.
+	private BigDecimal stockYearHigh;				// The highest stock value during the current 52-week period.
+	private BigDecimal stockYearLow;					// The lowest stock value durin the current 52-week period.
 	private	int stockSharesTotal;				// The total number of shares available of this stock.
 	private int stockSharesOutstanding;			// The number of shares held/owned by investors/traders/not in the company's pool; e.g. stockSharesTotal - stockSharesOutstanding = shares available for purchase.
-	private float stockDividendPaid;			// The dollar value of any annual dividend paid for a single share of stock for the current fiscal year.
-	private float stockEarningsPerShare;		// The EPS is calculated by dividing the companyProfit by stockSharesOutstanding.
-	private float stockMarketCap;				// The Market Cap is calculated by multiplying the SharesTotal by the present share price.
-	private float stockProfitEarningsRatio;		// The Profit Earnings Ratio is calculated by dividing the stockCurrentPrice by the stockEarningsPerShare.
-	private float stockDividendYield;			// The Dividend Yield is calculated by dividing the dollar value of dividends paid in a given year per share of stock held by stockCurrentPrice for one share of stock.
-	private float companyProfit;				// The Company Profit is a given value for purposes of calculating the Earnings Per Share.
+	private BigDecimal stockDividendPaid;			// The dollar value of any annual dividend paid for a single share of stock for the current fiscal year.
+	private BigDecimal stockEarningsPerShare;		// The EPS is calculated by dividing the companyProfit by stockSharesOutstanding.
+	private BigDecimal stockMarketCap;				// The Market Cap is calculated by multiplying the SharesTotal by the present share price.
+	private BigDecimal stockProfitEarningsRatio;		// The Profit Earnings Ratio is calculated by dividing the stockCurrentPrice by the stockEarningsPerShare.
+	private BigDecimal stockDividendYield;			// The Dividend Yield is calculated by dividing the dollar value of dividends paid in a given year per share of stock held by stockCurrentPrice for one share of stock.
+	private BigDecimal companyProfit;				// The Company Profit is a given value for purposes of calculating the Earnings Per Share.
 	
 	//=====================
 	// OBJECT CONSTRUCTORS
@@ -78,23 +80,23 @@ public class Stock {
 		stockExchange = SimConstants.EMPTY_STRING;
 		stockFullName = SimConstants.EMPTY_STRING;
 		stockDescription = SimConstants.EMPTY_STRING;
-		stockCurrentPrice = SimConstants.FLOAT_ZERO;
-		stockCurrentPriceAsk = SimConstants.FLOAT_ZERO;
-		stockCurrentPriceBid = SimConstants.FLOAT_ZERO;
-		stockSessionClose = SimConstants.FLOAT_ZERO;
-		stockSessionClosePrevious = SimConstants.FLOAT_ZERO;
-		stockSessionHigh = SimConstants.FLOAT_ZERO;
-		stockSessionLow = SimConstants.FLOAT_ZERO;
-		stockSessionOpen = SimConstants.FLOAT_ZERO;
-		stockYearHigh = SimConstants.FLOAT_ZERO;
-		stockYearLow = SimConstants.FLOAT_ZERO;
+		stockCurrentPrice = SimConstants.BD_ZERO;
+		stockCurrentPriceAsk = SimConstants.BD_ZERO;
+		stockCurrentPriceBid = SimConstants.BD_ZERO;
+		stockSessionClose = SimConstants.BD_ZERO;
+		stockSessionClosePrevious = SimConstants.BD_ZERO;
+		stockSessionHigh = SimConstants.BD_ZERO;
+		stockSessionLow = SimConstants.BD_ZERO;
+		stockSessionOpen = SimConstants.BD_ZERO;
+		stockYearHigh = SimConstants.BD_ZERO;
+		stockYearLow = SimConstants.BD_ZERO;
 		stockSharesTotal = SimConstants.INT_ZERO;
 		stockSharesOutstanding = SimConstants.INT_ZERO;
-		stockDividendPaid = SimConstants.FLOAT_ZERO;
-		stockEarningsPerShare = SimConstants.FLOAT_ZERO;
-		stockMarketCap = SimConstants.FLOAT_ZERO;
-		stockProfitEarningsRatio = SimConstants.FLOAT_ZERO;
-		stockDividendYield = SimConstants.FLOAT_ZERO;
+		stockDividendPaid = SimConstants.BD_ZERO;
+		stockEarningsPerShare = SimConstants.BD_ZERO;
+		stockMarketCap = SimConstants.BD_ZERO;
+		stockProfitEarningsRatio = SimConstants.BD_ZERO;
+		stockDividendYield = SimConstants.BD_ZERO;
 	}
 	
 	/**
@@ -112,12 +114,16 @@ public class Stock {
 	 */
 	public boolean CalculateEarningsPerShare () {
 		boolean rv = false;
-		float seps = SimConstants.FLOAT_ZERO; 
+		BigDecimal seps = SimConstants.BD_ZERO; 
 		
 		//
 		// Derive earnings per share
 		//
-		seps = this.GetCompanyProfit() / this.GetStockSharesOutstanding();
+		seps = this.GetCompanyProfit().divide(new BigDecimal(SimConstants.EMPTY_STRING + this.GetStockSharesOutstanding()));
+
+		/*
+		 * With the adoption of BigDecimal, checking for these infinite states should no longer be necessary.
+		 *
 		//
 		// Check if earnings per share is a valid value (meaning non-infinite)
 		//
@@ -135,10 +141,10 @@ public class Stock {
 			} else {
 				System.out.println("Negative Infinity");
 			}
-			*
-			*/
 			return rv;
 		}
+		*/
+		
 		//System.out.println("Earnings per share = " + seps);
 		rv = this.SetStockEarningsPerShare(seps);
 		//
@@ -162,9 +168,9 @@ public class Stock {
 	 */
 	public boolean CalculateMarketCap () {
 		boolean rv = false;
-		float smc = SimConstants.FLOAT_ZERO;
+		BigDecimal smc = SimConstants.BD_ZERO;
 		
-		smc = this.GetStockSharesTotal() * this.GetStockCurrentPrice();
+		smc = this.GetStockCurrentPrice().multiply(new BigDecimal(this.GetStockSharesTotal()));
 		rv = this.SetStockMarketCap(smc);
 		//
 		// Need to deal with boolean result of this function.
@@ -187,9 +193,9 @@ public class Stock {
 	 */
 	public boolean CalculateProfitEarningsRatio () {
 		boolean rv = false;
-		float sper = SimConstants.FLOAT_ZERO;
+		BigDecimal sper = SimConstants.BD_ZERO;
 		
-		sper = this.GetStockCurrentPrice() / this.GetStockEarningsPerShare();
+		sper = this.GetStockCurrentPrice().divide(this.GetStockEarningsPerShare());
 		rv = this.SetStockProfitEarningsRatio(sper);
 		//
 		// Need to deal with boolean result of this function.
@@ -213,9 +219,9 @@ public class Stock {
 	 */
 	public boolean CalculateDividendYield () {
 		boolean rv = false;
-		float sdy = SimConstants.FLOAT_ZERO;
+		BigDecimal sdy = SimConstants.BD_ZERO;
 		
-		sdy = this.GetStockDividendPaid() / this.GetStockCurrentPrice();
+		sdy = this.GetStockDividendPaid().divide(this.GetStockCurrentPrice());
 		rv = this.SetStockDividendYield(sdy);
 		//
 		// Need to deal with boolean result of this function.
@@ -543,27 +549,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockPCurrentrice attribute
-	 * @see				SetStockCurrentPrice
+	 * @return				A BigDecimal value representing the stockPCurrentrice attribute
+	 * @see					SetStockCurrentPrice
 	 */
-	public float GetStockCurrentPrice ( ) {
+	public BigDecimal GetStockCurrentPrice ( ) {
 		return this.stockCurrentPrice;
 	}
 	
 	/**
 	 * This method sets the stockCurrentPrice attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The new stockCurrentPrice to set
-	 * @return			A boolean value indicating success or failure at setting the stockCurrentPrice
-	 * @see				GetStockCurrentPrice
+	 * @param	BigDecimal	The new stockCurrentPrice to set
+	 * @return				A boolean value indicating success or failure at setting the stockCurrentPrice
+	 * @see					GetStockCurrentPrice
 	 */
-	public boolean SetStockCurrentPrice (float scp) {
-		if (scp < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockCurrentPrice (BigDecimal scp) {
+		if (scp.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockCurrentPrice = scp;
@@ -579,27 +585,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockCurrentPriceAsk attribute
-	 * @see				SetStockCurrentPriceAsk
+	 * @return				A BigDecimal value representing the stockCurrentPriceAsk attribute
+	 * @see					SetStockCurrentPriceAsk
 	 */
-	public float GetStockCurrentPriceAsk ( ) {
+	public BigDecimal GetStockCurrentPriceAsk ( ) {
 		return this.stockCurrentPriceAsk;
 	}
 	
 	/**
 	 * This method sets the stockCurrentPriceAsk attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The new stockCurrentPriceAsk to set
-	 * @return			A boolean value indicating success or failure at setting the stockCurrentPriceAsk
-	 * @see				GetStockCurrentPriceAsk
+	 * @param	BigDecimal	The new stockCurrentPriceAsk to set
+	 * @return				A boolean value indicating success or failure at setting the stockCurrentPriceAsk
+	 * @see					GetStockCurrentPriceAsk
 	 */
-	public boolean SetStockCurrentPriceAsk (float scpa) {
-		if (scpa < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockCurrentPriceAsk (BigDecimal scpa) {
+		if (scpa.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockCurrentPriceAsk = scpa;
@@ -615,27 +621,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockCurrentPriceBid attribute
-	 * @see				SetStockCurrentPriceBid
+	 * @return				A BigDecimal value representing the stockCurrentPriceBid attribute
+	 * @see					SetStockCurrentPriceBid
 	 */
-	public float GetStockCurrentPriceBid ( ) {
+	public BigDecimal GetStockCurrentPriceBid ( ) {
 		return this.stockCurrentPriceBid;
 	}
 	
 	/**
 	 * This method sets the stockCurrentPriceBid attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockCurrentPriceBid to set
-	 * @return			A boolean value indicating success or failure at setting the stockCurrentPriceBid
-	 * @see				GetStockCurrentPriceBid
+	 * @param	BigDecimal	The stockCurrentPriceBid to set
+	 * @return				A boolean value indicating success or failure at setting the stockCurrentPriceBid
+	 * @see					GetStockCurrentPriceBid
 	 */
-	public boolean SetStockCurrentPriceBid (float scpb) {
-		if (scpb < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockCurrentPriceBid (BigDecimal scpb) {
+		if (scpb.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockCurrentPriceBid = scpb;
@@ -651,27 +657,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockSessionClose attribute
-	 * @see				SetStockSessionClose
+	 * @return				A BigDecimal value representing the stockSessionClose attribute
+	 * @see					SetStockSessionClose
 	 */
-	public float GetStockSessionClose ( ) {
+	public BigDecimal GetStockSessionClose ( ) {
 		return this.stockSessionClose;
 	}
 	
 	/**
 	 * This method sets the stockSessionClose attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockSessionClose value to set
-	 * @return			A boolean value indicating success or failure at setting the stockSessionClose attribute
-	 * @see				GetStockSessionClose
+	 * @param	BigDecimal	The stockSessionClose value to set
+	 * @return				A boolean value indicating success or failure at setting the stockSessionClose attribute
+	 * @see					GetStockSessionClose
 	 */
-	public boolean SetStockSessionClose (float ssc) {
-		if (ssc < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockSessionClose (BigDecimal ssc) {
+		if (ssc.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockSessionClose = ssc;
@@ -687,27 +693,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockSessionClosePrevious attribute
-	 * @see				SetStockSessionClosePrevious
+	 * @return				A BigDecimal value representing the stockSessionClosePrevious attribute
+	 * @see					SetStockSessionClosePrevious
 	 */
-	public float GetStockSessionClosePrevious ( ) {
+	public BigDecimal GetStockSessionClosePrevious ( ) {
 		return this.stockSessionClosePrevious;
 	}
 	
 	/**
 	 * This method sets the stockSessionClosePrevious attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockSessionClosePrevious value to set
-	 * @return			A boolean value indicating success or failure at setting the stockSessionClosePrevious attribute
-	 * @see				GetStockSessionClosePrevious
+	 * @param	BigDecimal	The stockSessionClosePrevious value to set
+	 * @return				A boolean value indicating success or failure at setting the stockSessionClosePrevious attribute
+	 * @see					GetStockSessionClosePrevious
 	 */
-	public boolean SetStockSessionClosePrevious (float sscp) {
-		if (sscp < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockSessionClosePrevious (BigDecimal sscp) {
+		if (sscp.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockSessionClosePrevious = sscp;
@@ -723,27 +729,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockSessionHigh attribute
+	 * @return			A BigDecimal value representing the stockSessionHigh attribute
 	 * @see				SetStockSessionHigh
 	 */
-	public float GetStockSessionHigh ( ) {
+	public BigDecimal GetStockSessionHigh ( ) {
 		return this.stockSessionHigh;
 	}
 	
 	/**
 	 * This method sets the stockSessionHigh attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockSessionHigh value to set
-	 * @return			A boolean value indicating success or failure at setting the stockSessionHigh attribute
-	 * @see				GetStockSessionHigh
+	 * @param	BigDecimal	The stockSessionHigh value to set
+	 * @return				A boolean value indicating success or failure at setting the stockSessionHigh attribute
+	 * @see					GetStockSessionHigh
 	 */
-	public boolean SetStockSessionHigh (float ssh) {
-		if (ssh < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockSessionHigh (BigDecimal ssh) {
+		if (ssh.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockSessionHigh = ssh;
@@ -759,27 +765,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockSessionLow attribute
-	 * @see				SetStockSessionLow
+	 * @return				A BigDecimal value representing the stockSessionLow attribute
+	 * @see					SetStockSessionLow
 	 */
-	public float GetStockSessionLow ( ) {
+	public BigDecimal GetStockSessionLow ( ) {
 		return this.stockSessionLow;
 	}
 	
 	/**
 	 * This method sets the stockSessionLow attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockSessionLow value to set
-	 * @return			A boolean value indicating success or failure at setting the stockSessionLow attribute
-	 * @see				GetStockSessionLow
+	 * @param	BigDecimal	The stockSessionLow value to set
+	 * @return				A boolean value indicating success or failure at setting the stockSessionLow attribute
+	 * @see					GetStockSessionLow
 	 */
-	public boolean SetStockSessionLow (float ssl) {
-		if (ssl < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockSessionLow (BigDecimal ssl) {
+		if (ssl.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockSessionLow = ssl;
@@ -795,27 +801,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockSessionOpen attribute
-	 * @see				SetStockSessionOpen
+	 * @return				A BigDecimal value representing the stockSessionOpen attribute
+	 * @see					SetStockSessionOpen
 	 */
-	public float GetStockSessionOpen ( ) {
+	public BigDecimal GetStockSessionOpen ( ) {
 		return this.stockSessionOpen;
 	}
 	
 	/**
 	 * This method sets the stockSessionOpen attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockSessionOpen value to set
-	 * @return			A boolean value indicating success or failure at setting the stockSessionOpen attribute
-	 * @see				GetStockSessionOpen
+	 * @param	BigDecimal	The stockSessionOpen value to set
+	 * @return				A boolean value indicating success or failure at setting the stockSessionOpen attribute
+	 * @see					GetStockSessionOpen
 	 */
-	public boolean SetStockSessionOpen (float sso) {
-		if (sso < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockSessionOpen (BigDecimal sso) {
+		if (sso.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockSessionOpen = sso;
@@ -831,27 +837,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stock year high attribute
-	 * @see				SetStockYearHigh
+	 * @return				A BigDecimal value representing the stock year high attribute
+	 * @see					SetStockYearHigh
 	 */
-	public float GetStockYearHigh ( ) {
+	public BigDecimal GetStockYearHigh ( ) {
 		return this.stockYearHigh;
 	}
 	
 	/**
 	 * This method sets the stockYearHigh attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not a negative value.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stock year high value to set
-	 * @return			A boolean value indicating success or failure at setting the stockYearHigh attribute
-	 * @see				GetStockYearHigh
+	 * @param	BigDecimal	The stock year high value to set
+	 * @return				A boolean value indicating success or failure at setting the stockYearHigh attribute
+	 * @see					GetStockYearHigh
 	 */
-	public boolean SetStockYearHigh (float syh) {
-		if (syh < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockYearHigh (BigDecimal syh) {
+		if (syh.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockYearHigh = syh;
@@ -867,17 +873,17 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockYearLow attribute
-	 * @see				SetStockYearLow
+	 * @return				A BigDecimal value representing the stockYearLow attribute
+	 * @see					SetStockYearLow
 	 */
-	public float GetStockYearLow ( ) {
+	public BigDecimal GetStockYearLow ( ) {
 		return this.stockYearLow;
 	}
 	
 	/**
 	 * This method sets the stockYearLow attribute value. Since the 
-	 * parameter must be a float or the code won't compile. Since the 
-	 * attribute value can be anything from 0.0f to ?.?f, a check is 
+	 * parameter must be a BigDecimal or the code won't compile. Since the 
+	 * attribute value can be anything from 0.0 to ?.?, a check is 
 	 * needed to make sure the parameter is not a negative value. 
 	 * Additionally, the year low value cannot be higher
 	 * than the year high value, otherwise by definition, it would be 
@@ -885,21 +891,21 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockYearLow value to set
-	 * @return			A boolean value indicating success or failure at setting the stockYearLow attribute
-	 * @see				GetStockYearLow
+	 * @param	BigDecimal	The stockYearLow value to set
+	 * @return				A boolean value indicating success or failure at setting the stockYearLow attribute
+	 * @see					GetStockYearLow
 	 */
-	public boolean SetStockYearLow (float syl) {
+	public boolean SetStockYearLow (BigDecimal syl) {
 		//
 		// First check to make sure that the year low value is not negative.
 		//
-		if (syl < SimConstants.FLOAT_ZERO) {
+		if (syl.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		//
 		// Next, make sure that the year low value is not higher than the year high value.
 		//
-		if (syl > this.stockYearHigh) {
+		if (syl.compareTo(this.stockYearHigh) == 1) {
 			return false;
 		}
 		this.stockYearLow = syl;
@@ -1011,27 +1017,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockDividendPaid attribute
+	 * @return			A BigDecimal value representing the stockDividendPaid attribute
 	 * @see				SetStockDividendPaid
 	 */
-	public float GetStockDividendPaid ( ) {
+	public BigDecimal GetStockDividendPaid ( ) {
 		return this.stockDividendPaid;
 	}
 	
 	/**
 	 * This method sets the stockDividendPaid attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, the only check needed
 	 * is to make sure the parameter is not negative.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockDividendPaid value to set
-	 * @return			A boolean value indicating success or failure at setting the stockDividendPaid attribute
-	 * @see				GetStockDividendPaid
+	 * @param	BigDecimal	The stockDividendPaid value to set
+	 * @return				A boolean value indicating success or failure at setting the stockDividendPaid attribute
+	 * @see					GetStockDividendPaid
 	 */
-	public boolean SetStockDividendPaid (float sdp) {
-		if (sdp < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockDividendPaid (BigDecimal sdp) {
+		if (sdp.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockDividendPaid = sdp;
@@ -1047,27 +1053,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockEarningsPerShare attribute
-	 * @see				SetStockEarningsPerShare
+	 * @return				A BigDecimal value representing the stockEarningsPerShare attribute
+	 * @see					SetStockEarningsPerShare
 	 */
-	public float GetStockEarningsPerShare ( ) {
+	public BigDecimal GetStockEarningsPerShare ( ) {
 		return this.stockEarningsPerShare;
 	}
 	
 	/**
 	 * This method sets the stockEarningsPerShare attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, the only check needed
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.00 to ?.??, the only check needed
 	 * is to make sure the parameter is not negative.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockEarningsPerShare value to set
-	 * @return			A boolean value indicating success or failure at setting the stockEarningsPerShare attribute
-	 * @see				GetStockEarningsPerShare
+	 * @param	BigDecimal 	The stockEarningsPerShare value to set
+	 * @return				A boolean value indicating success or failure at setting the stockEarningsPerShare attribute
+	 * @see					GetStockEarningsPerShare
 	 */
-	public boolean SetStockEarningsPerShare (float seps) {
-		if (seps < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockEarningsPerShare (BigDecimal seps) {
+		if (seps.compareTo(SimConstants.BD_ZERO) < 0) {
 			return false;
 		}
 		this.stockEarningsPerShare = seps;
@@ -1083,27 +1089,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockMarketCap attribute
-	 * @see				SetStockMarketCap
+	 * @return				A BigDecimal value representing the stockMarketCap attribute
+	 * @see					SetStockMarketCap
 	 */
-	public float GetStockMarketCap ( ) {
+	public BigDecimal GetStockMarketCap ( ) {
 		return this.stockMarketCap;
 	}
 	
 	/**
 	 * This method sets the stockMarketCap attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 1.0f to ?.?f, check to see if the
-	 * parameter is greater than 1.0f.
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 1.0 to ?.?, check to see if the
+	 * parameter is greater than 1.0.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockMarketCap value to set
-	 * @return			A boolean value indicating success or failure at setting the stockMarketCap attribute
-	 * @see				GetStockMarketCap
+	 * @param	BigDecimal	The stockMarketCap value to set
+	 * @return				A boolean value indicating success or failure at setting the stockMarketCap attribute
+	 * @see					GetStockMarketCap
 	 */
-	public boolean SetStockMarketCap (float smc) {
-		if (smc < SimConstants.FLOAT_DOLLAR) {
+	public boolean SetStockMarketCap (BigDecimal smc) {
+		if (smc.compareTo(SimConstants.BD_DOLLAR) == -1) {
 			return false;
 		}
 		this.stockMarketCap = smc;
@@ -1119,27 +1125,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockProfitEarningsRatio attribute
-	 * @see				SetStockProfitEarningsRatio
+	 * @return				A BigDecimal value representing the stockProfitEarningsRatio attribute
+	 * @see					SetStockProfitEarningsRatio
 	 */
-	public float GetStockProfitEarningsRatio ( ) {
+	public BigDecimal GetStockProfitEarningsRatio ( ) {
 		return this.stockProfitEarningsRatio;
 	}
 	
 	/**
 	 * This method sets the stockProfitEarningsRatio attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.01f to ?.?f, check to see if the
-	 * parameter is greater than 0.01f.
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.01 to ?.?, check to see if the
+	 * parameter is greater than 0.01.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockProfitEarningsRatio value to set
-	 * @return			A boolean value indicating success or failure at setting the stockProfitEarningsRatio attribute
-	 * @see				GetStockProfitEarningsRatio
+	 * @param	BigDecimal	The stockProfitEarningsRatio value to set
+	 * @return				A boolean value indicating success or failure at setting the stockProfitEarningsRatio attribute
+	 * @see					GetStockProfitEarningsRatio
 	 */
-	public boolean SetStockProfitEarningsRatio (float sper) {
-		if (sper < SimConstants.FLOAT_PENNY) {
+	public boolean SetStockProfitEarningsRatio (BigDecimal sper) {
+		if (sper.compareTo(SimConstants.BD_PENNY) == -1) {
 			return false;
 		}
 		this.stockProfitEarningsRatio = sper;
@@ -1155,27 +1161,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the stockDividendYield attribute
-	 * @see				SetStockDividendYield
+	 * @return				A BigDecimal value representing the stockDividendYield attribute
+	 * @see					SetStockDividendYield
 	 */
-	public float GetStockDividendYield ( ) {
+	public BigDecimal GetStockDividendYield ( ) {
 		return this.stockDividendYield;
 	}
 	
 	/**
 	 * This method sets the stockDividendYield attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.0f to ?.?f, check to see if the
-	 * parameter is greater than 0.01f.
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.0 to ?.?, check to see if the
+	 * parameter is greater than 0.01.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The stockDividendYield value to set
-	 * @return			A boolean value indicating success or failure at setting the stockDividendYield attribute
-	 * @see				GetStockDividendYield
+	 * @param	BigDecimal	The stockDividendYield value to set
+	 * @return				A boolean value indicating success or failure at setting the stockDividendYield attribute
+	 * @see					GetStockDividendYield
 	 */
-	public boolean SetStockDividendYield (float sdy) {
-		if (sdy < SimConstants.FLOAT_ZERO) {
+	public boolean SetStockDividendYield (BigDecimal sdy) {
+		if (sdy.compareTo(SimConstants.BD_ZERO) == -1) {
 			return false;
 		}
 		this.stockDividendYield = sdy;
@@ -1191,27 +1197,27 @@ public class Stock {
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @return			A float value representing the companyProfit attribute
-	 * @see				SetCompanyProfit
+	 * @return				A BigDecimal object representing the companyProfit attribute
+	 * @see					SetCompanyProfit
 	 */
-	public float GetCompanyProfit ( ) {
+	public BigDecimal GetCompanyProfit ( ) {
 		return this.companyProfit;
 	}
 	
 	/**
 	 * This method sets the companyProfit attribute value. Since the 
-	 * parameter must be a float or the code won't compile, and since the 
-	 * attribute value can be anything from 0.01f to ?.?f, check to see if the
-	 * parameter is greater than 0.01f.
+	 * parameter must be a BigDecimal or the code won't compile, and since the 
+	 * attribute value can be anything from 0.01 to ?.?, check to see if the
+	 * parameter is greater than 0.01.
 	 * <p>
 	 * This method is public and can be be called by any object.
 	 * <p>
-	 * @param	float	The companyProfit value to set
-	 * @return			A boolean value indicating success or failure at setting the companyProfit attribute
-	 * @see				GetCompanyProfit
+	 * @param	BigDecimal	The companyProfit value to set
+	 * @return				A boolean value indicating success or failure at setting the companyProfit attribute
+	 * @see					GetCompanyProfit
 	 */
-	public boolean SetCompanyProfit (float cp) {
-		if (cp < SimConstants.FLOAT_PENNY) {
+	public boolean SetCompanyProfit (BigDecimal cp) {
+		if (cp.compareTo(SimConstants.BD_PENNY) == -1) {
 			return false;
 		}
 		this.companyProfit = cp;

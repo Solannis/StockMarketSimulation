@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import com.solarionprojects.stocksim.SimConstants;
 import com.solarionprojects.stocksim.Stock;
 
@@ -339,7 +341,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure current price attribute cannot be a set as a negative value.
-		//	2 - Ensure current price attribute can be set as zero (0.0f).
+		//	2 - Ensure current price attribute can be set as zero (0.0).
 		//	3 - Ensure current price attribute can be set as a positive value.
 		//
 		
@@ -348,37 +350,37 @@ class StockTest {
 		//
 		// 	1 - Ensure current price attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockCurrentPrice(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockCurrentPrice(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure current price attribute can be set as zero (0.0f).
+		//	2 - Ensure current price attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure current price attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockCurrentPrice () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct current price 0.0f is returned.
-		//	2 - Ensure the correct current price 99.99f is returned.
+		//	1 - Ensure the correct current price 0.0 is returned.
+		//	2 - Ensure the correct current price 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct current price 0.0f is returned.
+		//	1 - Ensure the correct current price 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockCurrentPrice());
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockCurrentPrice());
 		//
-		//	2 - Ensure the correct current price 99.99f is returned.
+		//	2 - Ensure the correct current price 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockCurrentPrice());
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockCurrentPrice());
 	}
 	
 	//--------------------------------
@@ -390,7 +392,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure current price ask attribute cannot be a set as a negative value.
-		//	2 - Ensure current price ask attribute can be set as zero (0.0f).
+		//	2 - Ensure current price ask attribute can be set as zero (0.0).
 		//	3 - Ensure current price ask attribute can be set as a positive value.
 		//
 		
@@ -399,37 +401,37 @@ class StockTest {
 		//
 		// 	1 - Ensure current price ask attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockCurrentPriceAsk(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockCurrentPriceAsk(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure current price ask attribute can be set as zero (0.0f).
+		//	2 - Ensure current price ask attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure current price ask attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockCurrentPriceAsk () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct current price ask 0.0f is returned.
-		//	2 - Ensure the correct current price ask 99.99f is returned.
+		//	1 - Ensure the correct current price ask 0.0 is returned.
+		//	2 - Ensure the correct current price ask 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct current price ask 0.0f is returned.
+		//	1 - Ensure the correct current price ask 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockCurrentPriceAsk());
+		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockCurrentPriceAsk());
 		//
-		//	2 - Ensure the correct current price ask 99.99f is returned.
+		//	2 - Ensure the correct current price ask 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockCurrentPriceAsk());
+		assertEquals(true, s.SetStockCurrentPriceAsk(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockCurrentPriceAsk());
 	}
 	
 	//--------------------------------
@@ -441,7 +443,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure current price bid attribute cannot be a set as a negative value.
-		//	2 - Ensure current price bid attribute can be set as zero (0.0f).
+		//	2 - Ensure current price bid attribute can be set as zero (0.0).
 		//	3 - Ensure current price bid attribute can be set as a positive value.
 		//
 		
@@ -450,37 +452,37 @@ class StockTest {
 		//
 		// 	1 - Ensure current price bid attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockCurrentPriceBid(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockCurrentPriceBid(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure current price bid attribute can be set as zero (0.0f).
+		//	2 - Ensure current price bid attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure current price bid attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockCurrentPriceBid () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct current price bid 0.0f is returned.
-		//	2 - Ensure the correct current price bid 99.99f is returned.
+		//	1 - Ensure the correct current price bid 0.0 is returned.
+		//	2 - Ensure the correct current price bid 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct current price bid 0.0f is returned.
+		//	1 - Ensure the correct current price bid 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockCurrentPriceBid());
+		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockCurrentPriceBid());
 		//
-		//	2 - Ensure the correct current price bid 99.99f is returned.
+		//	2 - Ensure the correct current price bid 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockCurrentPriceBid());
+		assertEquals(true, s.SetStockCurrentPriceBid(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockCurrentPriceBid());
 	}
 	
 	//-----------------------------
@@ -492,7 +494,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure session close attribute cannot be a set as a negative value.
-		//	2 - Ensure session close attribute can be set as zero (0.0f).
+		//	2 - Ensure session close attribute can be set as zero (0.0).
 		//	3 - Ensure session close attribute can be set as a positive value.
 		//
 		
@@ -501,37 +503,37 @@ class StockTest {
 		//
 		// 	1 - Ensure session close attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockSessionClose(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockSessionClose(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure session close attribute can be set as zero (0.0f).
+		//	2 - Ensure session close attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockSessionClose(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockSessionClose(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure session close attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockSessionClose(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockSessionClose(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockSessionClose () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct session close 0.0f is returned.
-		//	2 - Ensure the correct session close 99.99f is returned.
+		//	1 - Ensure the correct session close 0.0 is returned.
+		//	2 - Ensure the correct session close 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct session close 0.0f is returned.
+		//	1 - Ensure the correct session close 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockSessionClose(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockSessionClose());
+		assertEquals(true, s.SetStockSessionClose(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockSessionClose());
 		//
-		//	2 - Ensure the correct session close 99.99f is returned.
+		//	2 - Ensure the correct session close 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockSessionClose(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockSessionClose());
+		assertEquals(true, s.SetStockSessionClose(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockSessionClose());
 	}
 	
 	//-------------------------------------
@@ -543,7 +545,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure session close previous attribute cannot be a set as a negative value.
-		//	2 - Ensure session close previous attribute can be set as zero (0.0f).
+		//	2 - Ensure session close previous attribute can be set as zero (0.0).
 		//	3 - Ensure session close previous attribute can be set as a positive value.
 		//
 		
@@ -552,37 +554,37 @@ class StockTest {
 		//
 		// 	1 - Ensure session close previous attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockSessionClosePrevious(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockSessionClosePrevious(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure session close previous attribute can be set as zero (0.0f).
+		//	2 - Ensure session close previous attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure session close previous attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockSessionClosePrevious () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct session close previous 0.0f is returned.
-		//	2 - Ensure the correct session close previous 99.99f is returned.
+		//	1 - Ensure the correct session close previous 0.0 is returned.
+		//	2 - Ensure the correct session close previous 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct session close previous 0.0f is returned.
+		//	1 - Ensure the correct session close previous 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockSessionClosePrevious());
+		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockSessionClosePrevious());
 		//
-		//	2 - Ensure the correct session close previous 99.99f is returned.
+		//	2 - Ensure the correct session close previous 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockSessionClosePrevious());
+		assertEquals(true, s.SetStockSessionClosePrevious(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockSessionClosePrevious());
 	}
 	
 	//-----------------------------
@@ -594,7 +596,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure session high attribute cannot be a set as a negative value.
-		//	2 - Ensure session high attribute can be set as zero (0.0f).
+		//	2 - Ensure session high attribute can be set as zero (0.0).
 		//	3 - Ensure session high attribute can be set as a positive value.
 		//
 		
@@ -603,37 +605,37 @@ class StockTest {
 		//
 		// 	1 - Ensure session high attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockSessionHigh(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockSessionHigh(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure session high attribute can be set as zero (0.0f).
+		//	2 - Ensure session high attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockSessionHigh(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockSessionHigh(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure session high attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockSessionHigh(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockSessionHigh(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockSessionHigh () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct session high 0.0f is returned.
-		//	2 - Ensure the correct session high 99.99f is returned.
+		//	1 - Ensure the correct session high 0.0 is returned.
+		//	2 - Ensure the correct session high 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct session high 0.0f is returned.
+		//	1 - Ensure the correct session high 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockSessionHigh(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockSessionHigh());
+		assertEquals(true, s.SetStockSessionHigh(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockSessionHigh());
 		//
-		//	2 - Ensure the correct session high 99.99f is returned.
+		//	2 - Ensure the correct session high 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockSessionHigh(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockSessionHigh());
+		assertEquals(true, s.SetStockSessionHigh(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockSessionHigh());
 	}
 	
 	//-----------------------------
@@ -645,7 +647,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure session low attribute cannot be a set as a negative value.
-		//	2 - Ensure session low attribute can be set as zero (0.0f).
+		//	2 - Ensure session low attribute can be set as zero (0.0).
 		//	3 - Ensure session low attribute can be set as a positive value.
 		//
 		
@@ -654,37 +656,37 @@ class StockTest {
 		//
 		// 	1 - Ensure session low attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockSessionLow(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockSessionLow(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure session low attribute can be set as zero (0.0f).
+		//	2 - Ensure session low attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockSessionLow(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockSessionLow(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure session low attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockSessionLow(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockSessionLow(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockSessionLow () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct session low 0.0f is returned.
-		//	2 - Ensure the correct session low 99.99f is returned.
+		//	1 - Ensure the correct session low 0.0 is returned.
+		//	2 - Ensure the correct session low 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct session low 0.0f is returned.
+		//	1 - Ensure the correct session low 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockSessionLow(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockSessionLow());
+		assertEquals(true, s.SetStockSessionLow(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockSessionLow());
 		//
-		//	2 - Ensure the correct session low 99.99f is returned.
+		//	2 - Ensure the correct session low 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockSessionLow(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockSessionLow());
+		assertEquals(true, s.SetStockSessionLow(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockSessionLow());
 	}
 	
 	//-----------------------------
@@ -696,7 +698,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure session open attribute cannot be a set as a negative value.
-		//	2 - Ensure session open attribute can be set as zero (0.0f).
+		//	2 - Ensure session open attribute can be set as zero (0.0).
 		//	3 - Ensure session open attribute can be set as a positive value.
 		//
 		
@@ -705,37 +707,37 @@ class StockTest {
 		//
 		// 	1 - Ensure session open attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockSessionOpen(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockSessionOpen(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure session open attribute can be set as zero (0.0f).
+		//	2 - Ensure session open attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockSessionOpen(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockSessionOpen(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure session open attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockSessionOpen(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockSessionOpen(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockSessionOpen () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct session open 0.0f is returned.
-		//	2 - Ensure the correct session open 99.99f is returned.
+		//	1 - Ensure the correct session open 0.0 is returned.
+		//	2 - Ensure the correct session open 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct session open 0.0f is returned.
+		//	1 - Ensure the correct session open 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockSessionOpen(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockSessionOpen());
+		assertEquals(true, s.SetStockSessionOpen(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockSessionOpen());
 		//
-		//	2 - Ensure the correct session open 99.99f is returned.
+		//	2 - Ensure the correct session open 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockSessionOpen(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockSessionOpen());
+		assertEquals(true, s.SetStockSessionOpen(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockSessionOpen());
 	}
 	
 	//-------------------------
@@ -747,7 +749,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure year high attribute cannot be a set as a negative value.
-		//	2 - Ensure year high attribute can be set as zero (0.0f).
+		//	2 - Ensure year high attribute can be set as zero (0.0).
 		//	3 - Ensure year high attribute can be set as a positive value.
 		//
 		
@@ -756,37 +758,37 @@ class StockTest {
 		//
 		// 	1 - Ensure year high attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockYearHigh(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockYearHigh(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure year high attribute can be set as zero (0.0f).
+		//	2 - Ensure year high attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure year high attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockYearHigh () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct year high 0.0f is returned.
-		//	2 - Ensure the correct year high 99.99f is returned.
+		//	1 - Ensure the correct year high 0.0 is returned.
+		//	2 - Ensure the correct year high 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct year high 0.0f is returned.
+		//	1 - Ensure the correct year high 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockYearHigh());
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockYearHigh());
 		//
-		//	2 - Ensure the correct year high 99.99f is returned.
+		//	2 - Ensure the correct year high 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockYearHigh());
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockYearHigh());
 	}
 	
 	//------------------------
@@ -798,7 +800,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure year low attribute cannot be a set as a negative value.
-		//	2 - Ensure year low attribute can be set as zero (0.0f).
+		//	2 - Ensure year low attribute can be set as zero (0.0).
 		//	3 - Ensure year low attribute can be set as a positive value.
 		//	4 - Ensure year low attribute cannot be set above year high attribute.
 		//
@@ -808,44 +810,44 @@ class StockTest {
 		//
 		// 	1 - Ensure year low attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockYearLow(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockYearLow(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure year low attribute can be set as zero (0.0f).
+		//	2 - Ensure year low attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockYearLow(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockYearLow(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure year low attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_POSITIVE));
-		assertEquals(true, s.SetStockYearLow(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_POSITIVE));
+		assertEquals(true, s.SetStockYearLow(SimConstants.BD_POSITIVE));
 		//
 		//	4 - Ensure year low attribute cannot be set above year high attribute.
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_POSITIVE + SimConstants.FLOAT_NEGATIVE));
-		assertEquals(false, s.SetStockYearLow(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_POSITIVE.add(SimConstants.BD_NEGATIVE)));
+		assertEquals(false, s.SetStockYearLow(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockYearLow () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct year low 0.0f is returned.
-		//	2 - Ensure the correct year low 99.99f is returned.
+		//	1 - Ensure the correct year low 0.0 is returned.
+		//	2 - Ensure the correct year low 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct year low 0.0f is returned.
+		//	1 - Ensure the correct year low 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockYearLow(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockYearLow());
+		assertEquals(true, s.SetStockYearLow(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockYearLow());
 		//
-		//	2 - Ensure the correct year low 99.99f is returned.
+		//	2 - Ensure the correct year low 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockYearHigh(SimConstants.FLOAT_POSITIVE));
-		assertEquals(true, s.SetStockYearLow(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockYearLow());
+		assertEquals(true, s.SetStockYearHigh(SimConstants.BD_POSITIVE));
+		assertEquals(true, s.SetStockYearLow(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockYearLow());
 	}
 	
 	//----------------------------
@@ -962,7 +964,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure dividend paid attribute cannot be a set as a negative value.
-		//	2 - Ensure dividend paid attribute can be set as zero (0.0f).
+		//	2 - Ensure dividend paid attribute can be set as zero (0.0).
 		//	3 - Ensure dividend paid attribute can be set as a positive value.
 		//
 		
@@ -971,37 +973,37 @@ class StockTest {
 		//
 		// 	1 - Ensure dividend paid attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockDividendPaid(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockDividendPaid(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure dividend paid attribute can be set as zero (0.0f).
+		//	2 - Ensure dividend paid attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockDividendPaid(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockDividendPaid(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure dividend paid attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockDividendPaid(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockDividendPaid(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockDividendPaid () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct dividend paid 0.0f is returned.
-		//	2 - Ensure the correct dividend paid 99.99f is returned.
+		//	1 - Ensure the correct dividend paid 0.0 is returned.
+		//	2 - Ensure the correct dividend paid 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct dividend paid 0.0f is returned.
+		//	1 - Ensure the correct dividend paid 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockDividendPaid(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockDividendPaid());
+		assertEquals(true, s.SetStockDividendPaid(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockDividendPaid());
 		//
-		//	2 - Ensure the correct dividend paid 99.99f is returned.
+		//	2 - Ensure the correct dividend paid 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockDividendPaid(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockDividendPaid());
+		assertEquals(true, s.SetStockDividendPaid(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockDividendPaid());
 	}
 	
 	//---------------------------------
@@ -1013,7 +1015,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure earnings per share attribute cannot be a set as a negative value.
-		//	2 - Ensure earnings per share attribute can be set as zero (0.0f).
+		//	2 - Ensure earnings per share attribute can be set as zero (0.0).
 		//	3 - Ensure earnings per share attribute can be set as a positive value.
 		//
 		
@@ -1022,37 +1024,37 @@ class StockTest {
 		//
 		// 	1 - Ensure earnings per share attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockEarningsPerShare(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockEarningsPerShare(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure earnings per share attribute can be set as zero (0.0f).
+		//	2 - Ensure earnings per share attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure earnings per share attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockEarningsPerShare () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct earnings per share 0.0f is returned.
-		//	2 - Ensure the correct earnings per share 99.99f is returned.
+		//	1 - Ensure the correct earnings per share 0.0 is returned.
+		//	2 - Ensure the correct earnings per share 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct earnings per share 0.0f is returned.
+		//	1 - Ensure the correct earnings per share 0.0 is returned.
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.FLOAT_ZERO));
-		assertEquals(SimConstants.FLOAT_ZERO, s.GetStockEarningsPerShare());
+		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.BD_ZERO));
+		assertEquals(SimConstants.BD_ZERO, s.GetStockEarningsPerShare());
 		//
-		//	2 - Ensure the correct earnings per share 99.99f is returned.
+		//	2 - Ensure the correct earnings per share 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockEarningsPerShare());
+		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockEarningsPerShare());
 	}
 	
 	//--------------------------
@@ -1064,9 +1066,9 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure market cap attribute cannot be a set as a negative value.
-		//	2 - Ensure market cap attribute cannot be set as zero (0.0f).
-		//	3 - Ensure market cap attribute cannot be set below 1.0f.
-		//	4 - Ensure market cap attribute can be set at 1.0f.
+		//	2 - Ensure market cap attribute cannot be set as zero (0.0).
+		//	3 - Ensure market cap attribute cannot be set below 1.0.
+		//	4 - Ensure market cap attribute can be set at 1.0.
 		//	5 - Ensure market cap attribute can be set as a positive value.
 		
 		Stock s = new Stock();
@@ -1074,45 +1076,45 @@ class StockTest {
 		//
 		// 	1 - Ensure market cap attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockMarketCap(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockMarketCap(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure market cap attribute cannot be set as zero (0.0f).
+		//	2 - Ensure market cap attribute cannot be set as zero (0.0).
 		//
-		assertEquals(false, s.SetStockMarketCap(SimConstants.FLOAT_ZERO));
+		assertEquals(false, s.SetStockMarketCap(SimConstants.BD_ZERO));
 		//
-		//	3 - Ensure market cap attribute cannot be set below 1.0f.
+		//	3 - Ensure market cap attribute cannot be set below 1.0.
 		//
-		assertEquals(false, s.SetStockMarketCap(0.999f));
+		assertEquals(false, s.SetStockMarketCap(new BigDecimal("0.999")));
 		//
-		//	4 - Ensure market cap attribute can be set at 1.0f.
+		//	4 - Ensure market cap attribute can be set at 1.0.
 		//
-		assertEquals(true, s.SetStockMarketCap(SimConstants.FLOAT_DOLLAR));
+		assertEquals(true, s.SetStockMarketCap(SimConstants.BD_DOLLAR));
 		//
 		//	5 - Ensure market cap attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockMarketCap(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockMarketCap(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
 	void TestGetStockMarketCap () {
 		//
 		// Tests to perform:
-		//	1 - Ensure the correct market cap 1.0f is returned.
-		//	2 - Ensure the correct market cap 99.99f is returned.
+		//	1 - Ensure the correct market cap 1.0 is returned.
+		//	2 - Ensure the correct market cap 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
 
 		//
-		//	1 - Ensure the correct market cap 1.0f is returned.
+		//	1 - Ensure the correct market cap 1.0 is returned.
 		//
-		assertEquals(true, s.SetStockMarketCap(SimConstants.FLOAT_DOLLAR));
-		assertEquals(SimConstants.FLOAT_DOLLAR, s.GetStockMarketCap());
+		assertEquals(true, s.SetStockMarketCap(SimConstants.BD_DOLLAR));
+		assertEquals(SimConstants.BD_DOLLAR, s.GetStockMarketCap());
 		//
-		//	2 - Ensure the correct market cap 99.99f is returned.
+		//	2 - Ensure the correct market cap 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockMarketCap(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockMarketCap());
+		assertEquals(true, s.SetStockMarketCap(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockMarketCap());
 	}
 	
 	//------------------------------------
@@ -1124,9 +1126,9 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure profit earnings ratio attribute cannot be a set as a negative value.
-		//	2 - Ensure profit earnings ratio attribute cannot be set as zero (0.0f).
-		//	3 - Ensure profit earnings ratio attribute cannot be set below 0.01f.
-		//	4 - Ensure profit earnings ratio attribute can be set at 0.01f.
+		//	2 - Ensure profit earnings ratio attribute cannot be set as zero (0.0).
+		//	3 - Ensure profit earnings ratio attribute cannot be set below 0.01.
+		//	4 - Ensure profit earnings ratio attribute can be set at 0.01.
 		//	5 - Ensure profit earnings ratio attribute can be set as a positive value.
 		//
 		
@@ -1135,23 +1137,23 @@ class StockTest {
 		//
 		// 	1 - Ensure profit earnings ratio attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockProfitEarningsRatio(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockProfitEarningsRatio(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure profit earnings ratio attribute cannot be set as zero (0.0f).
+		//	2 - Ensure profit earnings ratio attribute cannot be set as zero (0.0).
 		//
-		assertEquals(false, s.SetStockProfitEarningsRatio(SimConstants.FLOAT_ZERO));
+		assertEquals(false, s.SetStockProfitEarningsRatio(SimConstants.BD_ZERO));
 		//
-		//	3 - Ensure profit earnings ratio attribute cannot be set below 0.01f.
+		//	3 - Ensure profit earnings ratio attribute cannot be set below 0.01.
 		//
-		assertEquals(false, s.SetStockProfitEarningsRatio(0.009f));
+		assertEquals(false, s.SetStockProfitEarningsRatio(new BigDecimal("0.009")));
 		//
-		//	4 - Ensure profit earnings ratio attribute can be set at 0.01f.
+		//	4 - Ensure profit earnings ratio attribute can be set at 0.01.
 		//
-		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.FLOAT_PENNY));
+		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.BD_PENNY));
 		//
 		//	5 - Ensure profit earnings ratio attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
@@ -1159,7 +1161,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure the correct profit earnings ratio 0.01f is returned.
-		//	2 - Ensure the correct profit earnings ratio 99.99f is returned.
+		//	2 - Ensure the correct profit earnings ratio 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
@@ -1167,13 +1169,13 @@ class StockTest {
 		//
 		//	1 - Ensure the correct market cap 0.01f is returned.
 		//
-		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.FLOAT_PENNY));
-		assertEquals(SimConstants.FLOAT_PENNY, s.GetStockProfitEarningsRatio());
+		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.BD_PENNY));
+		assertEquals(SimConstants.BD_PENNY, s.GetStockProfitEarningsRatio());
 		//
-		//	2 - Ensure the correct market cap 99.99f is returned.
+		//	2 - Ensure the correct market cap 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockProfitEarningsRatio());
+		assertEquals(true, s.SetStockProfitEarningsRatio(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockProfitEarningsRatio());
 	}
 	
 	//------------------------------
@@ -1185,7 +1187,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure dividend yield attribute cannot be a set as a negative value.
-		//	2 - Ensure dividend yield attribute can be set as zero (0.0f).
+		//	2 - Ensure dividend yield attribute can be set as zero (0.0).
 		//	3 - Ensure dividend yield attribute can be set at 0.01f.
 		//	4 - Ensure dividend yield attribute can be set as a positive value.
 		//
@@ -1195,19 +1197,19 @@ class StockTest {
 		//
 		// 	1 - Ensure dividend yield attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetStockDividendYield(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetStockDividendYield(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure dividend yield attribute can be set as zero (0.0f).
+		//	2 - Ensure dividend yield attribute can be set as zero (0.0).
 		//
-		assertEquals(true, s.SetStockDividendYield(SimConstants.FLOAT_ZERO));
+		assertEquals(true, s.SetStockDividendYield(SimConstants.BD_ZERO));
 		//
 		//	3 - Ensure dividend yield attribute can be set at 0.01f.
 		//
-		assertEquals(true, s.SetStockDividendYield(SimConstants.FLOAT_PENNY));
+		assertEquals(true, s.SetStockDividendYield(SimConstants.BD_PENNY));
 		//
 		//	4 - Ensure dividend yield attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetStockDividendYield(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockDividendYield(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
@@ -1215,7 +1217,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure the correct dividend yield 0.01f is returned.
-		//	2 - Ensure the correct dividend yield 99.99f is returned.
+		//	2 - Ensure the correct dividend yield 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
@@ -1223,13 +1225,13 @@ class StockTest {
 		//
 		//	1 - Ensure the correct dividend yield 0.01f is returned.
 		//
-		assertEquals(true, s.SetStockDividendYield(SimConstants.FLOAT_PENNY));
-		assertEquals(SimConstants.FLOAT_PENNY, s.GetStockDividendYield());
+		assertEquals(true, s.SetStockDividendYield(SimConstants.BD_PENNY));
+		assertEquals(SimConstants.BD_PENNY, s.GetStockDividendYield());
 		//
-		//	2 - Ensure the correct dividend yield 99.99f is returned.
+		//	2 - Ensure the correct dividend yield 99.99 is returned.
 		//
-		assertEquals(true, s.SetStockDividendYield(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetStockDividendYield());
+		assertEquals(true, s.SetStockDividendYield(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetStockDividendYield());
 	}
 	
 	//------------------------------
@@ -1241,9 +1243,9 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure dividend yield attribute cannot be a set as a negative value.
-		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0f).
-		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
-		//	4 - Ensure dividend yield attribute can be set at 0.01f.
+		//	2 - Ensure dividend yield attribute cannot be set as zero (0.0).
+		//	3 - Ensure dividend yield attribute cannot be set below 0.01.
+		//	4 - Ensure dividend yield attribute can be set at 0.01.
 		//	5 - Ensure dividend yield attribute can be set as a positive value.
 		//
 		
@@ -1252,23 +1254,23 @@ class StockTest {
 		//
 		// 	1 - Ensure company profit attribute cannot be a set as a negative value.
 		//
-		assertEquals(false, s.SetCompanyProfit(SimConstants.FLOAT_NEGATIVE));
+		assertEquals(false, s.SetCompanyProfit(SimConstants.BD_NEGATIVE));
 		//
-		//	2 - Ensure company profit attribute cannot be set as zero (0.0f).
+		//	2 - Ensure company profit attribute cannot be set as zero (0.0).
 		//
-		assertEquals(false, s.SetCompanyProfit(SimConstants.FLOAT_ZERO));
+		assertEquals(false, s.SetCompanyProfit(SimConstants.BD_ZERO));
 		//
-		//	3 - Ensure dividend yield attribute cannot be set below 0.01f.
+		//	3 - Ensure dividend yield attribute cannot be set below 0.01.
 		//
-		assertEquals(false, s.SetCompanyProfit(0.009f));
+		assertEquals(false, s.SetCompanyProfit(new BigDecimal("0.009")));
 		//
-		//	4 - Ensure dividend yield attribute can be set at 0.01f.
+		//	4 - Ensure dividend yield attribute can be set at 0.01.
 		//
-		assertEquals(true, s.SetCompanyProfit(SimConstants.FLOAT_PENNY));
+		assertEquals(true, s.SetCompanyProfit(SimConstants.BD_PENNY));
 		//
 		//	5 - Ensure dividend yield attribute can be set as a positive value.
 		//
-		assertEquals(true, s.SetCompanyProfit(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetCompanyProfit(SimConstants.BD_POSITIVE));
 	}
 
 	@Test
@@ -1276,7 +1278,7 @@ class StockTest {
 		//
 		// Tests to perform:
 		//	1 - Ensure the correct company profit 0.01f is returned.
-		//	2 - Ensure the correct company profit 99.99f is returned.
+		//	2 - Ensure the correct company profit 99.99 is returned.
 		//
 		
 		Stock s = new Stock();
@@ -1284,13 +1286,13 @@ class StockTest {
 		//
 		//	1 - Ensure the correct company profit 0.01f is returned.
 		//
-		assertEquals(true, s.SetCompanyProfit(SimConstants.FLOAT_PENNY));
-		assertEquals(SimConstants.FLOAT_PENNY, s.GetCompanyProfit());
+		assertEquals(true, s.SetCompanyProfit(SimConstants.BD_PENNY));
+		assertEquals(SimConstants.BD_PENNY, s.GetCompanyProfit());
 		//
-		//	2 - Ensure the correct company profit 99.99f is returned.
+		//	2 - Ensure the correct company profit 99.99 is returned.
 		//
-		assertEquals(true, s.SetCompanyProfit(SimConstants.FLOAT_POSITIVE));
-		assertEquals(SimConstants.FLOAT_POSITIVE, s.GetCompanyProfit());
+		assertEquals(true, s.SetCompanyProfit(SimConstants.BD_POSITIVE));
+		assertEquals(SimConstants.BD_POSITIVE, s.GetCompanyProfit());
 	}
 	
 	//-------------------------------------
@@ -1325,14 +1327,14 @@ class StockTest {
 		//	3 - Set the outstanding shares as low as possible
 		//	4 - Attempt to calculate the earnings per share
 		//
-		assertEquals(true, s.SetCompanyProfit(SimConstants.FLOAT_PENNY));
+		assertEquals(true, s.SetCompanyProfit(SimConstants.BD_PENNY));
 		assertEquals(true, s.SetStockSharesTotal(1));
 		assertEquals(true, s.SetStockSharesOutstanding(1));
 		assertEquals(true, s.CalculateEarningsPerShare());
 		//
 		//	3 - Ensure non-minimums for CalculateEarningsPerShare passes
 		//
-		assertEquals(true, s.SetCompanyProfit(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetCompanyProfit(SimConstants.BD_POSITIVE));
 		assertEquals(true, s.SetStockSharesTotal(100000));
 		assertEquals(true, s.SetStockSharesOutstanding(1000));
 		assertEquals(true, s.CalculateEarningsPerShare());
@@ -1366,13 +1368,13 @@ class StockTest {
 		//	3 - Attempt to calculate the market cap
 		//
 		assertEquals(true, s.SetStockSharesTotal(1));
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_DOLLAR));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_DOLLAR));
 		assertEquals(true, s.CalculateMarketCap());
 		//
 		//	2 - Ensure non-minimums for CalculateMarketCap passes
 		//
 		assertEquals(true, s.SetStockSharesTotal(100000));
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_POSITIVE));
 		assertEquals(true, s.CalculateMarketCap());
 	}
 	
@@ -1403,14 +1405,14 @@ class StockTest {
 		//	2 - Set the current share price as low as possible
 		//	3 - Attempt to calculate the profit earnings ratio
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.FLOAT_PENNY));
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_DOLLAR));
+		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.BD_PENNY));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_DOLLAR));
 		assertEquals(true, s.CalculateProfitEarningsRatio());
 		//
 		//	2 - Ensure non-minimums for CalculateMarketCap passes
 		//
-		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.FLOAT_POSITIVE));
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockEarningsPerShare(SimConstants.BD_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_POSITIVE));
 		assertEquals(true, s.CalculateProfitEarningsRatio());
 	}
 	
@@ -1441,14 +1443,14 @@ class StockTest {
 		//	2 - Set the current share price as low as possible
 		//	3 - Attempt to calculate the profit earnings ratio
 		//
-		assertEquals(true, s.SetStockDividendPaid(SimConstants.FLOAT_ZERO));
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_DOLLAR));
+		assertEquals(true, s.SetStockDividendPaid(SimConstants.BD_ZERO));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_DOLLAR));
 		assertEquals(true, s.CalculateDividendYield());
 		//
 		//	2 - Ensure non-minimums for CalculateDividendYield passes
 		//
-		assertEquals(true, s.SetStockDividendPaid(SimConstants.FLOAT_POSITIVE));
-		assertEquals(true, s.SetStockCurrentPrice(SimConstants.FLOAT_POSITIVE));
+		assertEquals(true, s.SetStockDividendPaid(SimConstants.BD_POSITIVE));
+		assertEquals(true, s.SetStockCurrentPrice(SimConstants.BD_POSITIVE));
 		assertEquals(true, s.CalculateDividendYield());
 	}
 	
