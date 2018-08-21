@@ -103,6 +103,15 @@ based on the Market Mode (TUTORIAL or regular).
 	- stockDividendYield;			// The Dividend Yield is calculated by dividing the dollar value of dividends paid in a given year per share of stock held by stockCurrentPrice for one share of stock.
 	- companyProfit;				// The Company Profit is a given value for purposes of calculating the Earnings Per Share.
 	
+Some default assertions:
+1) Companies cannot/should not go broke during a simulation. There should never be companies that zero out. Will need to give this some additional thought
+as to whether this might need to be possible as part of a specific event in the simulation, such as a buyout/takeover from a news event. That would mean a
+lot of thought and understanding as to transfer of shares outstanding, etc. But by default, companies should never go broke or have zero shares or zero
+company profit, etc.
+
+2) 
+
+
 	int stockSharesTotal
 	====================
 	Total shares of stock, which includes both outstanding (owned by the player and other AI traders) and available (shares which are available to
